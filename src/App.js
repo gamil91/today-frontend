@@ -1,25 +1,46 @@
-import logo from './logo.svg';
+import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import React, { Component } from 'react'
+import { Route, Switch, withRouter } from 'react-router-dom'
+import { connect } from 'react-redux';
 
-export default App;
+import Home from './components/Home';
+import Form from './components/UserForm'
+
+
+class App extends Component {
+
+
+  handleRender = (routerProps) => {
+    switch (routerProps.location.pathname) {
+      case "/signup" :
+        return <Form/>
+      case "/home" :
+        return <Home/>
+      case "/editprofile" :
+        return <Home edit={true} />
+      default:
+        break
+    }
+  }
+
+  
+  render(){
+    console.log(this.props.user)
+    return (
+      <div className="App">
+        <h1>Today. </h1>
+        
+          <Switch className="App">
+            <Route path="/signup" exact component={this.handleRender} />
+            <Route path="/home" exact component={this.handleRender} />
+            <Route path="/editprofile" exact component={this.handleRender} />
+          </Switch>
+        
+
+      </div>
+    );
+  }
+}
+export default withRouter(connect(state => ({user:state.user}))(App));
