@@ -1,27 +1,39 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Navbar, Nav } from 'react-bootstrap'
+import { connect } from 'react-redux';
+import { logoutUser } from '../redux/actions'
+import { withRouter } from 'react-router-dom'
+import '../css/TopNav.css'
 
-const TopNav = () => {
-    return (
-    <> 
-      <Navbar bg="dark" variant="dark">
-        <Navbar.Brand href="#home">Navbar</Navbar.Brand>
-        <Nav className="mr-auto">
-          <Nav.Link href="/home">Home</Nav.Link>
-          <Nav.Link href="/myblogs" >My Blogs</Nav.Link>
-          <Nav.Link href="/blogs" >Blogs</Nav.Link>
-          <Navbar.Collapse className='justify-content-end'>
-            <Nav.Item >
-              <Nav.Link href="/editprofile">Settings</Nav.Link>
-            </Nav.Item >
-            <Nav.Item >
-              <Nav.Link href="/blogs">Log Out</Nav.Link>
-            </Nav.Item >
-          </Navbar.Collapse>
-        </Nav>
-      </Navbar>
-    </>
-    );
+class TopNav extends Component {
+
+  handleLogout = () => {
+    this.props.logoutUser()
+    this.props.history.push("/login")
+  }
+
+  handleClick = (e) => {
+    // debugger
+    this.props.handleHomeRender(e.target.textContent)
+  }
+
+  render(){
+      return (
+    <div> 
+      <ul id="nav">
+        <Navbar bg="dark" variant="dark">
+          {/* <li><Nav.Link onClick={this.handleClick}>Check in</Nav.Link></li> */}
+          <Nav className="mr-auto">
+            <li><Nav.Link onClick={this.handleClick}>Check in</Nav.Link></li>
+            <li><Nav.Link href="/home">Home</Nav.Link></li>
+            <li><Nav.Link href="/blogs" >Blogs</Nav.Link></li>
+            <li><Nav.Link onClick={this.handleClick}>Settings</Nav.Link></li>
+            <li><Nav.Link onClick={this.handleLogout}>Log Out</Nav.Link></li>
+          </Nav>
+        </Navbar>
+      </ul>
+    </div>
+    );}
 }
 
-export default TopNav;
+export default withRouter(connect(null, {logoutUser})(TopNav));

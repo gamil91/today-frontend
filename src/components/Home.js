@@ -1,41 +1,55 @@
 import React, { Component } from 'react';
-import { setUser } from '../redux/actions'
+import { fetchUser } from '../redux/actions'
 import { connect } from 'react-redux';
 import Form from './UserForm'
+import BlogForm from './BlogForm'
 import TopNav from './TopNav'
 
 class Home extends Component {
 
     componentDidMount(){
-        fetch('http://localhost:3000/getuser', {
-            method: 'GET',
-            headers: {
-                "Content-Type" : "application/json",
-                'Authorization' : `Bearer ${localStorage.getItem('jwt')}`
-            }})
-            .then(res => res.json())
-            .then(data => this.props.setUser(data.user))
+        this.props.fetchUser()
+    }
+
+    state = {screen: ""}
+
+    handleHomeRender = (name) => {
+        // debugger
+        this.setState({screen: name})
     }
     
     render() {
-        
-        switch(true) {
-            case (this.props.edit): 
-                return (
-                    <div>
-                        <TopNav/>
-                         <Form name="editprofile"/>
-                    </div>
-                )
-            default:
-                return (
-                    <div>
-                        <TopNav/> 
-                    </div>
-                );
+        console.log(this.props)
 
+        switch(this.state.screen) {
+            case ("Settings"):
+                return (
+                <>
+                    <TopNav handleHomeRender={this.handleHomeRender}/>
+                    <Form name="Update your account" /> 
+                </>)
+            case ("Check in"):
+            return (
+            <>
+                <TopNav handleHomeRender={this.handleHomeRender}/>
+                <BlogForm /> 
+            </>)
+            default :
+                return (
+                <>
+                    <TopNav handleHomeRender={this.handleHomeRender}/>
+                    <h1>Hi {this.props.user.name}!</h1>
+                </>)
         }
     }
 }
 
-export default connect(null, {setUser})(Home);
+const mapStateToProps = state => {
+    // debugger
+    return {
+        user: state.user,
+        allBlogs: state.allBlogs
+    }
+}
+
+export default connect(mapStateToProps, {fetchUser})(Home);
