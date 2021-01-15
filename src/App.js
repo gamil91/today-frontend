@@ -1,25 +1,68 @@
-import logo from './logo.svg';
+import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import React, { Component } from 'react'
+import { Route, Switch, withRouter, Redirect } from 'react-router-dom'
+import { connect } from 'react-redux';
 
-export default App;
+import Home from './components/Home';
+import Form from './components/UserForm'
+import NotFound from './components/NotFound'
+
+
+class App extends Component {
+
+
+  handleRender = (routerProps) => {
+    switch (routerProps.location.pathname) {
+      case "/login" :
+        return <Form name="Log in"/>
+      case "/signup" :
+        return <Form name="Sign up"/>
+      case "/home" :
+        return <Home />
+      default:
+        break
+    }
+  }
+  
+  render(){
+    
+    return (
+      <div className="App">
+        <h1>Today. </h1>
+        
+          <Switch className="App">
+
+            <Route exact path="/" >
+              {!!localStorage.getItem('jwt') ? <Redirect to="/home" /> : 
+              <Redirect to="/login" exact component={this.handleRender} />}
+            </Route>
+
+            <Route exact path="/signup" >
+              {!!localStorage.getItem('jwt') ? <Redirect to="/home" /> : 
+              <Route path="/signup" exact component={this.handleRender} />}
+            </Route>
+
+            <Route exact path="/login">
+            {!!localStorage.getItem('jwt') ? <Redirect to="/home" /> : 
+             <Route path="/login" exact component={this.handleRender} />}
+             </Route>
+
+            <Route exact path="/home" >
+            {!!localStorage.getItem('jwt') ? 
+            <Route path="/home" exact component={this.handleRender} /> : 
+            <Redirect to="/login"/>}
+            </Route>
+
+            <Route component={NotFound}/>
+            
+
+          </Switch>
+        
+
+      </div>
+    );
+  }
+}
+export default withRouter(connect(state => ({user:state.user}))(App));
