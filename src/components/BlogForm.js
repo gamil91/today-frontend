@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Form, Button } from 'react-bootstrap'
 import { connect } from 'react-redux';
 import { setUser } from '../redux/actions/userActions'
-import { updateBlog } from '../redux/actions/blogsActions'
+import { updateBlog, addBlogState } from '../redux/actions/blogsActions'
 import { withRouter } from 'react-router-dom'
 
 class BlogForm extends Component {
@@ -48,7 +48,7 @@ class BlogForm extends Component {
         fetch("http://localhost:3000/blogs", config)
         .then(res => res.json())
         .then(data => {
-            this.props.setUser(data.user)
+            this.props.addBlogState(data)
             this.props.handleHomeRender("")
         })
         
@@ -87,4 +87,7 @@ class BlogForm extends Component {
     }
 }
 
-export default withRouter(connect(state => ({blogs: state.user.blogs}), { setUser, updateBlog })(BlogForm));
+
+
+// export default withRouter(connect(state => ({blogs: state.allBlogs}), mapDispatchToProps)(BlogForm));
+export default withRouter(connect(state => ({blogs: state.allBlogs}), { setUser, updateBlog, addBlogState })(BlogForm));
