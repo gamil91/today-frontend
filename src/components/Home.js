@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { fetchUser } from '../redux/actions'
+import { fetchUser } from '../redux/actions/userActions'
 import { connect } from 'react-redux';
 import Form from './UserForm'
 import BlogForm from './BlogForm'
 import TopNav from './TopNav'
+import BlogContainer from './BlogContainer'
 
 class Home extends Component {
 
@@ -13,9 +14,12 @@ class Home extends Component {
 
     state = {screen: ""}
 
-    handleHomeRender = (name) => {
-        // debugger
-        this.setState({screen: name})
+    handleHomeRender = (name, id="") => {
+        if(id === ""){
+            this.setState({screen: name})
+        } else {
+            this.setState({screen: name, id})
+        }
     }
     
     render() {
@@ -30,15 +34,17 @@ class Home extends Component {
                 </>)
             case ("Check in"):
             return (
-            <>
-                <TopNav handleHomeRender={this.handleHomeRender}/>
-                <BlogForm /> 
-            </>)
+                <>
+                    <TopNav handleHomeRender={this.handleHomeRender} />
+                    <BlogForm id={!!this.state.id ? this.state.id : null} handleHomeRender={this.handleHomeRender}/> 
+                    
+                </>)
             default :
                 return (
                 <>
                     <TopNav handleHomeRender={this.handleHomeRender}/>
                     <h1>Hi {this.props.user.name}!</h1>
+                    <BlogContainer handleHomeRender={this.handleHomeRender}/>
                 </>)
         }
     }

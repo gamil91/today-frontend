@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Form, Button } from 'react-bootstrap'
-import { createUser, updateUser, deleteUser, setUser } from '../redux/actions'
+import { createUser, updateUser, deleteUser, setUser } from '../redux/actions/userActions'
 import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom'
 import DeleteModal from './DeleteModal'
@@ -28,13 +28,9 @@ class UserForm extends Component {
     }
 
     handleOnSubmit = (e) => {
-        // debugger
+      debugger
         e.preventDefault()
-        // let form = e.currentTarget
-        // if (form.checkValidity() === false){
-        //     e.stopPropagation()
-        // } else {
-        //     this.setState({validated:true})
+        
         switch(true){
             case (this.props.name === "Log in"):
                 this.loginUser(this.state)
@@ -67,9 +63,14 @@ class UserForm extends Component {
         fetch(`http://localhost:3000/login`, config)
         .then(res => res.json())
         .then(data => {
+            if (data.error){
+                alert(`${data.error}`)
+                this.setState({email: "", password: ""})
+            } else {
             localStorage.setItem('jwt', data.token)
             this.props.setUser(data.user) 
             this.props.history.push('/home')
+            }
         })
     }
 
@@ -108,7 +109,7 @@ class UserForm extends Component {
                 {this.props.name === "Update your account" ? null :
                 <Form.Group controlId="exampleForm.ControlInput1">
                     <Form.Label>Email address</Form.Label>
-                    <Form.Control  name="email" type="email" placeholder="Enter email" onChange={(e) => this.handleOnChange(e)}/>
+                    <Form.Control  value={this.state.email} name="email" type="email" placeholder="Enter email" onChange={(e) => this.handleOnChange(e)}/>
 
                     <Form.Control.Feedback type="invalid">
                     Please provide an email address.
@@ -123,7 +124,7 @@ class UserForm extends Component {
 
                 <Form.Group >
                     <Form.Label>Password</Form.Label>
-                    <Form.Control  name="password" type="password" placeholder="Password" onChange={(e) => this.handleOnChange(e)}/>
+                    <Form.Control value={this.state.password} name="password" type="password" placeholder="Password" onChange={(e) => this.handleOnChange(e)}/>
                 </Form.Group>
                 
 

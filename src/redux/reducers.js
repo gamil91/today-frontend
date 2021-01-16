@@ -12,12 +12,15 @@ const userReducer = (state = initialState.user, action) => {
             return action.payload
         case "LOG_OUT":
             return initialState.user
+        case "DELETE_BLOG":
+            let updated = state.blogs.filter(b => b.id !== action.payload)
+            return {...state, blogs:updated}
         default:
             return state
     }
 }
 
-const blogReducer = (state = initialState.allBlogs, action) => {
+const blogsReducer = (state = initialState.allBlogs, action) => {
     switch(action.type){
         default:
             return state
@@ -28,5 +31,5 @@ const blogReducer = (state = initialState.allBlogs, action) => {
 
 export default combineReducers({
     user: userReducer,
-    allBlogs: blogReducer
+    allBlogs: blogsReducer
 })

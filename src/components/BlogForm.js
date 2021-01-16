@@ -1,11 +1,20 @@
 import React, { Component } from 'react';
 import { Form, Button } from 'react-bootstrap'
 import { connect } from 'react-redux';
+import { setUser } from '../redux/actions/userActions'
+import { updateBlog } from '../redux/actions/blogsActions'
+import { withRouter } from 'react-router-dom'
 
 class BlogForm extends Component {
 
+    componentDidMount(){
+        if (this.props.id){
+           let blog = this.props.blogs.find(b => b.id === this.props.id)
+            this.setState({title: blog.title, content: blog.content, id:this.props.id})
+        }
+    }
+
     state = {
-        id: this.props.id,
         title: "",
         content: "",
         private: false
@@ -18,7 +27,31 @@ class BlogForm extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault()
-        console.log(this.state)
+        if (!!this.props.id){
+            this.props.updateBlog(this.state)
+            this.props.handleHomeRender("")} 
+        else {this.addBlog()}
+    }
+
+    addBlog = () =>{
+        const { title, content } = this.state
+        let info = { title, content, private: this.state.private}
+
+        let config = {
+            method:  "POST",
+            headers: {
+                "Content-Type": "application/json",
+                'Authorization' : `Bearer ${localStorage.getItem('jwt')}`},
+            body: JSON.stringify(info)
+            }
+
+        fetch("http://localhost:3000/blogs", config)
+        .then(res => res.json())
+        .then(data => {
+            this.props.setUser(data.user)
+            this.props.handleHomeRender("")
+        })
+        
     }
 
     render() {
@@ -54,4 +87,4 @@ class BlogForm extends Component {
     }
 }
 
-export default connect(state=>({id: state.user.id}))(BlogForm);
+export default withRouter(connect(state => ({blogs: state.user.blogs}), { setUser, updateBlog })(BlogForm));
