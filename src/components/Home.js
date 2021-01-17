@@ -18,11 +18,7 @@ class Home extends Component {
     state = {screen: ""}
 
     handleHomeRender = (name, id="") => {
-        if(id === ""){
-            this.setState({screen: name})
-        } else {
-            this.setState({screen: name, id})
-        }
+        id === "" ? this.setState({screen: name}) : this.setState({screen: name, id})
     }
 
     filterUserBlogs = () => {
@@ -33,14 +29,14 @@ class Home extends Component {
         console.log(this.props)
         this.filterUserBlogs()
         switch(this.state.screen) {
-            case ("Settings"):
+            case "Settings":
                 return (
                 <>
                     <TopNav handleHomeRender={this.handleHomeRender}/>
                     <Form name="Update your account" /> 
                 </>)
-            case ("Check in"):
-            return (
+            case "Check in":
+                return (
                 <>
                     <TopNav handleHomeRender={this.handleHomeRender} />
                     <BlogForm 
@@ -48,6 +44,16 @@ class Home extends Component {
                         handleHomeRender={this.handleHomeRender}/> 
                     
                 </>)
+            case "Blogs":
+                return (
+                    <>
+                    <TopNav handleHomeRender={this.handleHomeRender} />
+                    <BlogContainer 
+                        blogs={this.props.allBlogs} 
+                        likedBlogs={this.props.likedBlogs} 
+                        handleHomeRender={this.handleHomeRender}/>
+                     
+                    </>)
             default :
                 return (
                 <>

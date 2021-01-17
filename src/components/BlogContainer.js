@@ -6,17 +6,16 @@ import BlogCard from './BlogCard'
 class BlogContainer extends Component {
     
 
-
     render(){
         const { blogs } = this.props
-        let likedIds = this.props.likedBlogs.map(b => b.id)
-        // debugger
+        let likedBlogIds = this.props.likedBlogs.map(b => b.id)
+       
         return (
         <div id="blog-container">
-            {blogs.reverse().map(blog => 
+            {blogs.map(blog => 
                 <BlogCard 
                     key={blog.id} blog={blog} 
-                    liked={likedIds.includes(blog.id)} 
+                    liked={likedBlogIds.includes(blog.id)} 
                     handleHomeRender={this.props.handleHomeRender}/>)}
         </div>
     );}

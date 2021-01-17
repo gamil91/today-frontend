@@ -50,7 +50,7 @@ export function likeBlog(blog_id){
           }       
         fetch(`http://localhost:3000/likes`, config)
         .then(res => res.json())
-        .then(data =>{dispatch(addLike(data))}) 
+        .then(data =>dispatch(addLike(data))) 
     }
 }
 
@@ -59,15 +59,18 @@ function addLike(data){
 }
 
 export function unlikeBlog(id){
+    // debugger
     return (dispatch) => {
         fetch(`http://localhost:3000/likes/${id}`, {
         method:  "DELETE",
         headers: {"Content-Type": "application/json"}})
         .then(res => res.json())
-        .then(data => {
-                debugger
-        })
+        .then(data => dispatch(removeLike(data)))
     }
+}
+
+function removeLike(data){
+    return {type: 'UNLIKE_BLOG', payload: {blog:data.blog, user:data.user}}
 }
 
 export function fetchBlogs(){
