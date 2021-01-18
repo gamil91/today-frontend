@@ -29,6 +29,49 @@ const likesReducer = (state = initialState.likedBlogs, action) => {
             return [...state, action.payload.blog]
         case "LOG_OUT":
             return []
+
+        case "ADD_COMMENT":
+            let toCommentLikedBlog = state.find(b => b.id === action.payload.blog_id)
+            if (!!toCommentLikedBlog){
+                let blogLikedIdx = state.map(x => x.id).indexOf(action.payload.blog_id)
+                let commentsLikedArr = [...toCommentLikedBlog.comments, action.payload]
+                let commentedLikedBlog = {...toCommentLikedBlog, comments: commentsLikedArr}
+                let startLikedSlice = state.slice(0, blogLikedIdx)
+                let endLikedSlice = state.slice(blogLikedIdx+1)
+                return [...startLikedSlice, commentedLikedBlog, ...endLikedSlice]
+            } else {
+                return state
+            }
+
+        case "UPDATE_COMMENT":
+            let toUpdateCommentLikedBlog = state.find(b => b.id === action.payload.blog_id)
+            
+            if(!!toUpdateCommentLikedBlog){
+                let likedBlogIdxUpdate = state.map(x => x.id).indexOf(action.payload.blog_id)
+                let likedBlogCommentIdx = toUpdateCommentLikedBlog.comments.map(x => x.id).indexOf(action.payload.id)
+                let likedBlogStartComments = toUpdateCommentLikedBlog.comments.slice(0, likedBlogCommentIdx)
+                let likedBlogEndComments = toUpdateCommentLikedBlog.comments.slice(likedBlogCommentIdx + 1)
+                let likedBlogUpdated = {...toUpdateCommentLikedBlog, comments: [...likedBlogStartComments, action.payload, ...likedBlogEndComments]}
+                let likedBlogsStartUpdate = state.slice(0, likedBlogIdxUpdate)
+                let likedBlogsEndUpdate = state.slice(likedBlogIdxUpdate+1)
+                return [...likedBlogsStartUpdate, likedBlogUpdated, ...likedBlogsEndUpdate]
+            } else {
+                return state
+            }
+
+        case "DELETE_COMMENT":
+            let toDeleteCommentLikedBlog = state.find(b => b.id === action.payload.blog_id)
+            if (!!toDeleteCommentLikedBlog){
+                let likedBlogIdxDelete = state.map(x => x.id).indexOf(action.payload.blog_id)
+                let filteredCommentsLikedBlog = toDeleteCommentLikedBlog.comments.filter(c => c.id !== action.payload.id)
+                let deleteCommentLikedBlog = {...toDeleteCommentLikedBlog, comments: filteredCommentsLikedBlog}
+                let likedBlogStartDelete = state.slice(0, likedBlogIdxDelete)
+                let likedBlogEndDelete = state.slice(likedBlogIdxDelete+1)
+                return [...likedBlogStartDelete, deleteCommentLikedBlog, ...likedBlogEndDelete]
+            } else {
+                return state 
+            }
+    
         default:
             return state
     }
@@ -90,13 +133,12 @@ const blogsReducer = (state = initialState.allBlogs, action) => {
             let startSlice = state.slice(0, blogIdx)
             let endSlice = state.slice(blogIdx+1)
             return [...startSlice, commentedBlog, ...endSlice]
+            
         case "UPDATE_COMMENT":
-            // look for the blog
+            // look for the blog and look for the indx of that blog
             let toUpdateCommentBlog = state.find(b => b.id === action.payload.blog_id)
-            // look for the indx
             let blogIdxUpdate = state.map(x => x.id).indexOf(action.payload.blog_id)
             // traverse through that blogs comments and find THE comment
-            // let updateComment = toUpdateCommentBlog.comments.find(c => c.id === action.payload.id)
             // find the index of that comment
             let commentIdx = toUpdateCommentBlog.comments.map(x => x.id).indexOf(action.payload.id)
             // slice through toUpdateBlog.comments start and end

@@ -25,6 +25,7 @@ class TopNav extends Component {
             <Nav.Link onClick={this.handleClick}>Check in</Nav.Link>
             <Nav.Link href="/home">Home</Nav.Link>
             <Nav.Link onClick={this.handleClick} >Blogs</Nav.Link>
+            <Nav.Link onClick={this.handleClick} >Liked Blogs</Nav.Link>
             <Nav.Link onClick={this.handleClick}>Settings</Nav.Link>
             <Nav.Link onClick={this.handleLogout}>Log Out</Nav.Link>
           </Nav>

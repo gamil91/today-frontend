@@ -40,8 +40,14 @@ class UserForm extends Component {
                 this.props.updateUser(this.state)
                 this.props.history.push('/home')
                 break
-            default:
+            case (this.props.screen === "Sign up" && this.state.password !== this.state.password_confirmation):
+                alert("Passwords do not match, please try again.")
+                this.setState({password: "", password_confirmation: ""})
+                break
+            case (this.props.screen === "Sign up"):
                 this.createUser(this.state)
+                break
+            default:
                 break
             }
     }
