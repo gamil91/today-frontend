@@ -17,8 +17,8 @@ class Home extends Component {
 
     state = {screen: ""}
 
-    handleHomeRender = (name, id="") => {
-        id === "" ? this.setState({screen: name}) : this.setState({screen: name, id})
+    handleHomeRender = (name, blogID="") => {
+        blogID === "" ? this.setState({screen: name}) : this.setState({screen: name, blogID})
     }
 
     filterUserBlogs = () => {
@@ -44,7 +44,7 @@ class Home extends Component {
                 <>
                     <TopNav handleHomeRender={this.handleHomeRender} />
                     <BlogForm 
-                        id={!!this.state.id ? this.state.id : null} 
+                        blogID={!!this.state.blogID ? this.state.blogID : null} 
                         handleHomeRender={this.handleHomeRender}/> 
                     
                 </>)

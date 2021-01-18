@@ -19,7 +19,9 @@ export function updateBlog(blog){
 
         fetch(`http://localhost:3000/blogs/${id}`, config)
         .then(res => res.json())
-        .then(data => {dispatch(updateBlogState(data))
+        .then(data => {
+            alert("Blog Succesfully Updated!")
+            dispatch(updateBlogState(data))
         })
     }
 }

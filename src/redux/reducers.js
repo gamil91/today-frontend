@@ -38,10 +38,19 @@ const blogsReducer = (state = initialState.allBlogs, action) => {
     switch(action.type){
         case "LOG_OUT":
             return []
+
         case "SET_BLOGS":
             return action.payload.reverse()
         case "ADD_BLOG":
             return [action.payload, ...state]
+        case "UPDATE_BLOG":
+            let updatedIdx = state.map(x => x.id).indexOf(action.payload.id)
+            let notUpdatedSliceStart = state.slice(0, updatedIdx)
+            let notUpdatedSliceEnd = state.slice(updatedIdx + 1)
+            return [...notUpdatedSliceStart, action.payload, ...notUpdatedSliceEnd]
+        case "DELETE_BLOG":
+            let updated = state.filter(b => b.id !== action.payload)
+            return updated
 
         case "ADD_LIKE":
             //find the blog to LIKE and get the index, go to the user_likes attr of that blog
@@ -57,7 +66,6 @@ const blogsReducer = (state = initialState.allBlogs, action) => {
             let ending = state.slice(index + 1)
             return [...begin, likedBlog, ...ending]
 
-
         case "UNLIKE_BLOG":
             //find blog to UNLIKE and get the index, go to the user_likes attr of that blog
             //filter out the user to remove, spread out blog and add on updated user_likes array
@@ -71,14 +79,47 @@ const blogsReducer = (state = initialState.allBlogs, action) => {
             let first = state.slice(0, idx)
             let end = state.slice(idx+1)
             return [...first, updatedBlog, ...end]
-        case "UPDATE_BLOG":
-            let updatedIdx = state.map(x => x.id).indexOf(action.payload.id)
-            let notUpdatedSliceStart = state.slice(0, updatedIdx)
-            let notUpdatedSliceEnd = state.slice(updatedIdx + 1)
-            return [...notUpdatedSliceStart, action.payload, ...notUpdatedSliceEnd]
-        case "DELETE_BLOG":
-            let updated = state.filter(b => b.id !== action.payload)
-            return updated
+
+        case "ADD_COMMENT":
+            let toCommentBlog = state.find(b => b.id === action.payload.blog_id)
+            let blogIdx = state.map(x => x.id).indexOf(action.payload.blog_id)
+            // debugger
+            let commentsArr = [...toCommentBlog.comments, action.payload]
+            let commentedBlog = {...toCommentBlog, comments: commentsArr}
+
+            let startSlice = state.slice(0, blogIdx)
+            let endSlice = state.slice(blogIdx+1)
+            return [...startSlice, commentedBlog, ...endSlice]
+        case "UPDATE_COMMENT":
+            // look for the blog
+            let toUpdateCommentBlog = state.find(b => b.id === action.payload.blog_id)
+            // look for the indx
+            let blogIdxUpdate = state.map(x => x.id).indexOf(action.payload.blog_id)
+            // traverse through that blogs comments and find THE comment
+            // let updateComment = toUpdateCommentBlog.comments.find(c => c.id === action.payload.id)
+            // find the index of that comment
+            let commentIdx = toUpdateCommentBlog.comments.map(x => x.id).indexOf(action.payload.id)
+            // slice through toUpdateBlog.comments start and end
+            let startComments = toUpdateCommentBlog.comments.slice(0, commentIdx)
+            let endComments = toUpdateCommentBlog.comments.slice(commentIdx + 1)
+            // spread out updatedCommentBlog
+            // spread out the [start, Updatedcomment, end]...toUpdateBlog.comments
+            let updatedCommentBlog = {...toUpdateCommentBlog, comments: [...startComments, action.payload, ...endComments]}
+            // slice through state start and end, spread out again with that blog
+            let startUpdate = state.slice(0, blogIdxUpdate)
+            let endUpdate = state.slice(blogIdxUpdate+1)
+            return [...startUpdate, updatedCommentBlog, ...endUpdate]
+
+        case "DELETE_COMMENT":
+            
+            let toDeleteCommentBlog = state.find(b => b.id === action.payload.blog_id)
+            let blogIdxDelete = state.map(x => x.id).indexOf(action.payload.blog_id)
+            let filteredComments = toDeleteCommentBlog.comments.filter(c => c.id !== action.payload.id)
+            let deleteCommentBlog = {...toDeleteCommentBlog, comments: filteredComments}
+            let startDelete = state.slice(0, blogIdxDelete)
+            let endDelete = state.slice(blogIdxDelete+1)
+            return [...startDelete, deleteCommentBlog, ...endDelete]
+
         default:
             return state
     }

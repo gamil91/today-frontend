@@ -1,16 +1,18 @@
 import '../css/BlogCard.css'
 import React, { Component } from 'react';
-import { Card, Button, Form } from 'react-bootstrap'
+import { Card, Button} from 'react-bootstrap'
 import { connect } from 'react-redux';
 import { deleteBlog, likeBlog, unlikeBlog } from '../redux/actions/blogsActions'
+import CommentContainer from './CommentContainer'
+import CommentForm from './CommentForm'
 
 
 class BlogCard extends Component {
 
-
+    
 
     render() {
-        const { title, content, user, created_at, user_likes, id, user_id} = this.props.blog
+        const { title, content, user, created_at, user_likes, id, user_id, comments} = this.props.blog
         // debugger
         const handleLike = (e) => {
             if (e.target.textContent === "LIKE" ){
@@ -33,13 +35,16 @@ class BlogCard extends Component {
                         <p>
                           {content}
                         </p>
+
                         <footer className="blockquote-footer">
                             {`${user.name} ${created_at}`}<br/>
                             {this.props.user.id === user_id && this.props.blog.private === true ?  "(private blog, only viewable by you)" : null}
                         </footer>
+
                         </blockquote>     
                         <br/> 
                         <p>{user_likes.length}</p>{" "}
+
                         <Button variant="primary" onClick={handleLike}>{this.props.liked ? `UNLIKE` : `LIKE`}</Button>{" "}
                         
                         {this.props.user.id === user_id ?  
@@ -49,13 +54,9 @@ class BlogCard extends Component {
                         <Button onClick={()=> this.props.deleteBlog(id)} variant="primary">Delete</Button> : null}
                     </Card.Body> 
                     
-                    <Form>
-                        <Form.Group controlId="exampleForm.ControlTextarea1">
-                        <Form.Control as="textarea" rows={3} />
-                        </Form.Group>
-                        <Button variant="primary">Comment</Button>
-                        <br/>
-                    </Form>
+                    <CommentForm blog_id={id} comments={comments}/>
+
+                    {/* {this.props.comments.length !== 0 ? <CommentContainer editComment={this.editComment}comments={comments}/> : null} */}
                   
                 </Card>
                 
