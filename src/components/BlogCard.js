@@ -2,17 +2,26 @@ import '../css/BlogCard.css'
 import React, { Component } from 'react';
 import { Card, Button, Form } from 'react-bootstrap'
 import { connect } from 'react-redux';
-import { deleteBlog } from '../redux/actions/blogsActions'
-import EditBlogModal from './EditBlogModal'
+import { deleteBlog, likeBlog, unlikeBlog } from '../redux/actions/blogsActions'
+
 
 class BlogCard extends Component {
 
 
 
-
     render() {
-        const { title, content, user, created_at, user_likes, id, user_id } = this.props.blog
+        const { title, content, user, created_at, user_likes, id, user_id} = this.props.blog
         // debugger
+        const handleLike = (e) => {
+            if (e.target.textContent === "LIKE" ){
+                this.props.likeBlog(id) 
+            } else {
+                let blog = this.props.likedBlogs.find(b => b.id === id)
+                let like = blog.likes.find(like => like.user_id === this.props.user.id)
+                this.props.unlikeBlog(like.id)
+                }
+            }
+        
         return (
             <div id="blog-card">
                 <Card className="mb-2 text-center card" key={5} text={"white"}
@@ -25,14 +34,18 @@ class BlogCard extends Component {
                           {content}
                         </p>
                         <footer className="blockquote-footer">
-                            {`${user} ${created_at}`}
+                            {`${user.name} ${created_at}`}<br/>
+                            {this.props.user.id === user_id && this.props.blog.private === true ?  "(private blog, only viewable by you)" : null}
                         </footer>
                         </blockquote>     
                         <br/> 
                         <p>{user_likes.length}</p>{" "}
-                        <Button variant="primary">Like</Button>{" "}
-                        <Button variant="primary" onClick={() => this.props.handleHomeRender("Check in", id)}>Edit</Button>{" "}
+                        <Button variant="primary" onClick={handleLike}>{this.props.liked ? `UNLIKE` : `LIKE`}</Button>{" "}
+                        
                         {this.props.user.id === user_id ?  
+                        <Button variant="primary" onClick={() => this.props.handleHomeRender("Check in", id)}>Edit</Button>: null} {" "}
+                        {
+                        this.props.user.id === user_id ?  
                         <Button onClick={()=> this.props.deleteBlog(id)} variant="primary">Delete</Button> : null}
                     </Card.Body> 
                     
@@ -51,4 +64,11 @@ class BlogCard extends Component {
     }
 }
 
-export default connect(state =>({user: state.user}), {deleteBlog})(BlogCard);
+const mapStateToProps = state => {
+    return {
+        user: state.user,
+        likedBlogs: state.likedBlogs
+    }
+}
+export default connect(mapStateToProps, {deleteBlog, likeBlog, unlikeBlog})(BlogCard);
+// export default connect(state =>({user: state.user}), {deleteBlog, likeBlog, unlikeBlog})(BlogCard);

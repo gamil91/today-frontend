@@ -2,6 +2,8 @@ import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/button'
 
 const DeleteModal = ({openModal, closeModal, handleDelete}) => {
+
+    
     return (
         <>
         <Modal show={openModal} onHide={closeModal} backdrop="static">

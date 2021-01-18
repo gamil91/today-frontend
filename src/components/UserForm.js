@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Form, Button } from 'react-bootstrap'
-import { createUser, updateUser, deleteUser, setUser } from '../redux/actions/userActions'
+import { updateUser, logoutUser, setUser } from '../redux/actions/userActions'
 import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom'
 import DeleteModal from './DeleteModal'
@@ -17,10 +17,8 @@ class UserForm extends Component {
         password_confirmation: "",
         modalDelete: false,
         openDeleteModal: false
-        // validated: false
     }
 
-     
 
     handleOnChange = (e) => {
         const {name , value} = e.target
@@ -28,85 +26,110 @@ class UserForm extends Component {
     }
 
     handleOnSubmit = (e) => {
-      debugger
+    //   debugger
         e.preventDefault()
         
         switch(true){
-            case (this.props.name === "Log in"):
+            case (this.props.screen === "Log in"):
                 this.loginUser(this.state)
                 break
             case (e.target.textContent === "Delete my account"):
                 this.openModal(this.props.user.id)
                 break
-            case (this.props.name === "Update your account"):
+            case (this.props.screen === "Update your account"):
                 this.props.updateUser(this.state)
                 this.props.history.push('/home')
                 break
             default:
-                this.props.createUser(this.state)
-                this.props.history.push('/home')
+                this.createUser(this.state)
                 break
             }
-        // }
     }
 
     loginUser = (user) =>{
+        
         let info = {
         email: user.email, 
         password: user.password}
-    
+        this.handleAuth(info, "POST", "http://localhost:3000/login")
+    }
+
+    createUser = (user) => {
+
+        let info = {
+        name: user.name, 
+        email: user.email, 
+        password: user.password}
+        this.handleAuth(info, "POST", "http://localhost:3000/users")
+    }
+
+    handleAuth = (info, method, url) => {
+
         let config = {
-            method: "POST",
+            method:  method,
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(info)
-        }
-        fetch(`http://localhost:3000/login`, config)
+          }
+
+        fetch(url, config)
         .then(res => res.json())
         .then(data => {
             if (data.error){
                 alert(`${data.error}`)
-                this.setState({email: "", password: ""})
+                this.setState({email: "", password: "", name: "", password_confirmation: ""})
             } else {
             localStorage.setItem('jwt', data.token)
             this.props.setUser(data.user) 
             this.props.history.push('/home')
             }
         })
+
     }
 
+    deleteUser = (id) =>{
+        fetch(`http://localhost:3000/users/${id}`, {
+            method:  "DELETE",
+            headers: {"Content-Type": "application/json"}})
+            .then(() => {
+                localStorage.clear()
+                this.props.history.push('/login')
+                this.props.logoutUser()}
+            )
+    }
+    
+
     handleDelete = () => {
-        this.props.deleteUser(this.props.user.id)
         this.closeModal()
-        this.props.history.push('/login')
+        // this.props.history.push('/login')
+        this.deleteUser(this.props.user.id)
     }
 
     openModal = () => {this.setState({ openDeleteModal: true, modalDelete: true})}
     closeModal = () => this.setState({ openDeleteModal: false });
 
     render() {
-
+        console.log(this.props)
         // debugger
         return (
         <div className='login_screen'>
         <br/>
             <div>
-            <h2> {this.props.name}</h2>
+            <h2> {this.props.screen}</h2>
             <br/>
-            {/* <Form onSubmit={(e) => this.handleOnSubmit(e)} noValidate validated={this.state.validated}></Form> */}
             <Form onSubmit={(e) => this.handleOnSubmit(e)} >
-                {this.props.name === "Log in" ? null :
+                {this.props.screen === "Log in" ? null :
                 <Form.Group >
                     <Form.Label>Name</Form.Label>
-                    <Form.Control  name="name" value={this.state.name} onChange={(e) => this.handleOnChange(e)} type="name" placeholder="Enter name" />
+                    <Form.Control  name="name" value={ this.state.name } onChange={(e) => this.handleOnChange(e)} type="name" placeholder="Enter name" />
 
-                    {this.props.name === "Update your account" ? 
+                    {this.props.screen === "Update your account" ? 
                     <Form.Text className="text-muted">
                         We'll never share your info with anyone else.
                     </Form.Text> : null}
 
                 </Form.Group>}
 
-                {this.props.name === "Update your account" ? null :
+                {this.props.screen === "Update your account" ? null :
                 <Form.Group controlId="exampleForm.ControlInput1">
                     <Form.Label>Email address</Form.Label>
                     <Form.Control  value={this.state.email} name="email" type="email" placeholder="Enter email" onChange={(e) => this.handleOnChange(e)}/>
@@ -115,7 +138,7 @@ class UserForm extends Component {
                     Please provide an email address.
                     </Form.Control.Feedback>
 
-                    {this.props.name === "Sign up" ?
+                    {this.props.screen === "Sign up" ?
                     <Form.Text className="text-muted">
                         We'll never share your email with anyone else.
                     </Form.Text> : null}
@@ -128,10 +151,10 @@ class UserForm extends Component {
                 </Form.Group>
                 
 
-                {this.props.name === "Log in" ? null :
+                {this.props.screen === "Log in" ? null :
                 <Form.Group >
                     <Form.Label>Password Confirmation</Form.Label>
-                    <Form.Control  name="password_confirmation" type="password" placeholder="Password" onChange={(e) => this.handleOnChange(e)}/>
+                    <Form.Control  value={this.state.password_confirmation} name="password_confirmation" type="password" placeholder="Password" onChange={(e) => this.handleOnChange(e)}/>
                 </Form.Group>}
                 
                 <Button variant="primary" type="submit">
@@ -140,13 +163,13 @@ class UserForm extends Component {
             </Form>
 
             <br/>
-            {this.props.name === "Sign up" ?
+            {this.props.screen === "Sign up" ?
             <h5>I have an account! <Link to="/login" >Log in!</Link></h5> : null }
 
-            {this.props.name === "Log in" ?
+            {this.props.screen === "Log in" ?
             <h5>Don't have an account? <Link to="/signup" >Sign up!</Link></h5> : null }
 
-            {this.props.name === "Update your account" ?
+            {this.props.screen === "Update your account" ?
             <Button variant="outline-danger" type="submit" onClick={this.handleOnSubmit}>Delete my account</Button> : null}
             </div>
                 { this.state.modalDelete ?
@@ -162,5 +185,5 @@ class UserForm extends Component {
 
 
 
-export default withRouter(connect(state => ({user: state.user}), { createUser, updateUser, deleteUser, setUser })(UserForm));
+export default withRouter(connect(state => ({user: state.user}), { logoutUser, updateUser, setUser })(UserForm));
 
