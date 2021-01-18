@@ -83,6 +83,7 @@ const blogsReducer = (state = initialState.allBlogs, action) => {
         case "ADD_COMMENT":
             let toCommentBlog = state.find(b => b.id === action.payload.blog_id)
             let blogIdx = state.map(x => x.id).indexOf(action.payload.blog_id)
+            // debugger
             let commentsArr = [...toCommentBlog.comments, action.payload]
             let commentedBlog = {...toCommentBlog, comments: commentsArr}
 
@@ -110,6 +111,7 @@ const blogsReducer = (state = initialState.allBlogs, action) => {
             return [...startUpdate, updatedCommentBlog, ...endUpdate]
 
         case "DELETE_COMMENT":
+            
             let toDeleteCommentBlog = state.find(b => b.id === action.payload.blog_id)
             let blogIdxDelete = state.map(x => x.id).indexOf(action.payload.blog_id)
             let filteredComments = toDeleteCommentBlog.comments.filter(c => c.id !== action.payload.id)

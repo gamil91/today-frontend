@@ -31,6 +31,7 @@ function addCommentToState(data){
 export function updateComment(data){
     
     return (dispatch) => {
+       
         let info = {
             comment: data.comment
         }
@@ -56,16 +57,19 @@ function updateCommentInState(data){
 }
 
 export function deleteComment(id){
-    console.log(id)
+   
     return (dispatch) => {
         fetch(`http://localhost:3000/comments/${id}`, {
         method:  "DELETE",
         headers: {"Content-Type": "application/json"}})
         .then(res => res.json())
-        .then(data => { dispatch(deleteCommentInState(data))})
+        .then(data => { 
+            // debugger
+            dispatch(deleteCommentInState(data))
+        })
     }
 }
 
 function deleteCommentInState(data){
-    return {type:"DELETE_COMMENT", payload:data.id}
+    return {type:"DELETE_COMMENT", payload:data}
 }

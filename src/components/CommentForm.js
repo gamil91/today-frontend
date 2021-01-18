@@ -27,7 +27,7 @@ class CommentForm extends Component {
         }
         else {
             this.props.addComment(this.state)
-            this.setState({comment: "", blog_id: ""})
+            this.setState({comment: ""})
         }
     }
 
@@ -49,7 +49,7 @@ class CommentForm extends Component {
                 </Form>
                 <br/>
 
-                {!!this.props.comments.length ? <CommentContainer deleteComment={deleteComment} editComment={this.editComment} comments={this.props.comments}/> : null}
+                {!!this.props.comments.length ? <CommentContainer deleteComment={this.props.deleteComment} editComment={this.editComment} comments={this.props.comments}/> : null}
             </div>
         );
     }
