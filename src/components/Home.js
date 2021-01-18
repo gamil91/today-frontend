@@ -24,16 +24,20 @@ class Home extends Component {
     filterUserBlogs = () => {
         return this.props.allBlogs.filter(b => b.user_id === this.props.user.id)
     }
+
+    filterPublicBlogs = () => {
+        return this.props.allBlogs.filter(b => b.private === false || b.user_id === this.props.user.id)
+    }
     
     render() {
         console.log(this.props)
-        this.filterUserBlogs()
+        // debugger
         switch(this.state.screen) {
             case "Settings":
                 return (
                 <>
                     <TopNav handleHomeRender={this.handleHomeRender}/>
-                    <Form name="Update your account" /> 
+                    <Form screen="Update your account" /> 
                 </>)
             case "Check in":
                 return (
@@ -49,7 +53,7 @@ class Home extends Component {
                     <>
                     <TopNav handleHomeRender={this.handleHomeRender} />
                     <BlogContainer 
-                        blogs={this.props.allBlogs} 
+                        blogs={this.filterPublicBlogs()} 
                         likedBlogs={this.props.likedBlogs} 
                         handleHomeRender={this.handleHomeRender}/>
                      

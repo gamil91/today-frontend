@@ -16,9 +16,9 @@ class App extends Component {
   handleRender = (routerProps) => {
     switch (routerProps.location.pathname) {
       case "/login" :
-        return <Form name="Log in"/>
+        return <Form screen="Log in"/>
       case "/signup" :
-        return <Form name="Sign up"/>
+        return <Form screen="Sign up"/>
       case "/home" :
         return <Home />
       default:

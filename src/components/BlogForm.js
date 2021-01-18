@@ -10,7 +10,8 @@ class BlogForm extends Component {
     componentDidMount(){
         if (this.props.id){
            let blog = this.props.blogs.find(b => b.id === this.props.id)
-            this.setState({title: blog.title, content: blog.content, id:this.props.id})
+        //    debugger
+            this.setState({title: blog.title, content: blog.content, id:this.props.id, private:blog.private})
         }
     }
 
@@ -74,7 +75,8 @@ class BlogForm extends Component {
 
                     <div key={`inline-${"checkbox"}`} className="mb-3">
                     <Form.Check inline label="Private" type={"checkbox"} id={`inline-${"checkbox"}-1`}
-                    onClick={() => {this.setState(prevState => {return{private: !prevState.private}})}}/>
+                    checked={this.state.private}
+                    onChange={() => {this.setState(prevState => {return{private: !prevState.private}})}}/>
                     </div>
 
                     <Button variant="primary" type="submit">

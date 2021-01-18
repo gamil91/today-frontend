@@ -8,10 +8,10 @@ const initialState = {
 
 const userReducer = (state = initialState.user, action) => {
     switch(action.type){
+        case "LOG_OUT":
+            return {name: "", id: ""}
         case "SET_USER":
             return {name: action.payload.name, id: action.payload.id}
-        case "LOG_OUT":
-            return initialState.user
         default:
             return state
     }
@@ -27,6 +27,8 @@ const likesReducer = (state = initialState.likedBlogs, action) => {
             return filteredLikes
         case "ADD_LIKE":
             return [...state, action.payload.blog]
+        case "LOG_OUT":
+            return []
         default:
             return state
     }
@@ -34,10 +36,12 @@ const likesReducer = (state = initialState.likedBlogs, action) => {
 
 const blogsReducer = (state = initialState.allBlogs, action) => {
     switch(action.type){
+        case "LOG_OUT":
+            return []
         case "SET_BLOGS":
             return action.payload.reverse()
         case "ADD_BLOG":
-            return [...state, action.payload]
+            return [action.payload, ...state]
 
         case "ADD_LIKE":
             //find the blog to LIKE and get the index, go to the user_likes attr of that blog
@@ -67,10 +71,11 @@ const blogsReducer = (state = initialState.allBlogs, action) => {
             let first = state.slice(0, idx)
             let end = state.slice(idx+1)
             return [...first, updatedBlog, ...end]
-
         case "UPDATE_BLOG":
-            let filter = state.filter(b => b.id !== action.payload.id)
-            return [...filter, action.payload]
+            let updatedIdx = state.map(x => x.id).indexOf(action.payload.id)
+            let notUpdatedSliceStart = state.slice(0, updatedIdx)
+            let notUpdatedSliceEnd = state.slice(updatedIdx + 1)
+            return [...notUpdatedSliceStart, action.payload, ...notUpdatedSliceEnd]
         case "DELETE_BLOG":
             let updated = state.filter(b => b.id !== action.payload)
             return updated

@@ -10,7 +10,7 @@ class BlogCard extends Component {
 
 
     render() {
-        const { title, content, user, created_at, user_likes, id, user_id } = this.props.blog
+        const { title, content, user, created_at, user_likes, id, user_id} = this.props.blog
         // debugger
         const handleLike = (e) => {
             if (e.target.textContent === "LIKE" ){
@@ -34,14 +34,18 @@ class BlogCard extends Component {
                           {content}
                         </p>
                         <footer className="blockquote-footer">
-                            {`${user.name} ${created_at}`}
+                            {`${user.name} ${created_at}`}<br/>
+                            {this.props.user.id === user_id && this.props.blog.private === true ?  "(private blog, only viewable by you)" : null}
                         </footer>
                         </blockquote>     
                         <br/> 
                         <p>{user_likes.length}</p>{" "}
                         <Button variant="primary" onClick={handleLike}>{this.props.liked ? `UNLIKE` : `LIKE`}</Button>{" "}
-                        <Button variant="primary" onClick={() => this.props.handleHomeRender("Check in", id)}>Edit</Button>{" "}
+                        
                         {this.props.user.id === user_id ?  
+                        <Button variant="primary" onClick={() => this.props.handleHomeRender("Check in", id)}>Edit</Button>: null} {" "}
+                        {
+                        this.props.user.id === user_id ?  
                         <Button onClick={()=> this.props.deleteBlog(id)} variant="primary">Delete</Button> : null}
                     </Card.Body> 
                     
