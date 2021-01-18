@@ -8,10 +8,10 @@ import { withRouter } from 'react-router-dom'
 class BlogForm extends Component {
 
     componentDidMount(){
-        if (this.props.id){
-           let blog = this.props.blogs.find(b => b.id === this.props.id)
+        if (this.props.blogID){
+           let blog = this.props.blogs.find(b => b.id === this.props.blogID)
         //    debugger
-            this.setState({title: blog.title, content: blog.content, id:this.props.id, private:blog.private})
+            this.setState({title: blog.title, content: blog.content, id:this.props.blogID, private:blog.private})
         }
     }
 
@@ -28,7 +28,7 @@ class BlogForm extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault()
-        if (!!this.props.id){
+        if (!!this.props.blogID){
             this.props.updateBlog(this.state)
             this.props.handleHomeRender("")} 
         else {this.addBlog()}

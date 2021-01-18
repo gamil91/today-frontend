@@ -1,24 +1,5 @@
 
-// export function createUser(user){
 
-//     return () => {
-//         let info = {
-//             name: user.name, 
-//             email: user.email, 
-//             password: user.password}
-
-//         let config = {
-//             method:  "POST",
-//             headers: {"Content-Type": "application/json"},
-//             body: JSON.stringify(info)
-//           }
-
-//         fetch("http://localhost:3000/users", config)
-//         .then(res => res.json())
-//         .then(data => {
-//             localStorage.setItem('jwt', data.token)
-//         })}
-// }
 
 export function updateUser(user){
     debugger
