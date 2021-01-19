@@ -58,6 +58,16 @@ class Home extends Component {
                         handleHomeRender={this.handleHomeRender}/>
                      
                     </>)
+            case "Liked Blogs":
+                return (
+                    <>
+                    <TopNav handleHomeRender={this.handleHomeRender} />
+                    <BlogContainer 
+                        blogs={this.props.likedBlogs} 
+                        likedBlogs={this.props.likedBlogs} 
+                        handleHomeRender={this.handleHomeRender}/>
+                     
+                    </>)
             default :
                 return (
                 <>

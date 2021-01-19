@@ -16,7 +16,8 @@ class UserForm extends Component {
         password: "",
         password_confirmation: "",
         modalDelete: false,
-        openDeleteModal: false
+        openDeleteModal: false,
+        image: {}
     }
 
 
@@ -113,30 +114,7 @@ class UserForm extends Component {
     openModal = () => {this.setState({ openDeleteModal: true, modalDelete: true})}
     closeModal = () => this.setState({ openDeleteModal: false });
 
-
-    ////////trail upload
-
-    onChange = (e) => {
-        // debugger
-        e.persist()
-        this.setState(() => {
-            return {
-                [e.target.name]: e.target.files[0]
-            }
-        })
-    }
-
-    onSubmit = (e) => {
-        e.preventDefault()
-        const form = new FormData()
-        form.append("image", this.state.image)
-        fetch(`http://localhost:3000/blogs`, {
-            method: "POST",
-            body: form
-        })
-}
     
-
     render() {
         console.log(this.state.image)
         // debugger
@@ -144,25 +122,11 @@ class UserForm extends Component {
         <div className='login_screen'>
 
 
-            {/* <form onSubmit={this.onSubmit}>
-                <label>Image Upload</label><br/>
-                <input type="file" name="image" onChange={this.onChange}/><br/> 
-                <input type="submit"/>
-            </form> */}
-        
-
-
         <br/>
             <div>
             <h2> {this.props.screen}</h2>
             <br/>
             <Form onSubmit={(e) => this.handleOnSubmit(e)} >
-
-                {/* <Form.Group>
-                    <Form.Label>Image Upload</Form.Label><br/>
-                    <Form.Control type="file" name="image" onChange={this.onChange}/><br/> 
-                </Form.Group> */}
-
                 {this.props.screen === "Log in" ? null :
                 <Form.Group >
                     <Form.Label>Name</Form.Label>
