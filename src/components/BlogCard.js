@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { Card, Button} from 'react-bootstrap'
 import { connect } from 'react-redux';
 import { deleteBlog, likeBlog, unlikeBlog } from '../redux/actions/blogsActions'
-import CommentContainer from './CommentContainer'
+
 import CommentForm from './CommentForm'
 
 
@@ -12,7 +12,7 @@ class BlogCard extends Component {
     
 
     render() {
-        const { title, content, user, created_at, user_likes, id, user_id, comments} = this.props.blog
+        const { title, content, user, created_at, user_likes, id, user_id, comments, image} = this.props.blog
         // debugger
         const handleLike = (e) => {
             if (e.target.textContent === "LIKE" ){
@@ -31,6 +31,7 @@ class BlogCard extends Component {
 
                     <Card.Header as="h5">{title}</Card.Header>
                     <Card.Body>
+                        {image ? <img src={image} alt="" /> : null}
                         <blockquote className="blockquote mb-0">
                         <p>
                           {content}

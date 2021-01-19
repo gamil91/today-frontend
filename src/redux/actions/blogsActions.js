@@ -5,9 +5,10 @@ export function addBlogState(data){
 }
 
 export function updateBlog(blog){
+    // debugger
     return (dispatch) => {
-        const { title, content, id } = blog
-        let info = { title, content, private: blog.private}
+        const { title, content, id, image } = blog
+        let info = { title, content, image, private: blog.private}
 
         let config = {
             method:  "PATCH",
@@ -26,7 +27,7 @@ export function updateBlog(blog){
     }
 }
 
-function updateBlogState(data){
+export function updateBlogState(data){
     return {type:"UPDATE_BLOG", payload: data}
 }
 
