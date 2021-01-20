@@ -6,17 +6,25 @@ import Form from './UserForm'
 import BlogForm from './BlogForm'
 import TopNav from './TopNav'
 import BlogContainer from './BlogContainer'
+import NewUserModal from './NewUserModal'
 import '../App.css'
 
 class Home extends Component {
 
     componentDidMount(){
-        this.props.fetchLikedBlogs()
-        this.props.fetchUser()
-        this.props.fetchBlogs()
+        // this.props.fetchLikedBlogs()
+        // this.props.fetchUser()
+        // this.props.fetchBlogs()
     }
 
-    state = {screen: ""}
+
+
+    state = {
+        screen: "",
+        modalNewUser: false,
+        openNewUserModal: false,
+        opened: false
+    }
 
     handleHomeRender = (name, blogID="") => {
         blogID === "" ? this.setState({screen: name}) : this.setState({screen: name, blogID})
@@ -34,9 +42,19 @@ class Home extends Component {
         let likedIds = this.props.likedBlogs.map(b => b.id)
         return this.props.allBlogs.filter(b => likedIds.includes(b.id))
     }
+
+    openModal = () => {this.setState({ openNewUserModal: true, modalNewUser: true, opened: true})}
+    closeModal = () => this.setState({ openNewUserModal: false });
+
+    handleOpenModal = () => {
+        if (this.state.opened === false){
+            this.openModal()
+        }
+    }
     
     render() {
         console.log(this.props)
+        console.log(this.state)
         // debugger
         switch(this.state.screen) {
             case "Settings":
@@ -108,13 +126,26 @@ class Home extends Component {
                         </div>
                         <div className="content-area">
 			            <div className="wrapper">
-                    <h1>Hi {this.props.user.name}!</h1>
+                    {/* {this.props.newUser ? 
+                    <><NewUserModal/>
+                    <h1>Hello, welcome to the app!</h1></> : 
+                    <h1>Welcome Back, {this.props.user.name}!</h1>} */}
+                   
+
+                    {this.handleOpenModal()}
+
                     <BlogContainer 
                         blogs={this.filterUserBlogs()} 
                         likedBlogs={this.props.likedBlogs} 
                         handleHomeRender={this.handleHomeRender}/>
                         </div>
                         </div>
+
+                        { this.state.modalNewUser ?
+                <NewUserModal
+                    closeModal={this.closeModal}
+                    openModal={this.state.openNewUserModal}
+                /> : null }
                 </>)
         }
     }

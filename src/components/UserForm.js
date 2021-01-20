@@ -86,7 +86,13 @@ class UserForm extends Component {
             } else {
             localStorage.setItem('jwt', data.token)
             this.props.setUser(data.user) 
+
+                if (this.props.location.pathname === "/signup"){
+                    this.props.newUser()
+                }
+
             this.props.history.push('/home')
+            
             }
         })
 
@@ -135,10 +141,11 @@ class UserForm extends Component {
             body: form
         })
 }
-    
 
+    
     render() {
-        console.log(this.state.image)
+        console.log(this.props.location)
+        // console.log(this.state.image)
         // debugger
         return (
         <div className='login_screen'>
