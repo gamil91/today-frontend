@@ -30,8 +30,7 @@ class App extends Component {
     
     return (
       <div className="App">
-        <h1>Today. </h1>
-        
+      
         <div id="container">
           <Switch className="App">
 

@@ -6,8 +6,8 @@ export function addBlogState(data){
 
 export function updateBlog(blog){
     return (dispatch) => {
-        const { title, content, id } = blog
-        let info = { title, content, private: blog.private}
+        const { title, content, id, image } = blog
+        let info = { title, content, image, private: blog.private}
 
         let config = {
             method:  "PATCH",

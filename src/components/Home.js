@@ -6,6 +6,7 @@ import Form from './UserForm'
 import BlogForm from './BlogForm'
 import TopNav from './TopNav'
 import BlogContainer from './BlogContainer'
+import '../App.css'
 
 class Home extends Component {
 
@@ -41,47 +42,79 @@ class Home extends Component {
             case "Settings":
                 return (
                 <>
-                    <header><TopNav handleHomeRender={this.handleHomeRender}/></header>
-                    <Form screen="Update your account" /> 
+                    <TopNav handleHomeRender={this.handleHomeRender}/>
+                        <div className="banner-area">
+                        <h2>Today.</h2>
+                        </div>
+                        <div className="content-area">
+			            <div className="wrapper">
+                            <Form screen="Update your account" /> 
+                        </div>
+                        </div>
                 </>)
             case "Check in":
                 return (
                 <>
-                    <TopNav handleHomeRender={this.handleHomeRender} />
+                    <TopNav handleHomeRender={this.handleHomeRender}/>
+                        <div className="banner-area">
+                        <h2>Today.</h2>
+                        </div>
+                        <div className="content-area">
+			            <div className="wrapper">
                     <BlogForm 
                         blogID={!!this.state.blogID ? this.state.blogID : null} 
                         handleHomeRender={this.handleHomeRender}/> 
-                    
+                    </div>
+                        </div>
                 </>)
             case "Blogs":
                 return (
                     <>
-                    <TopNav handleHomeRender={this.handleHomeRender} />
+                    <TopNav handleHomeRender={this.handleHomeRender}/>
+                        <div className="banner-area">
+                        <h2>Today.</h2>
+                        </div>
+                        <div className="content-area">
+			            <div className="wrapper">
                     <BlogContainer 
                         blogs={this.filterPublicBlogs()} 
                         likedBlogs={this.props.likedBlogs} 
                         handleHomeRender={this.handleHomeRender}/>
-                     
+                        </div>
+                        </div>
                     </>)
             case "Liked Blogs":
                 return (
                     <>
-                    <TopNav handleHomeRender={this.handleHomeRender} />
+                    <TopNav handleHomeRender={this.handleHomeRender}/>
+                        <div className="banner-area">
+                        <h2>Today.</h2>
+                        </div>
+                        <div className="content-area">
+			            <div className="wrapper">
                     <BlogContainer 
                         blogs={this.filterLikedBlogs()} 
                         likedBlogs={this.props.likedBlogs} 
                         handleHomeRender={this.handleHomeRender}/>
-                     
+                        </div>
+                        </div>
                     </>)
             default :
                 return (
                 <>
                     <TopNav handleHomeRender={this.handleHomeRender}/>
+                        <div className="banner-area">
+                        <h2>Today.</h2>
+                        </div>
+                        <div className="content-area">
+			            <div className="wrapper">
                     <h1>Hi {this.props.user.name}!</h1>
                     <BlogContainer 
                         blogs={this.filterUserBlogs()} 
                         likedBlogs={this.props.likedBlogs} 
                         handleHomeRender={this.handleHomeRender}/>
+                        </div>
+                        </div>
                 </>)
         }
     }

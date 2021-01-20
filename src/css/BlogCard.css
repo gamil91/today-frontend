@@ -1,12 +1,18 @@
+@import "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
+
 #blog-card {
     padding: 20px;
-    margin: 20px;
-    margin-bottom: 20px;
     display:flex;
     justify-content:center;
     align-items:center;
     
 }
+
+.like-icon {
+    color:rgb(53, 81, 175);
+    cursor:pointer;
+}
+
 
 .card {
     text-align: center;
@@ -21,7 +27,8 @@
 .pic-Div {
     width : 300px;
     margin-block-end: 1em;
-    margin-inline: auto;
+    float: left;
+    margin-inline-start: 40px;
   }
 
 .pic-Div img {
