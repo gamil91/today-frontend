@@ -1,4 +1,8 @@
-/* div {
-    position:relative;
-    } */
+#top-nav {
+    background-color: #06838f; 
+    }
 
+
+.navbar-light .navbar-nav .nav-link {
+    color:white;
+}

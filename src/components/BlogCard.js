@@ -26,12 +26,13 @@ class BlogCard extends Component {
         
         return (
             <div id="blog-card">
-                <Card className="mb-2 text-center card" key={5} text={"white"}
+                <Card className="mb-2 text-center card " key={5}
                     style={{ width: '50rem' }}>
 
                     <Card.Header as="h5">{title}</Card.Header>
                     <Card.Body>
-                        {image ? <img src={image} alt="" /> : null}
+                    {image ? <div className="pic-Div"><img src={image} alt="" /></div> : null}
+                        
                         <blockquote className="blockquote mb-0">
                         <p>
                           {content}
@@ -46,13 +47,13 @@ class BlogCard extends Component {
                         <br/> 
                         <p>{user_likes.length}</p>{" "}
 
-                        <Button variant="primary" onClick={handleLike}>{this.props.liked ? `UNLIKE` : `LIKE`}</Button>{" "}
+                        <Button variant="secondary" onClick={handleLike}>{this.props.liked ? `UNLIKE` : `LIKE`}</Button>{" "}
                         
                         {this.props.user.id === user_id ?  
-                        <Button variant="primary" onClick={() => this.props.handleHomeRender("Check in", id)}>Edit</Button>: null} {" "}
+                        <Button variant="secondary" onClick={() => this.props.handleHomeRender("Check in", id)}>Edit</Button>: null} {" "}
                         {
                         this.props.user.id === user_id ?  
-                        <Button onClick={()=> this.props.deleteBlog(id)} variant="primary">Delete</Button> : null}
+                        <Button onClick={()=> this.props.deleteBlog(id)} variant="secondary">Delete</Button> : null}
                     </Card.Body> 
                     
                     <CommentForm blog_id={id} comments={comments}/>

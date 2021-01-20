@@ -5,10 +5,9 @@ export function addBlogState(data){
 }
 
 export function updateBlog(blog){
-    // debugger
     return (dispatch) => {
-        const { title, content, id, image } = blog
-        let info = { title, content, image, private: blog.private}
+        const { title, content, id } = blog
+        let info = { title, content, private: blog.private}
 
         let config = {
             method:  "PATCH",
@@ -80,7 +79,8 @@ export function fetchBlogs(){
     return (dispatch) => {
         fetch(`http://localhost:3000/blogs`)
         .then(res => res.json())
-        .then(data => {dispatch(setBlogs(data))}) 
+        .then(data => {
+            dispatch(setBlogs(data))}) 
     }
 }
 

@@ -32,6 +32,7 @@ class App extends Component {
       <div className="App">
         <h1>Today. </h1>
         
+        <div id="container">
           <Switch className="App">
 
             <Route exact path="/" >
@@ -59,7 +60,7 @@ class App extends Component {
             
 
           </Switch>
-        
+        </div>
 
       </div>
     );

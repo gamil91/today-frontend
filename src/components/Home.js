@@ -28,6 +28,11 @@ class Home extends Component {
     filterPublicBlogs = () => {
         return this.props.allBlogs.filter(b => b.private === false || b.user_id === this.props.user.id)
     }
+
+    filterLikedBlogs = () => {
+        let likedIds = this.props.likedBlogs.map(b => b.id)
+        return this.props.allBlogs.filter(b => likedIds.includes(b.id))
+    }
     
     render() {
         console.log(this.props)
@@ -36,7 +41,7 @@ class Home extends Component {
             case "Settings":
                 return (
                 <>
-                    <TopNav handleHomeRender={this.handleHomeRender}/>
+                    <header><TopNav handleHomeRender={this.handleHomeRender}/></header>
                     <Form screen="Update your account" /> 
                 </>)
             case "Check in":
@@ -63,7 +68,7 @@ class Home extends Component {
                     <>
                     <TopNav handleHomeRender={this.handleHomeRender} />
                     <BlogContainer 
-                        blogs={this.props.likedBlogs} 
+                        blogs={this.filterLikedBlogs()} 
                         likedBlogs={this.props.likedBlogs} 
                         handleHomeRender={this.handleHomeRender}/>
                      
@@ -88,7 +93,9 @@ const mapStateToProps = state => {
         user: state.user,
         allBlogs: state.allBlogs,
         likedBlogs: state.likedBlogs
+       
     }
+    
 }
 
 export default connect(mapStateToProps, {fetchUser, fetchBlogs, fetchLikedBlogs})(Home);

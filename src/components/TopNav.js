@@ -19,8 +19,9 @@ class TopNav extends Component {
 
   render(){
       return (
-    <div> 
-        <Navbar bg="dark" variant="dark">
+    <div id="top-nav"> 
+        {/* <Navbar bg="dark" variant="dark"> */}
+        <Navbar>
           <Nav className="mr-auto">
             <Nav.Link onClick={this.handleClick}>Check in</Nav.Link>
             <Nav.Link href="/home">Home</Nav.Link>
