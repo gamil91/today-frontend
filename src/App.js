@@ -12,26 +12,30 @@ import NotFound from './components/NotFound'
 
 class App extends Component {
 
+  state = {newUser : false}
 
   handleRender = (routerProps) => {
     switch (routerProps.location.pathname) {
       case "/login" :
-        return <Form screen="Log in"/>
+        return <body><Form screen="Log in"/></body>
       case "/signup" :
-        return <Form screen="Sign up"/>
+        return <body><Form screen="Sign up" newUser={this.handleNewUser}/></body>
       case "/home" :
-        return <Home />
+        return <Home newUser={this.state.newUser}/>
       default:
         break
     }
   }
   
+  handleNewUser = () => { this.setState({newUser: true})}
+
   render(){
-    
+    console.log(this.state.newUser)
+   
     return (
       <div className="App">
-        <h1>Today. </h1>
-        
+     
+        <div id="container">
           <Switch className="App">
 
             <Route exact path="/" >
@@ -59,8 +63,8 @@ class App extends Component {
             
 
           </Switch>
-        
-
+        </div>
+      
       </div>
     );
   }

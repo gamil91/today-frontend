@@ -1,17 +1,47 @@
+
+
+#blog-container {
+    justify-content: center;
+}
+
 #blog-card {
     padding: 20px;
-    margin: 20px;
-    margin-bottom: 20px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
     
 }
 
 .card {
-    background-color: rgb(70, 19, 19);
-    /* border: 5px solid rgb(0, 0, 0); */
+    text-align: center;
+    display:flex;
+    justify-content:center;
 }
 
-#blog-container {
-    /* display: flex; */
-    justify-content: center;
-  
+.like-icon {
+    color:rgb(53, 81, 175);
+    cursor:pointer;
 }
+
+.icon{
+    cursor: pointer;
+}
+
+
+ul.comments-li {
+    list-style-type: none;
+}
+
+.pic-Div {
+    width : 300px;
+    margin-block-end: 1em;
+    float: left;
+    margin-inline-start: 40px;
+  }
+
+.pic-Div img {
+    max-width: 100%; 
+    display:block;
+    margin:auto;
+}
+

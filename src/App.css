@@ -1,20 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=Special+Elite&display=swap');
+
+
 .App {
   text-align: center;
-  background-color: antiquewhite;
+  align-items: center; 
+  width: 100%;
+  height: 100%; 
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  height:100vh;
+  font-family: 'Comfortaa', cursive;
+  
+} 
+
+#logo-font{
+	font-family: 'Special Elite', cursive;
+	font-size: 70px;
 }
 
-.login_screen {
-  min-width: 50%;
-  min-height: 500px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: auto;
-  border-radius: 20px;
-  color: rgb(4, 80, 56); 
-  padding-bottom: 10px;
+html, body {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+  }
+
+
+#container {
+  width: 100%;
+  height: 90%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
+/* blogform css */
 input[type="file"] {
   display: none;
 }
@@ -27,14 +45,95 @@ input[type="file"] {
   cursor: pointer;
 }
 
-.file-preview {
-margin: 0 10px;
-}
-
 .pic-preview {
   width : 250px;
+  margin-block-end: 1em;
+  float: left;
+  margin-inline-start: 40px;
 }
+
 .pic-preview img {
    max-width: 100%; 
 }
 
+
+
+/* nav and header css */
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+.wrapper {
+	width: 1170px;
+	margin: 0 auto;
+}
+header {
+	height: 80px;
+	background: #262626;
+	width: 100%;
+	z-index:10;
+	position: fixed;
+}
+
+
+nav {
+	float: right;
+	line-height: 60px;
+}
+
+.navbar-light .navbar-nav .nav-link {
+	text-decoration: none;
+	font-family: poppins;
+	letter-spacing: 4px;
+	font-size: 20px;
+	margin: 0 35px ;
+  	color: #fff;
+  
+}
+
+.navbar-light .navbar-nav .nav-link:hover {
+  
+  color: rgb(192, 27, 27);
+}
+
+.banner-area {
+	width: 100%;
+	height: 430px;
+	position: fixed;
+	top: 80px;
+	background-image: url(https://images.pexels.com/photos/606542/pexels-photo-606542.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
+	-webkit-background-size: cover;
+	background-size: cover;
+	background-position: center center;
+}
+
+.banner-area h2 {
+	padding-top: 8%;
+	font-size: 70px;
+	font-family: poppins;
+	color: rgb(8, 8, 8);
+}
+
+.content-area {
+  	padding-top: 50px;
+	width: 100%;
+	position: relative;
+	top: 460px;
+	background: #ebebeb;
+	background: #e4d39c;
+  	min-height: 90%;
+}
+.content-area h2 {
+	font-family: poppins;
+	letter-spacing: 4px;
+	padding-top: 30px;
+	font-size: 40px;
+	margin: 0;
+}
+.content-area p {
+	padding: 2% 0px;
+	font-family: poppins;
+	line-height: 30px;
+}

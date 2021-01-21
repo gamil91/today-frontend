@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
+
 
 const Comment = ({ comment, userComment, editComment, deleteComment }) => {
     // debugger

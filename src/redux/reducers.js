@@ -20,6 +20,7 @@ const userReducer = (state = initialState.user, action) => {
 const likesReducer = (state = initialState.likedBlogs, action) => {
     switch(action.type){
         case "SET_LIKED_BLOGS":
+            
             let blogsLiked = action.payload.map(data => Object.assign(data.blog))
             return blogsLiked
         case "UNLIKE_BLOG":
@@ -81,8 +82,8 @@ const blogsReducer = (state = initialState.allBlogs, action) => {
     switch(action.type){
         case "LOG_OUT":
             return []
-
         case "SET_BLOGS":
+            
             return action.payload.reverse()
         case "ADD_BLOG":
             return [action.payload, ...state]

@@ -10,7 +10,7 @@ const CommentContainer = ({comments, editComment, user, deleteComment}) => {
     <div id="comment-container">
         <br/>
         <h3>Comments : </h3>
-        <ul>
+        <ul className="comments-li">
             {comments.map(c => <li key={c.id}><Comment deleteComment={deleteComment} editComment={editComment}userComment={c.user_id === user.id} key={c.id} comment={c}/></li>)}
         </ul>
     </div>

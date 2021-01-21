@@ -3,7 +3,7 @@ import { Navbar, Nav } from 'react-bootstrap'
 import { connect } from 'react-redux';
 import { logoutUser } from '../redux/actions/userActions'
 import { withRouter } from 'react-router-dom'
-import '../css/TopNav.css'
+// import '../css/TopNav.css'
 
 class TopNav extends Component {
 
@@ -19,11 +19,13 @@ class TopNav extends Component {
 
   render(){
       return (
-    <div> 
-        <Navbar bg="dark" variant="dark">
-          <Nav className="mr-auto">
+        <header>
+    <div className="wrapper"> 
+      
+        <Navbar>
+          <Nav >
             <Nav.Link onClick={this.handleClick}>Check in</Nav.Link>
-            <Nav.Link href="/home">Home</Nav.Link>
+            <Nav.Link onClick={this.handleClick}>Home</Nav.Link>
             <Nav.Link onClick={this.handleClick} >Blogs</Nav.Link>
             <Nav.Link onClick={this.handleClick} >Liked Blogs</Nav.Link>
             <Nav.Link onClick={this.handleClick}>Settings</Nav.Link>
@@ -31,6 +33,7 @@ class TopNav extends Component {
           </Nav>
         </Navbar>
     </div>
+    </header>
     );}
 }
 

@@ -4,28 +4,6 @@ export function addBlogState(data){
     return {type: "ADD_BLOG", payload: data}
 }
 
-export function updateBlog(blog){
-    // debugger
-    return (dispatch) => {
-        const { title, content, id, image } = blog
-        let info = { title, content, image, private: blog.private}
-
-        let config = {
-            method:  "PATCH",
-            headers: {
-                "Content-Type": "application/json",
-                'Authorization' : `Bearer ${localStorage.getItem('jwt')}`},
-            body: JSON.stringify(info)
-          }
-
-        fetch(`http://localhost:3000/blogs/${id}`, config)
-        .then(res => res.json())
-        .then(data => {
-            alert("Blog Succesfully Updated!")
-            dispatch(updateBlogState(data))
-        })
-    }
-}
 
 export function updateBlogState(data){
     return {type:"UPDATE_BLOG", payload: data}
@@ -80,7 +58,8 @@ export function fetchBlogs(){
     return (dispatch) => {
         fetch(`http://localhost:3000/blogs`)
         .then(res => res.json())
-        .then(data => {dispatch(setBlogs(data))}) 
+        .then(data => {
+            dispatch(setBlogs(data))}) 
     }
 }
 
