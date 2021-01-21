@@ -20,7 +20,7 @@ const styles = {
 
 const buttonDiv = {
     margin:'auto',
-    'padding-bottom': '10px'
+    paddingBottom: '10px'
 }
 
 class BlogForm extends Component {
@@ -62,15 +62,19 @@ class BlogForm extends Component {
 
 
     handleSubmit = (e) => {
+       
         e.preventDefault()
         switch(true){
-            case !!this.props.blogID && !!this.state.image.name :
-                this.updateBlogWithImage(this.props.blogID)
+            case !!this.state.id && !!this.state.image.name :
+                // debugger
+                this.updateBlogWithImage(this.state.id)
                 break
-            case !!this.props.blogID :
+            case !!this.state.id :
+                // debugger
                 this.updateBlog(this.state)
                 break
             case !!this.state.image.name :
+                // debugger
                 this.addBlogWithImage()
                 break
             default :
@@ -139,9 +143,9 @@ class BlogForm extends Component {
 
 
     addBlog = () =>{
-        const { title, content } = this.state
-        let info = { title, content, private: this.state.private}
-
+        const { title, content, image } = this.state
+        let info = { title, content, image, private: this.state.private}
+        // debugger
         let config = {
             method:  "POST",
             headers: {
@@ -153,6 +157,7 @@ class BlogForm extends Component {
         fetch("http://localhost:3000/blogs", config)
         .then(res => res.json())
         .then(data => {
+        // debugger
             this.props.addBlogState(data)
             this.props.handleHomeRender("")
         })

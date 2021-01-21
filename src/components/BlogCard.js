@@ -32,7 +32,7 @@ class BlogCard extends Component {
                 <Card className="mb-2 text-center card " key={5}
                     style={{ width: '50rem' }}>
 
-                    <Card.Header as="h5">{title}</Card.Header>
+                    <Card.Header as="h5"><strong>{title}</strong></Card.Header>
                     <Card.Body>
                     {image ? <div className="pic-Div"><img src={image} alt="" /></div> : null}
                         

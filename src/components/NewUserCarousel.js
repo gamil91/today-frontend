@@ -23,11 +23,11 @@ const NewUserCarousel = ({ close, user }) => {
                     /></div>
 
                     <Carousel.Caption>
-                    <h2>Hi {user.name}, Welcome to  <h2 id="logo-font">Today!</h2></h2>
+                    <h2>Hi {user.name}, Welcome to  <p id="logo-font">Today!</p></h2>
                     <h4>Take a step back and reflect through writing check-ins.</h4>
                     </Carousel.Caption>
                     
-                </Carousel.Item>
+                </Carousel.Item> 
                 <Carousel.Item>
                 <div className="pic-Div-Carousel"><img
                     className="d-block "

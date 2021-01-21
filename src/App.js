@@ -12,25 +12,25 @@ import NotFound from './components/NotFound'
 
 class App extends Component {
 
-  state = {newUser : false}
+ 
 
   handleRender = (routerProps) => {
     switch (routerProps.location.pathname) {
       case "/login" :
         return <body><Form screen="Log in"/></body>
       case "/signup" :
-        return <body><Form screen="Sign up" newUser={this.handleNewUser}/></body>
+        return <body><Form screen="Sign up"/></body>
       case "/home" :
-        return <Home newUser={this.state.newUser}/>
+        return <Home />
       default:
         break
     }
   }
   
-  handleNewUser = () => { this.setState({newUser: true})}
+ 
 
   render(){
-    console.log(this.state.newUser)
+    // console.log(this.state.newUser)
    
     return (
       <div className="App">

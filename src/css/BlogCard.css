@@ -30,6 +30,19 @@
 
 ul.comments-li {
     list-style-type: none;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  
+}
+
+ul.comments-li li {
+    list-style-type: none;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    border: rgb(177, 168, 168);
+    border-style: solid;
+    border-radius: 20px;
+    border: 2px solid #ccc;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 .pic-Div {
