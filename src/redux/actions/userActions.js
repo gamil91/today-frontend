@@ -1,4 +1,10 @@
+export function newUser(){
+    return {type:"SET_NEW_USER"}
+}
 
+export function oldUser(){
+    return {type:'SET_OLD_USER'}
+}
 
 
 export function updateUser(user){

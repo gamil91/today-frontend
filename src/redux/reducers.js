@@ -3,7 +3,8 @@ import { combineReducers } from 'redux';
 const initialState = {
     user: {name: "", id: ""},
     allBlogs: [],
-    likedBlogs: []
+    likedBlogs: [],
+    newUser: false
 }
 
 const userReducer = (state = initialState.user, action) => {
@@ -168,10 +169,22 @@ const blogsReducer = (state = initialState.allBlogs, action) => {
     }
 }
 
+const newUserReducer = (state = initialState.newUser, action) => {
+    switch(action.type){
+        case "SET_NEW_USER":
+            return true
+        case "SET_OLD_USER":
+            return false
+        default:
+            return state
+    }
+}
+
 
 
 export default combineReducers({
     user: userReducer,
     likedBlogs: likesReducer,
-    allBlogs: blogsReducer
+    allBlogs: blogsReducer,
+    newUser: newUserReducer
 })

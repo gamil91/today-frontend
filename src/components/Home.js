@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 //actions
-import { fetchUser } from '../redux/actions/userActions'
+import { fetchUser, oldUser } from '../redux/actions/userActions'
 import { fetchBlogs, fetchLikedBlogs } from '../redux/actions/blogsActions'
 //css
 import { Button } from 'react-bootstrap'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 import '../App.css'
 //components
 import Form from './UserForm'
@@ -16,12 +18,14 @@ import NewUserModal from './NewUserModal'
 class Home extends Component {
 
     componentDidMount(){
-        if(this.props.newUser === true) {
-            this.handleOpenModal()
-        }
+        // if(this.props.newUser === true) {
+        //     debugger
+        //     this.handleOpenModal()
+        // }
         this.props.fetchLikedBlogs()
         this.props.fetchUser()
         this.props.fetchBlogs()
+        this.fetchAdvice()
     }
 
     state = {
@@ -29,7 +33,21 @@ class Home extends Component {
         screen: "",
         modalNewUser: false,
         openNewUserModal: false,
-        opened: false
+        opened: false, 
+        advice: ""
+    }
+
+    fetchAdvice = () => {
+        fetch('http://localhost:3000/getadvice', 
+            {
+            headers : { 
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+             }
+      
+          })
+        .then(res => res.json())
+        .then(data => this.setState({advice: data.advice}))
     }
 
     handleHomeRender = (name, blogID="") => {
@@ -39,6 +57,13 @@ class Home extends Component {
     clearBlog = () => {
         this.setState({blogID: ""})
     }
+
+    openModal = () => {this.setState({ openNewUserModal: true, modalNewUser: true, opened: true})}
+    closeModal = () =>{
+        this.setState({ openNewUserModal: false, screen: "Check in" })
+        this.props.oldUser()};
+
+    handleOpenModal = () => {if (this.state.opened === false){ this.openModal() }}
 
     filterUserBlogs = () => {
         return this.props.allBlogs.filter(b => b.user_id === this.props.user.id)}
@@ -52,11 +77,6 @@ class Home extends Component {
         let likedIds = this.props.likedBlogs.map(b => b.id)
         return this.props.allBlogs.filter(b => likedIds.includes(b.id))}
 
-
-    openModal = () => {this.setState({ openNewUserModal: true, modalNewUser: true, opened: true})}
-    closeModal = () => this.setState({ openNewUserModal: false, screen: "Check in" });
-    handleOpenModal = () => {if (this.state.opened === false){ this.openModal() }}
-    
     
     render() {
         // console.log(this.props)
@@ -67,75 +87,89 @@ class Home extends Component {
                 return (
                 <>
                     <TopNav handleHomeRender={this.handleHomeRender}/>
-                        <div className="banner-area">
+                    <div className="banner-area">
                         <h2 id="logo-font">Today.</h2>
-                        </div>
-                        <div className="content-area">
+                        <h3 id="advice-font">{this.state.advice}</h3>
+                    </div>
+                    <div className="content-area">
 			            <div className="wrapper">
-                            <Form screen="Update your account" /> 
+                        <Form screen="Update your account" /> 
                         </div>
-                        </div>
+                    </div>
                 </>)
+
             case "Check in":
                 return (
                 <>
                     <TopNav handleHomeRender={this.handleHomeRender}/>
-                        <div className="banner-area">
+                    <div className="banner-area">
                         <h2 id="logo-font">Today.</h2>
-                        </div>
-                        <div className="content-area">
-			            <div className="wrapper">
-                    <BlogForm 
-                        clearBlog={this.clearBlog}
-                        blogID={!!this.state.blogID ? this.state.blogID : null} 
-                        handleHomeRender={this.handleHomeRender}/> 
+                        <h3 id="advice-font">{this.state.advice}</h3>
                     </div>
+                    <div className="content-area">
+			            <div className="wrapper">
+                        <BlogForm 
+                            clearBlog={this.clearBlog}
+                            blogID={!!this.state.blogID ? this.state.blogID : null} 
+                            handleHomeRender={this.handleHomeRender}/> 
                         </div>
+                    </div>
                 </>)
+
             case "Blogs":
                 return (
                     <>
                     <TopNav handleHomeRender={this.handleHomeRender}/>
-                        <div className="banner-area">
+                    <div className="banner-area">
                         <h2 id="logo-font">Today.</h2>
-                        </div>
-                        <div className="content-area">
+                        <h3 id="advice-font">{this.state.advice}</h3>
+                    </div>
+                    <div className="content-area">
 			            <div className="wrapper">
-                    <BlogContainer 
+                        <h1>Public Blogs</h1>
+                        <BlogContainer 
                         blogs={this.filterPublicBlogs()} 
                         likedBlogs={this.props.likedBlogs} 
                         handleHomeRender={this.handleHomeRender}/>
                         </div>
-                        </div>
+                    </div>
                     </>)
+
             case "Liked Blogs":
                 return (
                     <>
                     <TopNav handleHomeRender={this.handleHomeRender}/>
-                        <div className="banner-area">
+                    <div className="banner-area">
                         <h2 id="logo-font">Today.</h2>
-                        </div>
-                        <div className="content-area">
+                        <h3 id="advice-font">{this.state.advice}</h3>
+                    </div>
+                    <div className="content-area">
 			            <div className="wrapper">
-                    <BlogContainer 
+                        <h1>Liked Blogs</h1>
+
+                        {this.filterLikedBlogs().length === 0 ? <h3>Nothing to see here, go ahead and <FontAwesomeIcon icon={faThumbsUp} size="1x"/> some blogs!</h3> : null}
+                            
+                        <BlogContainer 
                         blogs={this.filterLikedBlogs()} 
                         likedBlogs={this.props.likedBlogs} 
                         handleHomeRender={this.handleHomeRender}/>
                         </div>
-                        </div>
+                    </div>
                     </>)
+
             default :
                 return (
                 <>
                     <TopNav handleHomeRender={this.handleHomeRender}/>
-                        <div className="banner-area">
+                    <div className="banner-area">
                         <h2 id="logo-font">Today.</h2>
-                        </div>
-                        <div className="content-area">
+                        <h3 id="advice-font">{this.state.advice}</h3>
+                    </div>
+                    {this.props.newUser ? this.handleOpenModal() : null}
+                    <div className="content-area">
 			            <div className="wrapper">
 
-                    
-                    <h1>Hello, {this.props.user.name}!</h1>
+                        <h1>Hello, {this.props.user.name}!</h1>
                    
                     {this.filterUserBlogs().length === 0 ?
                     <div> 
@@ -144,8 +178,7 @@ class Home extends Component {
                         {/* <Button variant="secondary" onClick={() => this.handleHomeRender("Check in")}> Here </Button> <br/> */}
                     </div> 
                     : null}
-                      
-
+                    
                     <BlogContainer 
                         blogs={this.filterUserBlogs()} 
                         likedBlogs={this.props.likedBlogs} 
@@ -168,10 +201,11 @@ const mapStateToProps = state => {
     return {
         user: state.user,
         allBlogs: state.allBlogs,
-        likedBlogs: state.likedBlogs
+        likedBlogs: state.likedBlogs,
+        newUser: state.newUser
        
     }
     
 }
 
-export default connect(mapStateToProps, {fetchUser, fetchBlogs, fetchLikedBlogs})(Home);
+export default connect(mapStateToProps, {fetchUser, fetchBlogs, fetchLikedBlogs, oldUser})(Home);

@@ -18,6 +18,12 @@
 	font-size: 70px;
 }
 
+#advice-font{
+	font-family: 'Special Elite', cursive;
+	font-size: 40px;
+	color: white;
+}
+
 html, body {
 	height: 100%;
 	display: flex;
@@ -94,7 +100,6 @@ nav {
 }
 
 .navbar-light .navbar-nav .nav-link:hover {
-  
   color: rgb(192, 27, 27);
 }
 

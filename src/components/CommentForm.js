@@ -40,16 +40,16 @@ class CommentForm extends Component {
         
         return (
             <div>
+                {!!this.props.comments.length ? <CommentContainer deleteComment={this.props.deleteComment} editComment={this.editComment} comments={this.props.comments}/> : null}
                 <Form onSubmit={this.handleSubmit}>
                     <Form.Group controlId="exampleForm.ControlTextarea1">
-                    <Form.Control name="comment" as="textarea" rows={3} onChange={this.handleChange} 
+                    <Form.Control className="comment-field" name="comment" as="textarea" rows={3} onChange={this.handleChange} 
                         value={this.state.comment}/>
                     </Form.Group>
                     <Button type="submit" variant="primary">Comment</Button>
                 </Form>
                 <br/>
 
-                {!!this.props.comments.length ? <CommentContainer deleteComment={this.props.deleteComment} editComment={this.editComment} comments={this.props.comments}/> : null}
             </div>
         );
     }

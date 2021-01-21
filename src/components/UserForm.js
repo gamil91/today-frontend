@@ -8,7 +8,7 @@ import { faUser, faEnvelopeOpenText, faUnlockAlt, faLock } from "@fortawesome/fr
 import '../css/UserForm.css'
 
 import DeleteModal from './DeleteModal'
-import { updateUser, logoutUser, setUser } from '../redux/actions/userActions'
+import { updateUser, logoutUser, setUser, newUser } from '../redux/actions/userActions'
 
 
 class UserForm extends Component {
@@ -92,11 +92,11 @@ class UserForm extends Component {
             } else {
             localStorage.setItem('jwt', data.token)
             this.props.setUser(data.user) 
-                if (this.props.location.pathname === "/signup"){
+            this.props.history.push('/home')
+                if(this.props.screen === "Sign up"){
                     this.props.newUser()
                 }
-            this.props.history.push('/home')
-            
+            this.setState({email: "", password: "", name: "", password_confirmation: ""})
             }
         })
 
@@ -201,5 +201,5 @@ class UserForm extends Component {
 
 
 
-export default withRouter(connect(state => ({user: state.user}), { logoutUser, updateUser, setUser })(UserForm));
+export default withRouter(connect(state => ({user: state.user}), { logoutUser, updateUser, setUser, newUser })(UserForm));
 
