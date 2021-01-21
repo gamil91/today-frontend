@@ -1,0 +1,93 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Comfortaa', cursive;
+	
+}
+
+body:before {
+	content: '';
+	position: fixed;
+	width: 100vw;
+	height: 100vh;
+    background-image: url(https://images.pexels.com/photos/34601/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260);
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover; 
+    filter: blur(5px); 
+    background-size:100% 100%
+   
+}
+
+.blog-form {
+    min-width: 50%;
+    min-height: 500px;
+    font-family: 'Comfortaa', cursive;
+    padding-bottom: 10px;
+    background: rgba(173, 123, 123, 0.4);
+    padding: 80px 40px;
+    border-radius: 20px;
+  }
+
+.login_screen {
+    position: absolute;
+	top: 45%;
+	left: 50%;
+    transform: translate(-50%, -50%);
+	padding: 80px 40px;
+	background: rgba(0, 0, 0, 0.5);
+    min-width: 30%;
+    min-height: 500px;
+    border-radius: 20px;
+    color: #fff; 
+    padding-bottom: 20px;
+    text-align: center;
+    
+  }
+
+  .login_screen input {
+	width: 100%;
+    margin-bottom: 25px;
+    
+}
+
+
+.login_screen h2 {
+	margin: 0;
+	padding: 0 0 30px;
+	color: #fff;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+.login_screen p {
+    font-size: 25px;
+	margin: 0;
+	padding: 0;
+	font-weight: bold;
+	color: #fff;
+}
+
+.login_screen input[type=email], .login_screen input[type=password], .login_screen input[type=name] {
+	border: none;
+	border-bottom: 1px solid #fff;
+	background: transparent;
+	outline: none;
+	height: 50px;
+	color: #fff;
+	font-size: 20px;
+}
+
+
+.form-check-input {
+    position: absolute;
+    margin-top: .3rem;
+    margin-left: -13rem;
+    width: 30px;
+    height: 30px;
+
+}
+
+
+

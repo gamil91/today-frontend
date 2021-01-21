@@ -1,4 +1,4 @@
-// import React from 'react';
+import '../css/ModalCarousel.css'
 import { useState, React } from 'react'
 import { Carousel, Button } from 'react-bootstrap'
 import { connect } from 'react-redux';
@@ -13,7 +13,7 @@ const NewUserCarousel = ({ close, user }) => {
 // debugger
     return (
         
-        <div>
+        <div className="font-carousel">
             <Carousel activeIndex={index} onSelect={handleSelect} interval={null}>
                 <Carousel.Item>
                 <div className="pic-Div-Carousel"><img
@@ -23,7 +23,7 @@ const NewUserCarousel = ({ close, user }) => {
                     /></div>
 
                     <Carousel.Caption>
-                    <h2>Hi {user.name}, Welcome to Today!</h2>
+                    <h2>Hi {user.name}, Welcome to  <h2 id="logo-font">Today!</h2></h2>
                     <h4>Take a step back and reflect through writing check-ins.</h4>
                     </Carousel.Caption>
                     

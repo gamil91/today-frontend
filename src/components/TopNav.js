@@ -21,13 +21,10 @@ class TopNav extends Component {
       return (
         <header>
     <div className="wrapper"> 
-        {/* <Navbar bg="dark" variant="dark"> */}
-        {/* <div class="logo">
-				</div> */}
+      
         <Navbar>
           <Nav >
             <Nav.Link onClick={this.handleClick}>Check in</Nav.Link>
-            {/* <Nav.Link href="/home">Home</Nav.Link> */}
             <Nav.Link onClick={this.handleClick}>Home</Nav.Link>
             <Nav.Link onClick={this.handleClick} >Blogs</Nav.Link>
             <Nav.Link onClick={this.handleClick} >Liked Blogs</Nav.Link>

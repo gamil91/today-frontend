@@ -24,9 +24,9 @@ class BlogCard extends Component {
         const handleUnLike = () => {
             let blog = this.props.likedBlogs.find(b => b.id === id)
             let like = blog.likes.find(like => like.user_id === this.props.user.id)
-            this.props.unlikeBlog(like.id)
-        }
+            this.props.unlikeBlog(like.id)}
         
+
         return (
             <div id="blog-card">
                 <Card className="mb-2 text-center card " key={5}
@@ -49,34 +49,22 @@ class BlogCard extends Component {
                         <br/>
                             <h5>{user_likes.length} {user_likes.length === 1? "like" : "likes"}</h5>
                         <br/>
+
                         {this.props.liked ? 
-                        <><FontAwesomeIcon icon={faThumbsUp} size="2x" className="like-icon" onClick={handleUnLike}/></>:
-                        <><FontAwesomeIcon icon={faThumbsUp} size="2x" onClick={handleLike}/></>}&nbsp;&nbsp;
+                        <i ><FontAwesomeIcon icon={faThumbsUp} size="2x" className="like-icon" onClick={handleUnLike}/></i>:
+                        <i><FontAwesomeIcon icon={faThumbsUp} size="2x" className="icon" onClick={handleLike}/></i>}&nbsp;&nbsp;
+
 
                         {this.props.user.id === user_id ?  
-                        <><FontAwesomeIcon icon={faPencilAlt} size="2x" onClick={() => this.props.handleHomeRender("Check in", id)}/></>: null}&nbsp;&nbsp;
+                        <i><FontAwesomeIcon icon={faPencilAlt} size="2x" className="icon" onClick={() => this.props.handleHomeRender("Check in", id)}/></i>: null}&nbsp;&nbsp;
+
 
                         {this.props.user.id === user_id ?  
-                        <><FontAwesomeIcon icon={faTrashAlt} size="2x" onClick={()=> this.props.deleteBlog(id)}/></>: null} &nbsp;&nbsp;
-
-                      
-
-                        {/* <Button variant="secondary" onClick={handleLike}>{this.props.liked ? `UNLIKE` : `LIKE`}</Button>{" "}
-                        
-                        {this.props.user.id === user_id ?  
-                        <Button variant="secondary" onClick={() => this.props.handleHomeRender("Check in", id)}>Edit</Button>: null} {" "}
-
-                         {this.props.user.id === user_id ?  
-                        <Button onClick={()=> this.props.deleteBlog(id)} variant="secondary">Delete</Button> : null}  */}
-
-                    </Card.Body> 
+                        <i><FontAwesomeIcon icon={faTrashAlt} size="2x" className="icon" onClick={()=> this.props.deleteBlog(id)}/></i>: null} &nbsp;&nbsp;
+                    </Card.Body>  
                     
                     <CommentForm blog_id={id} comments={comments}/>
-
-                    
-                  
                 </Card>
-                
             </div>
         );
     }

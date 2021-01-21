@@ -1,0 +1,28 @@
+.pic-Div-Carousel {
+    width : 900px;
+    margin-block-end: 1em;
+    margin-inline: auto;
+  }
+
+.pic-Div-Carousel img {
+    max-width: 100%; 
+    display:block;
+    margin:auto;
+}
+
+.modal-lg, .modal-xl {
+    max-width: 900px;
+}
+
+.modal.fade .modal-dialog {
+    transition: transform .3s ease-out;
+    transform: translate(0, 150px);
+}
+
+#caption{
+    color: rgb(42, 42, 59);
+}
+
+.font-carousel {
+    font-family: emoji;
+}

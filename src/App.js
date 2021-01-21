@@ -17,9 +17,9 @@ class App extends Component {
   handleRender = (routerProps) => {
     switch (routerProps.location.pathname) {
       case "/login" :
-        return <Form screen="Log in"/>
+        return <body><Form screen="Log in"/></body>
       case "/signup" :
-        return <Form screen="Sign up" newUser={this.handleNewUser}/>
+        return <body><Form screen="Sign up" newUser={this.handleNewUser}/></body>
       case "/home" :
         return <Home newUser={this.state.newUser}/>
       default:
@@ -34,7 +34,7 @@ class App extends Component {
    
     return (
       <div className="App">
-      
+     
         <div id="container">
           <Switch className="App">
 
@@ -64,7 +64,7 @@ class App extends Component {
 
           </Switch>
         </div>
-
+      
       </div>
     );
   }

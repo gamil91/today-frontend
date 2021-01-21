@@ -17,7 +17,6 @@ class Home extends Component {
 
     componentDidMount(){
         if(this.props.newUser === true) {
-            debugger
             this.handleOpenModal()
         }
         this.props.fetchLikedBlogs()
@@ -25,9 +24,8 @@ class Home extends Component {
         this.props.fetchBlogs()
     }
 
-
-
     state = {
+        blogID: "",
         screen: "",
         modalNewUser: false,
         openNewUserModal: false,
@@ -38,27 +36,27 @@ class Home extends Component {
         blogID === "" ? this.setState({screen: name}) : this.setState({screen: name, blogID})
     }
 
-    filterUserBlogs = () => {
-        return this.props.allBlogs.filter(b => b.user_id === this.props.user.id)
+    clearBlog = () => {
+        this.setState({blogID: ""})
     }
 
+    filterUserBlogs = () => {
+        return this.props.allBlogs.filter(b => b.user_id === this.props.user.id)}
+
+
     filterPublicBlogs = () => {
-        return this.props.allBlogs.filter(b => b.private === false || b.user_id === this.props.user.id)
-    }
+        return this.props.allBlogs.filter(b => b.private === false || b.user_id === this.props.user.id)}
+
 
     filterLikedBlogs = () => {
         let likedIds = this.props.likedBlogs.map(b => b.id)
-        return this.props.allBlogs.filter(b => likedIds.includes(b.id))
-    }
+        return this.props.allBlogs.filter(b => likedIds.includes(b.id))}
+
 
     openModal = () => {this.setState({ openNewUserModal: true, modalNewUser: true, opened: true})}
     closeModal = () => this.setState({ openNewUserModal: false, screen: "Check in" });
-
-    handleOpenModal = () => {
-        if (this.state.opened === false){
-            this.openModal()
-        }
-    }
+    handleOpenModal = () => {if (this.state.opened === false){ this.openModal() }}
+    
     
     render() {
         // console.log(this.props)
@@ -70,7 +68,7 @@ class Home extends Component {
                 <>
                     <TopNav handleHomeRender={this.handleHomeRender}/>
                         <div className="banner-area">
-                        <h2>Today.</h2>
+                        <h2 id="logo-font">Today.</h2>
                         </div>
                         <div className="content-area">
 			            <div className="wrapper">
@@ -83,11 +81,12 @@ class Home extends Component {
                 <>
                     <TopNav handleHomeRender={this.handleHomeRender}/>
                         <div className="banner-area">
-                        <h2>Today.</h2>
+                        <h2 id="logo-font">Today.</h2>
                         </div>
                         <div className="content-area">
 			            <div className="wrapper">
                     <BlogForm 
+                        clearBlog={this.clearBlog}
                         blogID={!!this.state.blogID ? this.state.blogID : null} 
                         handleHomeRender={this.handleHomeRender}/> 
                     </div>
@@ -98,7 +97,7 @@ class Home extends Component {
                     <>
                     <TopNav handleHomeRender={this.handleHomeRender}/>
                         <div className="banner-area">
-                        <h2>Today.</h2>
+                        <h2 id="logo-font">Today.</h2>
                         </div>
                         <div className="content-area">
 			            <div className="wrapper">
@@ -114,7 +113,7 @@ class Home extends Component {
                     <>
                     <TopNav handleHomeRender={this.handleHomeRender}/>
                         <div className="banner-area">
-                        <h2>Today.</h2>
+                        <h2 id="logo-font">Today.</h2>
                         </div>
                         <div className="content-area">
 			            <div className="wrapper">
@@ -130,7 +129,7 @@ class Home extends Component {
                 <>
                     <TopNav handleHomeRender={this.handleHomeRender}/>
                         <div className="banner-area">
-                        <h2>Today.</h2>
+                        <h2 id="logo-font">Today.</h2>
                         </div>
                         <div className="content-area">
 			            <div className="wrapper">
@@ -154,11 +153,11 @@ class Home extends Component {
                         </div>
                         </div>
 
-                        { this.state.modalNewUser ?
-                <NewUserModal
-                    closeModal={this.closeModal}
-                    openModal={this.state.openNewUserModal}
-                /> : null }
+                    { this.state.modalNewUser ?
+                    <NewUserModal
+                        closeModal={this.closeModal}
+                        openModal={this.state.openNewUserModal}
+                    /> : null }
                 </>)
         }
     }

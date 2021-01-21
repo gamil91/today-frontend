@@ -1,30 +1,29 @@
 import '../App.css';
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom'
 import { Form, Button } from 'react-bootstrap'
+
 import { connect } from 'react-redux';
 import { setUser } from '../redux/actions/userActions'
 import { updateBlogState, addBlogState } from '../redux/actions/blogsActions'
-import { withRouter } from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCloudUploadAlt } from "@fortawesome/free-solid-svg-icons";
+
+
 
 const styles = {
     fontFamily: 'sans-serif',
     textAlign: 'center',
-    display: 'flex',
+    display:'flex' 
   };
 
-class BlogForm extends Component {
 
-    componentDidMount(){
-        if (this.props.blogID){
-           let blog = this.props.blogs.find(b => b.id === this.props.blogID)
-            this.setState({
-                title: blog.title, 
-                content: blog.content, 
-                id:this.props.blogID, 
-                private:blog.private, 
-                image:blog.image})
-        }
-    }
+const buttonDiv = {
+    margin:'auto',
+    'padding-bottom': '10px'
+}
+
+class BlogForm extends Component {
 
     state = {
         title: "",
@@ -32,6 +31,21 @@ class BlogForm extends Component {
         private: false,
         image: ""
     }
+
+    componentDidMount(){
+        if (this.props.blogID){
+            this.props.clearBlog()
+           let blog = this.props.blogs.find(b => b.id === this.props.blogID)
+            this.setState({
+                title: blog.title, 
+                content: blog.content, 
+                id:this.props.blogID, 
+                private:blog.private, 
+                image:blog.image})
+            
+        }
+    }
+
 
     onChange = (e) => {
         e.persist()
@@ -46,19 +60,6 @@ class BlogForm extends Component {
         this.setState({[name]: value})
     }
 
-    // handleSubmit = (e) => {
-    //     e.preventDefault()
-    //     if (!!this.props.blogID && !!this.state.image.name){
-    //         this.props.updateBlogWithImage()
-    //     } else if (!!this.props.blogID){
-    //         this.updateBlog(this.state)
-    //     }
-    //     else if (!!this.state.image.name) {
-    //         this.addBlogWithImage()
-    //     } else {
-    //         this.addBlog()
-    //     }
-    // }
 
     handleSubmit = (e) => {
         e.preventDefault()
@@ -166,52 +167,53 @@ class BlogForm extends Component {
         // debugger
         console.log(this.state)
         return (
-            <div className='login_screen'>
-            <div>
-            <h1>Slow down & Reflect...</h1>
-            <br/>
+            <div >
+                <div className="blog-form">
+                    <h1>Slow down & Reflect...</h1>
+                    <br/>
 
-                <Form onSubmit={this.handleSubmit}>
-                    <Form.Group >
-                        <Form.Label>How are you?</Form.Label>
-                        <Form.Control type="text" placeholder="Excited" name="title" value={this.state.title} onChange={this.handleChange}/>
-                    </Form.Group>
-        
+                    <Form onSubmit={this.handleSubmit}>
+                        <Form.Group >
+                            <p>How are you?</p>
+                            <Form.Control type="text" placeholder="Excited" name="title" value={this.state.title} onChange={this.handleChange}/>
+                        </Form.Group>
+            
 
-                    <Form.Group controlId="exampleForm.ControlTextarea1">
-                        <Form.Label>Write about it</Form.Label>
-                        <Form.Control size="lg" as="textarea" rows={5}  name="content" value={this.state.content} onChange={this.handleChange}/>
-                    </Form.Group>
+                        <Form.Group controlId="exampleForm.ControlTextarea1">
+                            <p>Write about it</p>
+                            <Form.Control size="lg" as="textarea" rows={5}  name="content" value={this.state.content} onChange={this.handleChange}/>
+                        </Form.Group>
 
-                    <div key={`inline-${"checkbox"}`} className="mb-3">
-                        <Form.Check inline label="Private" type={"checkbox"} id={`inline-${"checkbox"}-1`}
-                        checked={this.state.private}
-                        onChange={() => {this.setState(prevState => {return{private: !prevState.private}})}}/>
-                    </div>
- 
-                    <Form.Group>
-
-                        <Form.Label>Image Upload</Form.Label><br/>
-                        <div style={styles}>
-                        <label className="custom-file-upload">
-                        <input type="file" name="image" onChange={this.onChange} />
-                        <i className="fa fa-cloud-upload" /> Attach
-                        </label>
                         
-                        {!!this.state.image.name ? 
-                        <div className="file-preview" onClick={this.removeFile}>{this.state.image.name}</div> : null}
+                        
+                        <p>Image Upload</p>
+                            <label className="custom-file-upload">
+                            <input type="file" name="image" onChange={this.onChange} />
+                            <i><FontAwesomeIcon icon={faCloudUploadAlt}/></i> Attach
+                            </label>
+                            
+                        <div style={styles}>
+                            {!!this.state.image.name ? 
+                            <div className="file-preview" onClick={this.removeFile}>{this.state.image.name}</div> : null}
+                            { this.state.image === "" ? 
+                            null : <div className="pic-preview" onClick={this.removeFile}><img src={this.state.image} alt=""/> </div> }
+                        </div>
 
-                          
-                    </div>
-                        { this.state.image === "" ? 
-                        null : <div className="pic-preview" onClick={this.removeFile}><img src={this.state.image} alt=""/> </div> }
-                    </Form.Group>
+                        <div key={`inline-${"checkbox"}`} className="mb-3">
+                        <Form.Check custom label="Private" type={"checkbox"} id={`inline-${"checkbox"}-1`}
+                            checked={this.state.private}
+                            onChange={() => {this.setState(prevState => {return{private: !prevState.private}})}}/>
+                        </div>
+                    
+                    
+                        <div style={buttonDiv}>
+                            <Button variant="primary" type="submit">
+                                Submit
+                            </Button>
+                        </div>
 
-                    <Button variant="primary" type="submit">
-                        Submit
-                    </Button>
-                </Form>
-            </div>
+                    </Form>
+                </div>
             </div>
         );
     }

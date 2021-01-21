@@ -1,4 +1,8 @@
-@import "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
+
+
+#blog-container {
+    justify-content: center;
+}
 
 #blog-card {
     padding: 20px;
@@ -8,20 +12,24 @@
     
 }
 
-.like-icon {
-    color:rgb(53, 81, 175);
-    cursor:pointer;
-}
-
-
 .card {
     text-align: center;
     display:flex;
     justify-content:center;
 }
 
-#blog-container {
-    justify-content: center;
+.like-icon {
+    color:rgb(53, 81, 175);
+    cursor:pointer;
+}
+
+.icon{
+    cursor: pointer;
+}
+
+
+ul.comments-li {
+    list-style-type: none;
 }
 
 .pic-Div {
@@ -37,27 +45,3 @@
     margin:auto;
 }
 
-.pic-Div-Carousel {
-    width : 900px;
-    margin-block-end: 1em;
-    margin-inline: auto;
-  }
-
-.pic-Div-Carousel img {
-    max-width: 100%; 
-    display:block;
-    margin:auto;
-}
-
-.modal-lg, .modal-xl {
-    max-width: 900px;
-}
-
-.modal.fade .modal-dialog {
-    transition: transform .3s ease-out;
-    transform: translate(0, 150px);
-}
-
-#caption{
-    color: rgb(42, 42, 59);
-}
