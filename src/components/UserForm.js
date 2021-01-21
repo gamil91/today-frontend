@@ -53,7 +53,6 @@ class UserForm extends Component {
     }
 
     loginUser = (user) =>{
-        
         let info = {
         email: user.email, 
         password: user.password}
@@ -61,7 +60,6 @@ class UserForm extends Component {
     }
 
     createUser = (user) => {
-
         let info = {
         name: user.name, 
         email: user.email, 
@@ -70,7 +68,6 @@ class UserForm extends Component {
     }
 
     handleAuth = (info, method, url) => {
-
         let config = {
             method:  method,
             headers: {"Content-Type": "application/json"},
@@ -86,11 +83,9 @@ class UserForm extends Component {
             } else {
             localStorage.setItem('jwt', data.token)
             this.props.setUser(data.user) 
-
                 if (this.props.location.pathname === "/signup"){
                     this.props.newUser()
                 }
-
             this.props.history.push('/home')
             
             }
@@ -119,43 +114,11 @@ class UserForm extends Component {
     closeModal = () => this.setState({ openDeleteModal: false });
 
 
-    ////////trail upload
-
-//     onChange = (e) => {
-//         // debugger
-//         e.persist()
-//         this.setState(() => {
-//             return {
-//                 [e.target.name]: e.target.files[0]
-//             }
-//         })
-//     }
-
-//     onSubmit = (e) => {
-//         e.preventDefault()
-//         const form = new FormData()
-//         form.append("image", this.state.image)
-//         fetch(`http://localhost:3000/blogs`, {
-//             method: "POST",
-//             body: form
-//         })
-// }
-
     
     render() {
-        console.log(this.props.location)
-        // console.log(this.state.image)
         // debugger
         return (
         <div className='login_screen'>
-
-
-            {/* <form onSubmit={this.onSubmit}>
-                <label>Image Upload</label><br/>
-                <input type="file" name="image" onChange={this.onChange}/><br/> 
-                <input type="submit"/>
-            </form> */}
-        
 
 
         <br/>
@@ -164,10 +127,7 @@ class UserForm extends Component {
             <br/>
             <Form onSubmit={(e) => this.handleOnSubmit(e)} >
 
-                {/* <Form.Group>
-                    <Form.Label>Image Upload</Form.Label><br/>
-                    <Form.Control type="file" name="image" onChange={this.onChange}/><br/> 
-                </Form.Group> */}
+             
 
                 {this.props.screen === "Log in" ? null :
                 <Form.Group >
