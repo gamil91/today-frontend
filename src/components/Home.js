@@ -1,20 +1,28 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+//actions
 import { fetchUser } from '../redux/actions/userActions'
 import { fetchBlogs, fetchLikedBlogs } from '../redux/actions/blogsActions'
-import { connect } from 'react-redux';
+//css
+import { Button } from 'react-bootstrap'
+import '../App.css'
+//components
 import Form from './UserForm'
 import BlogForm from './BlogForm'
 import TopNav from './TopNav'
 import BlogContainer from './BlogContainer'
 import NewUserModal from './NewUserModal'
-import '../App.css'
 
 class Home extends Component {
 
     componentDidMount(){
-        // this.props.fetchLikedBlogs()
-        // this.props.fetchUser()
-        // this.props.fetchBlogs()
+        if(this.props.newUser === true) {
+            debugger
+            this.handleOpenModal()
+        }
+        this.props.fetchLikedBlogs()
+        this.props.fetchUser()
+        this.props.fetchBlogs()
     }
 
 
@@ -44,7 +52,7 @@ class Home extends Component {
     }
 
     openModal = () => {this.setState({ openNewUserModal: true, modalNewUser: true, opened: true})}
-    closeModal = () => this.setState({ openNewUserModal: false });
+    closeModal = () => this.setState({ openNewUserModal: false, screen: "Check in" });
 
     handleOpenModal = () => {
         if (this.state.opened === false){
@@ -53,8 +61,8 @@ class Home extends Component {
     }
     
     render() {
-        console.log(this.props)
-        console.log(this.state)
+        // console.log(this.props)
+        // console.log(this.state)
         // debugger
         switch(this.state.screen) {
             case "Settings":
@@ -126,13 +134,18 @@ class Home extends Component {
                         </div>
                         <div className="content-area">
 			            <div className="wrapper">
-                    {/* {this.props.newUser ? 
-                    <><NewUserModal/>
-                    <h1>Hello, welcome to the app!</h1></> : 
-                    <h1>Welcome Back, {this.props.user.name}!</h1>} */}
-                   
 
-                    {this.handleOpenModal()}
+                    
+                    <h1>Hello, {this.props.user.name}!</h1>
+                   
+                    {this.filterUserBlogs().length === 0 ?
+                    <div> 
+                        <h3>Looks like you don't have any check-ins yet, click {" "}
+                            <Button variant="secondary" onClick={() => this.handleHomeRender("Check in")}> Here </Button> to get started</h3>
+                        {/* <Button variant="secondary" onClick={() => this.handleHomeRender("Check in")}> Here </Button> <br/> */}
+                    </div> 
+                    : null}
+                      
 
                     <BlogContainer 
                         blogs={this.filterUserBlogs()} 

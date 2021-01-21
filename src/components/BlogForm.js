@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { Form, Button } from 'react-bootstrap'
 import { connect } from 'react-redux';
 import { setUser } from '../redux/actions/userActions'
-import { updateBlog, updateBlogState, addBlogState } from '../redux/actions/blogsActions'
+import { updateBlogState, addBlogState } from '../redux/actions/blogsActions'
 import { withRouter } from 'react-router-dom'
 
 const styles = {
@@ -33,25 +33,32 @@ class BlogForm extends Component {
         image: ""
     }
 
+    onChange = (e) => {
+        e.persist()
+        this.setState(() => {
+            return {
+                [e.target.name]: e.target.files[0]
+            }})
+    }
+
     handleChange = (e) => {
         const { name, value } = e.target
         this.setState({[name]: value})
     }
 
-    handleSubmit = (e) => {
-        e.preventDefault()
-        if (!!this.props.blogID && !!this.state.image.name){
-            this.props.updateBlogWithImage()
-        } else if (!!this.props.blogID){
-            this.props.updateBlog(this.state)
-            this.props.handleHomeRender("")
-        }
-        else if (!!this.state.image.name) {
-            this.addBlogWithImage()
-        } else {
-            this.addBlog()
-        }
-    }
+    // handleSubmit = (e) => {
+    //     e.preventDefault()
+    //     if (!!this.props.blogID && !!this.state.image.name){
+    //         this.props.updateBlogWithImage()
+    //     } else if (!!this.props.blogID){
+    //         this.updateBlog(this.state)
+    //     }
+    //     else if (!!this.state.image.name) {
+    //         this.addBlogWithImage()
+    //     } else {
+    //         this.addBlog()
+    //     }
+    // }
 
     handleSubmit = (e) => {
         e.preventDefault()
@@ -60,8 +67,7 @@ class BlogForm extends Component {
                 this.updateBlogWithImage(this.props.blogID)
                 break
             case !!this.props.blogID :
-                this.props.updateBlog(this.state)
-                this.props.handleHomeRender("")
+                this.updateBlog(this.state)
                 break
             case !!this.state.image.name :
                 this.addBlogWithImage()
@@ -70,6 +76,29 @@ class BlogForm extends Component {
                 this.addBlog()
                 break
         }
+    }
+
+    updateBlog = (blog) =>{
+       
+        const { title, content, id, image } = blog
+        let info = { title, content, image, private: blog.private}
+
+        let config = {
+            method:  "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+                'Authorization' : `Bearer ${localStorage.getItem('jwt')}`},
+            body: JSON.stringify(info)
+            }
+
+        fetch(`http://localhost:3000/blogs/${id}`, config)
+        .then(res => res.json())
+        .then(data => {
+            alert("Blog Succesfully Updated!")
+            this.props.updateBlogState(data)
+            this.props.handleHomeRender("")
+        })
+     
     }
 
     updateBlogWithImage = (id) => {
@@ -84,18 +113,11 @@ class BlogForm extends Component {
             body: formData })
         .then(res => res.json())
         .then(data => {
-            debugger
             this.props.updateBlogState(data)
             this.props.handleHomeRender("")})
     }
 
-    onChange = (e) => {
-        e.persist()
-        this.setState(() => {
-            return {
-                [e.target.name]: e.target.files[0]
-            }})
-    }
+    
 
     addBlogWithImage = () => {
         const form = new FormData()
@@ -197,4 +219,4 @@ class BlogForm extends Component {
 
 
 
-export default withRouter(connect(state => ({blogs: state.allBlogs, user:state.user}), { updateBlogState, setUser, updateBlog, addBlogState })(BlogForm));
+export default withRouter(connect(state => ({blogs: state.allBlogs, user:state.user}), { updateBlogState, setUser, addBlogState })(BlogForm));

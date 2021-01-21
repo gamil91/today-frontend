@@ -16,20 +16,10 @@ class BlogCard extends Component {
     render() {
         const { title, content, user, created_at, user_likes, id, user_id, comments, image} = this.props.blog
         // debugger
-        // const handleLike = (e) => {
-        //     debugger
-        //     if (e.target.textContent === "LIKED" ){
-        //         this.props.likeBlog(id) 
-        //     } else {
-        //         let blog = this.props.likedBlogs.find(b => b.id === id)
-        //         let like = blog.likes.find(like => like.user_id === this.props.user.id)
-        //         this.props.unlikeBlog(like.id)
-        //         }
-        //     }
+    
 
         const handleLike = () => {
-            this.props.likeBlog(id) 
-        }
+            this.props.likeBlog(id)}
 
         const handleUnLike = () => {
             let blog = this.props.likedBlogs.find(b => b.id === id)

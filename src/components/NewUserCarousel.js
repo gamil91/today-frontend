@@ -1,16 +1,18 @@
 // import React from 'react';
 import { useState, React } from 'react'
 import { Carousel, Button } from 'react-bootstrap'
+import { connect } from 'react-redux';
 
-const NewUserCarousel = ({ close }) => {
+const NewUserCarousel = ({ close, user }) => {
 
     const [index, setIndex] = useState(0);
 
     const handleSelect = (selectedIndex, e) => {
       setIndex(selectedIndex);
     };
-
+// debugger
     return (
+        
         <div>
             <Carousel activeIndex={index} onSelect={handleSelect} interval={null}>
                 <Carousel.Item>
@@ -21,7 +23,7 @@ const NewUserCarousel = ({ close }) => {
                     /></div>
 
                     <Carousel.Caption>
-                    <h2>Welcome to Today!</h2>
+                    <h2>Hi {user.name}, Welcome to Today!</h2>
                     <h4>Take a step back and reflect through writing check-ins.</h4>
                     </Carousel.Caption>
                     
@@ -30,23 +32,23 @@ const NewUserCarousel = ({ close }) => {
                 <div className="pic-Div-Carousel"><img
                     className="d-block "
                     src="https://images.pexels.com/photos/1209462/pexels-photo-1209462.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-                    alt="Upload photo"
+                    alt="Upload "
                     /></div>
 
                     <Carousel.Caption>
-                    <h2>Upload photos along with your check-ins.</h2>
+                    <h2>Upload a photo along with your check-ins.</h2>
                     </Carousel.Caption>
                 </Carousel.Item>
                 <Carousel.Item>
                 <div className="pic-Div-Carousel"><img
                     className="d-block"
-                    src="https://images.pexels.com/photos/1851415/pexels-photo-1851415.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+                    src="https://images.pexels.com/photos/1851415/pexels-photo-1851415.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
                     alt="Like, Comment"
                     /></div>
-                    <Button variant="secondary" onClick={close}> Close </Button>
 
                     <Carousel.Caption>
-                    <h2>View, like, and comment on other public check-ins as well.</h2>
+                    <h2 id="caption">View, Like, & Comment on check-ins</h2>
+                    <Button variant="secondary" onClick={close}> Get started Today! </Button>
                     </Carousel.Caption>
                 </Carousel.Item>
             </Carousel>
@@ -54,4 +56,4 @@ const NewUserCarousel = ({ close }) => {
     );
 }
 
-export default NewUserCarousel;
+export default connect(state => ({user:state.user}))(NewUserCarousel);

@@ -2,7 +2,7 @@
 
 
 export function updateUser(user){
-    debugger
+    // debugger
     return (dispatch) => {
         let info = {
             name: user.name, 

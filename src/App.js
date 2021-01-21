@@ -30,7 +30,8 @@ class App extends Component {
   handleNewUser = () => { this.setState({newUser: true})}
 
   render(){
-    console.log(this.props.location)
+    console.log(this.state.newUser)
+   
     return (
       <div className="App">
       

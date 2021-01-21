@@ -112,7 +112,6 @@ class UserForm extends Component {
 
     handleDelete = () => {
         this.closeModal()
-        // this.props.history.push('/login')
         this.deleteUser(this.props.user.id)
     }
 
@@ -122,25 +121,25 @@ class UserForm extends Component {
 
     ////////trail upload
 
-    onChange = (e) => {
-        // debugger
-        e.persist()
-        this.setState(() => {
-            return {
-                [e.target.name]: e.target.files[0]
-            }
-        })
-    }
+//     onChange = (e) => {
+//         // debugger
+//         e.persist()
+//         this.setState(() => {
+//             return {
+//                 [e.target.name]: e.target.files[0]
+//             }
+//         })
+//     }
 
-    onSubmit = (e) => {
-        e.preventDefault()
-        const form = new FormData()
-        form.append("image", this.state.image)
-        fetch(`http://localhost:3000/blogs`, {
-            method: "POST",
-            body: form
-        })
-}
+//     onSubmit = (e) => {
+//         e.preventDefault()
+//         const form = new FormData()
+//         form.append("image", this.state.image)
+//         fetch(`http://localhost:3000/blogs`, {
+//             method: "POST",
+//             body: form
+//         })
+// }
 
     
     render() {
