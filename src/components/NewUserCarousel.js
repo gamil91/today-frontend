@@ -14,7 +14,8 @@ const NewUserCarousel = ({ close, user }) => {
     return (
         
         <div className="font-carousel">
-            <Carousel activeIndex={index} onSelect={handleSelect} interval={null}>
+            {/* <Carousel activeIndex={index} onSelect={handleSelect} interval={null}> */}
+            <Carousel activeIndex={index} onSelect={handleSelect} >
                 <Carousel.Item>
                 <div className="pic-Div-Carousel"><img
                     className="d-block "

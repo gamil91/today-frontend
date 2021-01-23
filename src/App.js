@@ -3,14 +3,19 @@ import './App.css';
 
 import React, { Component } from 'react'
 import { Route, Switch, withRouter, Redirect } from 'react-router-dom'
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 
 import Home from './components/Home';
 import Form from './components/UserForm'
+
 import NotFound from './components/NotFound'
 
 
+
+
 class App extends Component {
+
+
 
  
 
@@ -30,11 +35,11 @@ class App extends Component {
  
 
   render(){
-    // console.log(this.state.newUser)
+    // debugger
    
     return (
       <div className="App">
-     
+      
         <div id="container">
           <Switch className="App">
 
@@ -69,4 +74,5 @@ class App extends Component {
     );
   }
 }
-export default withRouter(connect(state => ({user:state.user}))(App));
+// export default withRouter(connect(state => ({user:state.user}))(App));
+export default withRouter(App);

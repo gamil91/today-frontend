@@ -1,7 +1,7 @@
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/button'
 
-const DeleteModal = ({openModal, closeModal, handleDelete}) => {
+const DeleteModal = ({openModal, closeModal, handleDelete, listDelete}) => {
 
     
     return (
@@ -10,7 +10,9 @@ const DeleteModal = ({openModal, closeModal, handleDelete}) => {
             <Modal.Header closeButton>
                 <Modal.Title>Delete Account</Modal.Title>
             </Modal.Header>
-            <Modal.Body>Are you sure you want to permanently delete your account?</Modal.Body>
+            {!!listDelete ? 
+            <Modal.Body>Deleting your list along with your tasks? <br/>I hope you finished them!</Modal.Body> : 
+            <Modal.Body>Are you sure you want to permanently delete your account?</Modal.Body>}
             <Modal.Footer>
                 <Button variant="secondary" onClick={closeModal}> Close </Button>
                 <Button variant="primary" onClick={handleDelete}> Delete</Button>

@@ -9,23 +9,20 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 import '../App.css'
 //components
+import TopNav from './TopNav'
+import ListContainer from './ListContainer'
 import Form from './UserForm'
 import BlogForm from './BlogForm'
-import TopNav from './TopNav'
 import BlogContainer from './BlogContainer'
 import NewUserModal from './NewUserModal'
 
 class Home extends Component {
 
     componentDidMount(){
-        // if(this.props.newUser === true) {
-        //     debugger
-        //     this.handleOpenModal()
-        // }
-        this.props.fetchLikedBlogs()
+        // this.props.fetchLikedBlogs()
         this.props.fetchUser()
-        this.props.fetchBlogs()
-        this.fetchAdvice()
+        // this.props.fetchBlogs()
+        // this.fetchAdvice()
     }
 
     state = {
@@ -79,9 +76,9 @@ class Home extends Component {
 
     
     render() {
+        // debugger
         // console.log(this.props)
         // console.log(this.state)
-        // debugger
         switch(this.state.screen) {
             case "Settings":
                 return (
@@ -91,6 +88,7 @@ class Home extends Component {
                         <h2 id="logo-font">Today.</h2>
                         <h3 id="advice-font">{this.state.advice}</h3>
                     </div>
+                   
                     <div className="content-area">
 			            <div className="wrapper">
                         <Form screen="Update your account" /> 
@@ -106,6 +104,7 @@ class Home extends Component {
                         <h2 id="logo-font">Today.</h2>
                         <h3 id="advice-font">{this.state.advice}</h3>
                     </div>
+                   
                     <div className="content-area">
 			            <div className="wrapper">
                         <BlogForm 
@@ -124,9 +123,10 @@ class Home extends Component {
                         <h2 id="logo-font">Today.</h2>
                         <h3 id="advice-font">{this.state.advice}</h3>
                     </div>
+                   
                     <div className="content-area">
 			            <div className="wrapper">
-                        <h1>Public Blogs</h1>
+                        <h1>All Blogs</h1>
                         <BlogContainer 
                         blogs={this.filterPublicBlogs()} 
                         likedBlogs={this.props.likedBlogs} 
@@ -143,6 +143,7 @@ class Home extends Component {
                         <h2 id="logo-font">Today.</h2>
                         <h3 id="advice-font">{this.state.advice}</h3>
                     </div>
+                   
                     <div className="content-area">
 			            <div className="wrapper">
                         <h1>Liked Blogs</h1>
@@ -157,6 +158,25 @@ class Home extends Component {
                     </div>
                     </>)
 
+            case "To-do":
+                return( 
+                    <>
+                    <TopNav handleHomeRender={this.handleHomeRender}/>
+                    <div className="banner-area">
+                        <h2 id="logo-font">Today.</h2>
+                        <h3 id="advice-font">{this.state.advice}</h3>
+                    </div>
+
+                    <div className="content-area">
+			            <div className="wrapper">
+                        <h1>To-do Lists</h1>
+
+                        <ListContainer/>
+                        </div>
+                    </div>
+                    </> 
+                )
+
             default :
                 return (
                 <>
@@ -165,12 +185,13 @@ class Home extends Component {
                         <h2 id="logo-font">Today.</h2>
                         <h3 id="advice-font">{this.state.advice}</h3>
                     </div>
+                    
                     {this.props.newUser ? this.handleOpenModal() : null}
                     <div className="content-area">
 			            <div className="wrapper">
 
                         <h1>Hello, {this.props.user.name}!</h1>
-                   
+                       
                     {this.filterUserBlogs().length === 0 ?
                     <div> 
                         <h3>Looks like you don't have any check-ins yet, click {" "}

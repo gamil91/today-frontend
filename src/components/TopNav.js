@@ -24,10 +24,11 @@ class TopNav extends Component {
       
         <Navbar>
           <Nav >
-            <Nav.Link onClick={this.handleClick}>Check in</Nav.Link>
             <Nav.Link onClick={this.handleClick}>Home</Nav.Link>
+            <Nav.Link onClick={this.handleClick}>Check in</Nav.Link>
             <Nav.Link onClick={this.handleClick} >Blogs</Nav.Link>
             <Nav.Link onClick={this.handleClick} >Liked Blogs</Nav.Link>
+            <Nav.Link onClick={this.handleClick}>To-do</Nav.Link>
             <Nav.Link onClick={this.handleClick}>Settings</Nav.Link>
             <Nav.Link onClick={this.handleLogout}>Log Out</Nav.Link>
           </Nav>

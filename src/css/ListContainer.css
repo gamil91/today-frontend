@@ -1,0 +1,55 @@
+#list-form {
+    margin-inline: auto;
+    width: 50%;
+}
+
+
+.lists {
+    margin-inline: auto;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    /* align-content: space-around; */
+}
+
+#card-body-title {
+    padding-bottom: 0px;
+    padding-top: 0px;
+}
+
+#list-card {
+    border: solid;
+    border-color:rgb(78, 111, 112);
+    margin-bottom: 10px;
+    border-radius: 20px;
+}
+
+#list-icons{
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 2px;
+    padding-right: 10px;
+}
+
+#list-title{
+    font-size: 30px;
+}
+
+#task-card {
+    margin-bottom: 10px;
+}
+
+#task {
+    height: 5rem;
+}
+
+.tasks-cards {
+    margin-inline: auto;
+}
+
+.dropdown-toggle.btn.btn-primary {
+    color: #1d2124;
+    background-color: #ffffff;
+    border: none;
+}
+
