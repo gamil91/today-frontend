@@ -3,12 +3,11 @@
     width: 50%;
 }
 
-
 .lists {
     margin-inline: auto;
     display:flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: space-between;
     /* align-content: space-around; */
 }
 
@@ -22,7 +21,10 @@
     border-color:rgb(78, 111, 112);
     margin-bottom: 10px;
     border-radius: 20px;
+    margin: 5px;
 }
+
+
 
 #list-icons{
     display: flex;
@@ -35,16 +37,35 @@
     font-size: 30px;
 }
 
-#task-card {
-    margin-bottom: 10px;
-}
-
-#task {
-    height: 5rem;
+.task-form {
+    border: none;
+    font-size: 20px
 }
 
 .tasks-cards {
     margin-inline: auto;
+}
+
+
+#task-card {
+    margin-bottom: 10px;
+    border:solid;
+    border-color: rgb(193, 220, 221);
+    border-radius: 15px;
+    font-family: Comfortaa;
+    font-size: 22px;
+    padding-bottom: 20px;
+}
+
+
+#task-icons {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 2px;
+    padding-right: 10px;
+    padding-bottom: 0px;
+    margin-bottom: 0;
+    
 }
 
 .dropdown-toggle.btn.btn-primary {

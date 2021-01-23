@@ -32,8 +32,7 @@ const listsReducer = (state = initialState.lists, action) => {
         case "DELETE_LIST":
             return state.filter(list => list.id !== action.payload.id)
         case "ADD_TASK":
-            debugger
-            return state
+            return state.map(list => list.id !== action.payload.list_id ? list : {...list, tasks:[...list.tasks, action.payload]})
         case "UPDATE_TASK":
             return state
         case "DELETE_TASK":

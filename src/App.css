@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=Special+Elite&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Comfortaa:wght@500&family=Special+Elite&family=Yusei+Magic&display=swap');
 
 
 .App {
@@ -75,6 +75,13 @@ input[type="file"] {
 	width: 1170px;
 	margin: 0 auto;
 }
+
+.todo-list-wrapper {
+	width: 88%;
+	/* width: 1195px; */
+	margin: 0 auto;
+}
+
 header {
 	height: 80px;
 	background: #262626;

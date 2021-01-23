@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 
-import { Card, Dropdown } from 'react-bootstrap'
+import { Card, Dropdown, Form } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashAlt, faPencilAlt} from "@fortawesome/free-solid-svg-icons";
+
+import { connect } from 'react-redux';
+import { addTask } from '../redux/actions/tasksActions'
 
 import TaskCard from './TaskCard'
 import DeleteModal from './DeleteModal'
@@ -11,10 +14,14 @@ class ListCard extends Component  {
     // debugger
     state = {
         modalDelete: false,
-        openDeleteModal: false
+        openDeleteModal: false,
+        taskName: "",
+        finished: false,
+        id: "",
+        taskId: ""
     }
 
-    handleDelete = () => {
+    handleDeleteList = () => {
         this.closeModal()
         this.props.deleteList(this.props.list.id)
     }
@@ -22,9 +29,33 @@ class ListCard extends Component  {
     openModal = () => {this.setState({ openDeleteModal: true, modalDelete: true})}
     closeModal = () => this.setState({ openDeleteModal: false });
 
-    render (){return (
+    handleChange = (e) => {
+        this.setState({taskName: e.target.value, id: this.props.list.id})
+    }
+
+    handleSubmit = (e) => {
+        e.preventDefault()
+        this.props.addTask(this.state)
+        this.setState({taskName: "", taskId: ""})
+    }
+
+    editTask = (data) => {
+        this.setState({taskName: data.name, finished: data.finished, taskId: data.id})
+    }
+
+    deleteTask = () => {
+
+    }
+
+    handleFinish = () => {
+
+    }
+
+
+    render (){
+        return (
         <div>
-        <Card id="list-card" style={{ width: '18rem' }}>
+        <Card id="list-card" style={{ width: '25rem' }}>
 
             <div id="list-icons">
                 <Dropdown >
@@ -50,15 +81,25 @@ class ListCard extends Component  {
                 <Card.Title id="list-title">{this.props.list.title}</Card.Title>
                 
             </Card.Body>
+
+            <Card.Footer className="text-muted">
+            <Form  onSubmit={this.handleSubmit}>
+                    <Form.Group >
+                        <Form.Control className="task-form" type="text" placeholder="Add task" name="title" value={this.state.taskName} onChange={this.handleChange}/>
+                    </Form.Group>
+            </Form> 
+            </Card.Footer>
+            
             <div className="tasks-cards">
-                {this.props.list.tasks.map(task => <TaskCard key={task.id} task={task}/>)}
+                {this.props.list.tasks.map(task => 
+                    <TaskCard 
+                        // finished={this.state.finished}
+                        editTask={this.editTask} 
+                        deleteTask={this.deleteTask} 
+                        key={task.id} task={task}/>)}
             </div>
 
-            <Form id="list-form" onSubmit={this.handleSubmit}>
-                    <Form.Group >
-                        <Form.Control type="text" placeholder="Get done today" name="title" value={this.state.title} onChange={this.handleChange}/>
-                    </Form.Group>
-                </Form> 
+            
         </Card>
 
         { this.state.modalDelete ?
@@ -66,11 +107,10 @@ class ListCard extends Component  {
                 listDelete={true}
                 closeModal={this.closeModal}
                 openModal={this.state.openDeleteModal}
-                handleDelete={this.handleDelete}/> : null }
-
+                handleDelete={this.handleDeleteList}/> : null }
 
         </div>
     );}
 }
 
-export default ListCard;
+export default connect(null, { addTask })(ListCard);

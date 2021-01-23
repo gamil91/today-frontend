@@ -168,7 +168,7 @@ class Home extends Component {
                     </div>
 
                     <div className="content-area">
-			            <div className="wrapper">
+			            <div className="todo-list-wrapper">
                         <h1>To-do Lists</h1>
 
                         <ListContainer/>

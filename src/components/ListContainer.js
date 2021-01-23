@@ -20,7 +20,9 @@ class ListContainer extends Component {
     }
 
     handleClick = () => {
-        this.setState({openForm: true})
+        this.setState(prevState => {
+            return ({openForm: !prevState.openForm})
+        })
     }
 
     handleChange = (e) => {
