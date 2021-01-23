@@ -12,6 +12,11 @@
     
 }
 
+.form-control {
+    font-size: 2rem;
+    color: black;
+}
+
 .card {
     text-align: center;
     display:flex;

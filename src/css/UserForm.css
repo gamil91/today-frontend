@@ -30,6 +30,11 @@ body:before {
     border-radius: 20px;
   }
 
+  .form-group p {
+      font-size: 30px;
+      font-family: 'Architects Daughter', cursive;
+  }
+
 .login_screen {
     position: absolute;
 	top: 45%;

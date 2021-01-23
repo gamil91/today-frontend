@@ -4,19 +4,45 @@ const initialState = {
     user: {name: "", id: ""},
     allBlogs: [],
     likedBlogs: [],
-    newUser: false
+    newUser: false,
+    lists: []
 }
+
+
 
 const userReducer = (state = initialState.user, action) => {
     switch(action.type){
-        case "LOG_OUT":
-            return {name: "", id: ""}
         case "SET_USER":
             return {name: action.payload.name, id: action.payload.id}
+        case "LOG_OUT":
+            return {name: "", id: ""}
         default:
             return state
     }
 }
+ 
+const listsReducer = (state = initialState.lists, action) => {
+    switch (action.type){
+        case "SET_USER":
+            return action.payload.lists
+        case "ADD_LIST":
+            return [...state, action.payload]
+        case "UPDATE_LIST":
+            return state.map(list => list.id === action.payload.id ? action.payload : list)
+        case "DELETE_LIST":
+            return state.filter(list => list.id !== action.payload.id)
+        case "ADD_TASK":
+            return state.map(list => list.id !== action.payload.list_id ? list : {...list, tasks:[...list.tasks, action.payload]})
+        case "UPDATE_TASK":
+            return state.map(list => list.id !== action.payload.list_id ? list : {...list, tasks:list.tasks.map(task => task.id !== action.payload.id ? task : action.payload)})
+        case "DELETE_TASK":
+            return state.map(list => list.id !== action.payload.list_id ? list : {...list, tasks:list.tasks.filter(task => task.id !== action.payload.id)})
+        default:
+            return state
+    }
+}
+
+
 
 const likesReducer = (state = initialState.likedBlogs, action) => {
     switch(action.type){
@@ -88,11 +114,14 @@ const blogsReducer = (state = initialState.allBlogs, action) => {
             return action.payload.reverse()
         case "ADD_BLOG":
             return [action.payload, ...state]
+        // case "UPDATE_BLOG":
+        //     let updatedIdx = state.map(x => x.id).indexOf(action.payload.id)
+        //     let notUpdatedSliceStart = state.slice(0, updatedIdx)
+        //     let notUpdatedSliceEnd = state.slice(updatedIdx + 1)
+        //     return [...notUpdatedSliceStart, action.payload, ...notUpdatedSliceEnd]
         case "UPDATE_BLOG":
-            let updatedIdx = state.map(x => x.id).indexOf(action.payload.id)
-            let notUpdatedSliceStart = state.slice(0, updatedIdx)
-            let notUpdatedSliceEnd = state.slice(updatedIdx + 1)
-            return [...notUpdatedSliceStart, action.payload, ...notUpdatedSliceEnd]
+            debugger
+            return
         case "DELETE_BLOG":
             let updated = state.filter(b => b.id !== action.payload)
             return updated
@@ -153,6 +182,7 @@ const blogsReducer = (state = initialState.allBlogs, action) => {
             let startUpdate = state.slice(0, blogIdxUpdate)
             let endUpdate = state.slice(blogIdxUpdate+1)
             return [...startUpdate, updatedCommentBlog, ...endUpdate]
+            
 
         case "DELETE_COMMENT":
             
@@ -180,11 +210,12 @@ const newUserReducer = (state = initialState.newUser, action) => {
     }
 }
 
-
-
 export default combineReducers({
     user: userReducer,
     likedBlogs: likesReducer,
     allBlogs: blogsReducer,
-    newUser: newUserReducer
+    newUser: newUserReducer,
+    lists: listsReducer
 })
+
+

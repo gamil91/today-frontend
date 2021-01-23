@@ -92,11 +92,11 @@ class UserForm extends Component {
             } else {
             localStorage.setItem('jwt', data.token)
             this.props.setUser(data.user) 
+            this.setState({email: "", password: "", name: "", password_confirmation: ""})
             this.props.history.push('/home')
                 if(this.props.screen === "Sign up"){
                     this.props.newUser()
                 }
-            this.setState({email: "", password: "", name: "", password_confirmation: ""})
             }
         })
 
