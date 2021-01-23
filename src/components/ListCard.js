@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashAlt, faPencilAlt} from "@fortawesome/free-solid-svg-icons";
 
 import { connect } from 'react-redux';
-import { addTask } from '../redux/actions/tasksActions'
+import { addTask, updateTask, deleteTask } from '../redux/actions/tasksActions'
 
 import TaskCard from './TaskCard'
 import DeleteModal from './DeleteModal'
@@ -35,7 +35,7 @@ class ListCard extends Component  {
 
     handleSubmit = (e) => {
         e.preventDefault()
-        this.props.addTask(this.state)
+        !!this.state.taskId ? this.props.updateTask(this.state) : this.props.addTask(this.state)
         this.setState({taskName: "", taskId: ""})
     }
 
@@ -43,8 +43,8 @@ class ListCard extends Component  {
         this.setState({taskName: data.name, finished: data.finished, taskId: data.id})
     }
 
-    deleteTask = () => {
-
+    handleDeleteTask = (id) => {
+        this.props.deleteTask(id)
     }
 
     handleFinish = () => {
@@ -95,7 +95,7 @@ class ListCard extends Component  {
                     <TaskCard 
                         // finished={this.state.finished}
                         editTask={this.editTask} 
-                        deleteTask={this.deleteTask} 
+                        deleteTask={this.handleDeleteTask} 
                         key={task.id} task={task}/>)}
             </div>
 
@@ -113,4 +113,4 @@ class ListCard extends Component  {
     );}
 }
 
-export default connect(null, { addTask })(ListCard);
+export default connect(null, { addTask, updateTask, deleteTask })(ListCard);

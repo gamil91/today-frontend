@@ -21,7 +21,7 @@ const TaskCard = ({task, editTask, deleteTask}) => {
                         </Dropdown.Item>
 
                         <Dropdown.Item 
-                            onClick={() => deleteTask(task)}>
+                            onClick={() => deleteTask(task.id)}>
                             <i><FontAwesomeIcon  icon={faTrashAlt} size="1x" className="icon" /></i>{" "}Delete
                         </Dropdown.Item>
                    

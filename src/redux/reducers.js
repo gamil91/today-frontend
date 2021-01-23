@@ -34,9 +34,9 @@ const listsReducer = (state = initialState.lists, action) => {
         case "ADD_TASK":
             return state.map(list => list.id !== action.payload.list_id ? list : {...list, tasks:[...list.tasks, action.payload]})
         case "UPDATE_TASK":
-            return state
+            return state.map(list => list.id !== action.payload.list_id ? list : {...list, tasks:list.tasks.map(task => task.id !== action.payload.id ? task : action.payload)})
         case "DELETE_TASK":
-            return state
+            return state.map(list => list.id !== action.payload.list_id ? list : {...list, tasks:list.tasks.filter(task => task.id !== action.payload.id)})
         default:
             return state
     }
@@ -114,11 +114,14 @@ const blogsReducer = (state = initialState.allBlogs, action) => {
             return action.payload.reverse()
         case "ADD_BLOG":
             return [action.payload, ...state]
+        // case "UPDATE_BLOG":
+        //     let updatedIdx = state.map(x => x.id).indexOf(action.payload.id)
+        //     let notUpdatedSliceStart = state.slice(0, updatedIdx)
+        //     let notUpdatedSliceEnd = state.slice(updatedIdx + 1)
+        //     return [...notUpdatedSliceStart, action.payload, ...notUpdatedSliceEnd]
         case "UPDATE_BLOG":
-            let updatedIdx = state.map(x => x.id).indexOf(action.payload.id)
-            let notUpdatedSliceStart = state.slice(0, updatedIdx)
-            let notUpdatedSliceEnd = state.slice(updatedIdx + 1)
-            return [...notUpdatedSliceStart, action.payload, ...notUpdatedSliceEnd]
+            debugger
+            return
         case "DELETE_BLOG":
             let updated = state.filter(b => b.id !== action.payload)
             return updated
