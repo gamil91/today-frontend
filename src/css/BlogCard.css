@@ -36,7 +36,8 @@
 ul.comments-li {
     list-style-type: none;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-  
+    float:left;
+    padding: 10px;
 }
 
 ul.comments-li li {

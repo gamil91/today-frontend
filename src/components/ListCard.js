@@ -40,6 +40,7 @@ class ListCard extends Component  {
     }
 
     editTask = (data) => {
+        debugger
         this.setState({taskName: data.name, finished: data.finished, taskId: data.id})
     }
 

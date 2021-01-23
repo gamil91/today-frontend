@@ -170,7 +170,7 @@ class BlogForm extends Component {
 
     render() {
         // debugger
-        console.log(this.state)
+        // console.log(this.state)
         return (
             <div >
                 <div className="blog-form">

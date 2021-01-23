@@ -19,9 +19,9 @@ import NewUserModal from './NewUserModal'
 class Home extends Component {
 
     componentDidMount(){
-        // this.props.fetchLikedBlogs()
+        this.props.fetchLikedBlogs()
         this.props.fetchUser()
-        // this.props.fetchBlogs()
+        this.props.fetchBlogs()
         // this.fetchAdvice()
     }
 

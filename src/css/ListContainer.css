@@ -58,6 +58,11 @@
 }
 
 
+#finished-task {
+    text-decoration: line-through;
+}
+
+
 #task-icons {
     display: flex;
     justify-content: flex-end;
