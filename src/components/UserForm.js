@@ -39,6 +39,7 @@ class UserForm extends Component {
                 break
             case (e.target.textContent === "Delete my account"):
                 this.openModal(this.props.user.id)
+                this.setState({name: "", password: "", password_confirmation: ""})
                 break
             case (this.props.screen === "Update your account" && 
                 this.state.password !== this.state.password_confirmation):
@@ -47,7 +48,7 @@ class UserForm extends Component {
                 break
             case (this.props.screen === "Update your account"):
                 this.props.updateUser(this.state)
-                this.props.history.push('/home')
+                this.setState({name: "", password: "", password_confirmation: ""})
                 break
             case (this.props.screen === "Sign up" && this.state.password !== this.state.password_confirmation):
                 alert("Passwords do not match, please try again.")
