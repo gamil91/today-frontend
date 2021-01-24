@@ -40,6 +40,7 @@ class ListCard extends Component  {
     }
 
     editTask = (data) => {
+        debugger
         this.setState({taskName: data.name, finished: data.finished, taskId: data.id})
     }
 
@@ -47,9 +48,6 @@ class ListCard extends Component  {
         this.props.deleteTask(id)
     }
 
-    handleFinish = () => {
-
-    }
 
 
     render (){
@@ -93,7 +91,7 @@ class ListCard extends Component  {
             <div className="tasks-cards">
                 {this.props.list.tasks.map(task => 
                     <TaskCard 
-                        // finished={this.state.finished}
+                        updateTask={this.props.updateTask}
                         editTask={this.editTask} 
                         deleteTask={this.handleDeleteTask} 
                         key={task.id} task={task}/>)}
