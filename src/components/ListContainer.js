@@ -31,7 +31,7 @@ class ListContainer extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault()
-        {!!this.state.id ? this.props.updateList(this.state) : this.props.addList(this.state.title)}
+        !!this.state.id ? this.props.updateList(this.state) : this.props.addList(this.state.title)
         this.setState({openForm: false, title: "", id: ""})
     }
     

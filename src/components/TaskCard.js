@@ -9,7 +9,7 @@ class TaskCard extends Component  {
 
 
     state = {
-        finished : false
+        finished: this.props.task.finished
     }
 
     handleEdit = () => {
@@ -20,6 +20,19 @@ class TaskCard extends Component  {
         }
         this.props.editTask(data)
     }
+
+    handleChange = () => {
+        this.setState(prevState => {return{finished: !prevState.finished}}, () => {
+            let dataDone = {
+                taskName : this.props.task.name,
+                finished : this.state.finished,
+                taskId : this.props.task.id
+            }
+            this.props.updateTask(dataDone)
+        })
+    }
+
+
 
     render(){
 
@@ -46,10 +59,17 @@ class TaskCard extends Component  {
                     </Dropdown>
                     </div>
                      
-               
-                    <input onChange={() => {this.setState(prevState => {return{finished: !prevState.finished}})}} className="todo-item-checkbox" type="checkbox"></input>{" "}
-                    {this.state.finished ? <div id="finished-task">{this.props.task.name}</div> : <div >{this.props.task.name}</div>}
-                    
+                
+                    {this.state.finished ? 
+                    <div >
+                        <input onChange={this.handleChange} className="todo-item-checkbox" type="checkbox"></input>{" "}{" "}
+                        <span id="finished-task">{this.props.task.name}</span>
+                    </div> : 
+                    <div >
+                        <input onChange={this.handleChange} className="todo-item-checkbox" type="checkbox"></input>{" "}{" "}
+                        {this.props.task.name}
+                    </div>}
+                   
             </div>
         </div>
     );}
