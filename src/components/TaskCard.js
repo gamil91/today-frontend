@@ -3,6 +3,7 @@ import { Dropdown } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashAlt, faPencilAlt} from "@fortawesome/free-solid-svg-icons";
 
+import { Draggable } from "react-beautiful-dnd"
 
 
 class TaskCard extends Component  {
@@ -37,41 +38,49 @@ class TaskCard extends Component  {
     render(){
 
         return (
-        <div >
-            <div id="task-card" style={{ width: '22.5rem' }}>
-                    <div id="task-icons">
-                    <Dropdown id="task-dropdown">
-                        <Dropdown.Toggle/>
-                        <Dropdown.Menu>
+            <Draggable draggableId={String(this.props.id)} index={this.props.idx}>
+                {provided => (
+                <div id="task-card" 
+                    ref={provided.innerRef} 
+                    {...provided.draggableProps} 
+                    {...provided.dragHandleProps}>
 
-                        <Dropdown.Item  
-                            onClick={this.handleEdit}>
-                            <i><FontAwesomeIcon  
-                                icon={faPencilAlt} size="1x" className="icon" /></i>{" "}Edit
-                        </Dropdown.Item>
+                    <div  style={{ width: '22.5rem' }}>
+                            <div id="task-icons">
+                            <Dropdown id="task-dropdown">
+                                <Dropdown.Toggle/>
+                                <Dropdown.Menu>
 
-                        <Dropdown.Item 
-                            onClick={() => this.props.deleteTask(this.props.task.id)}>
-                            <i><FontAwesomeIcon  icon={faTrashAlt} size="1x" className="icon" /></i>{" "}Delete
-                        </Dropdown.Item>
-                   
-                    </Dropdown.Menu>
-                    </Dropdown>
+                                <Dropdown.Item  
+                                    onClick={this.handleEdit}>
+                                    <i><FontAwesomeIcon  
+                                        icon={faPencilAlt} size="1x" className="icon" /></i>{" "}Edit
+                                </Dropdown.Item>
+
+                                <Dropdown.Item 
+                                    onClick={() => this.props.deleteTask(this.props.task.id)}>
+                                    <i><FontAwesomeIcon  icon={faTrashAlt} size="1x" className="icon" /></i>{" "}Delete
+                                </Dropdown.Item>
+                        
+                            </Dropdown.Menu>
+                            </Dropdown>
+                            </div>
+                            
+                        
+                            {this.state.finished ? 
+                            <div >
+                                <input onChange={this.handleChange} className="todo-item-checkbox" type="checkbox"></input>{" "}{" "}
+                                <span id="finished-task">{this.props.task.name}</span>
+                            </div> : 
+                            <div >
+                                <input onChange={this.handleChange} className="todo-item-checkbox" type="checkbox"></input>{" "}{" "}
+                                {this.props.task.name}
+                            </div>}
                     </div>
-                     
-                
-                    {this.state.finished ? 
-                    <div >
-                        <input onChange={this.handleChange} className="todo-item-checkbox" type="checkbox"></input>{" "}{" "}
-                        <span id="finished-task">{this.props.task.name}</span>
-                    </div> : 
-                    <div >
-                        <input onChange={this.handleChange} className="todo-item-checkbox" type="checkbox"></input>{" "}{" "}
-                        {this.props.task.name}
-                    </div>}
-                   
-            </div>
-        </div>
+                </div>
+                )}
+        
+        </Draggable>
     );}
 }
 

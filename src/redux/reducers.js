@@ -37,6 +37,38 @@ const listsReducer = (state = initialState.lists, action) => {
             return state.map(list => list.id !== action.payload.list_id ? list : {...list, tasks:list.tasks.map(task => task.id !== action.payload.id ? task : action.payload)})
         case "DELETE_TASK":
             return state.map(list => list.id !== action.payload.list_id ? list : {...list, tasks:list.tasks.filter(task => task.id !== action.payload.id)})
+        case "DRAG_HAPPENED":
+            // debugger
+            const { droppableIdStart, 
+                droppableIdEnd, 
+                droppableIndexStart, 
+                droppableIndexEnd, 
+                draggableId,
+                type} = action.payload;
+
+            const newState = [...state]
+
+            if(type === "list"){
+                debugger
+                const list = newState.splice(parseInt(droppableIndexStart),1)
+                newState.splice(parseInt(droppableIndexEnd), 0, ...list)
+                return newState 
+            }
+            
+            if (droppableIdStart === droppableIdEnd){
+                const list = state.find(list => parseInt(droppableIdStart) === list.id)
+                const taskCard = list.tasks.splice(parseInt(droppableIndexStart), 1)
+                list.tasks.splice(parseInt(droppableIndexEnd), 0, ...taskCard)
+            }
+
+            if(droppableIdStart !== droppableIdEnd){
+                const listStart = state.find(list => parseInt(droppableIdStart) === list.id)
+                const taskCard = listStart.tasks.splice(parseInt(droppableIndexStart), 1)
+                const listEnd = state.find(list => parseInt(droppableIdEnd) === list.id)
+                listEnd.tasks.splice(droppableIndexEnd, 0, ...taskCard)
+            }
+
+            return newState
         default:
             return state
     }

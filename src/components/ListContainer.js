@@ -4,10 +4,11 @@ import { Button, Form } from 'react-bootstrap'
 import '../css/ListContainer.css'
 
 import { connect } from 'react-redux';
-import { addList, deleteList, updateList } from '../redux/actions/listsActions'
+import { addList, deleteList, updateList, reorderList } from '../redux/actions/listsActions'
 
 import ListCard from './ListCard'
 
+import { DragDropContext, Droppable} from "react-beautiful-dnd"
 
 
 class ListContainer extends Component {
@@ -39,31 +40,55 @@ class ListContainer extends Component {
         this.setState({openForm: true, title: list.title, id: list.id})
     }
 
-    
+    onDragEnd = (result) => {
+        const { destination, source, draggableId, type } = result
+        
+        if(!destination) {
+            return;
+        } 
+
+        this.props.reorderList(
+            source.droppableId,
+            destination.droppableId,
+            source.index,
+            destination.index,
+            draggableId,
+            type )
+    }
 
     render() {
-        // debugger
-        // console.log(this.props.lists)
         return (
-            <div>
-                <Button variant="secondary" onClick={this.handleClick}> Create a new List</Button>
-                <br/><br/>
+            <DragDropContext onDragEnd={this.onDragEnd}>
+                
+                    <Button variant="secondary" onClick={this.handleClick}> Create a new List</Button>
+                    <br/><br/>
 
-                {this.state.openForm ? 
-                <Form id="list-form" onSubmit={this.handleSubmit}>
-                    <Form.Group >
-                        <Form.Control type="text" placeholder="Get done today" name="title" value={this.state.title} onChange={this.handleChange}/>
-                    </Form.Group>
-                </Form> : null}
+                    {this.state.openForm ? 
+                    <Form id="list-form" onSubmit={this.handleSubmit}>
+                        <Form.Group >
+                            <Form.Control type="text" placeholder="Get done today" name="title" value={this.state.title} onChange={this.handleChange}/>
+                        </Form.Group>
+                    </Form> : null}
 
-                <div className="lists">
-                    {this.props.lists.map(list =>
-                        <ListCard key={list.id} list={list} editList={this.handleUpdate} deleteList={this.props.deleteList}/>)}
-                </div>
-            </div>
+                    <Droppable droppableId="all-lists" direction="horizontal" type="list">  
+                        {(provided => 
+                        <div className="lists" {...provided.droppableProps} ref={provided.innerRef}>
+                            {this.props.lists.map((list, idx) =>
+                                <ListCard 
+                                    id={list.id} idx={idx}
+                                    key={list.id} list={list} 
+                                    editList={this.handleUpdate} 
+                                    deleteList={this.props.deleteList}/>)}
+                            {provided.placeholder}
+                        </div>
+                        )}
+
+                    </Droppable>
+                
+            </DragDropContext>
         );
     }
 }
 
 
-export default connect(state => ({lists: state.lists}), {addList, deleteList, updateList})(ListContainer);
+export default connect(state => ({lists: state.lists}), {addList, deleteList, updateList, reorderList})(ListContainer);
