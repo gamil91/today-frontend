@@ -43,9 +43,7 @@ class ListContainer extends Component {
     onDragEnd = (result) => {
         const { destination, source, draggableId, type } = result
         
-        if(!destination) {
-            return;
-        } 
+        if(!destination) { return } 
        
         this.props.reorderList(
             source.droppableId,
@@ -56,8 +54,7 @@ class ListContainer extends Component {
             type )
 
         if (type === "list"){
-            setTimeout(this.listDatabase, 2000)
-        }
+            setTimeout(this.listDatabase, 2000)}
         else if (source.droppableId !== destination.droppableId) {
             this.updateDatabase(destination.droppableId, draggableId)}
         else {
@@ -81,6 +78,7 @@ class ListContainer extends Component {
         .then(res => res.json())
     }
 
+    
     listDatabase = () => {
         let info = {lists_array: this.props.lists.map(list => list.id)}
         let config = {
