@@ -53,6 +53,7 @@ class ListCard extends Component  {
 
 
     render (){ 
+        // debugger
         return (
         <div>
         <Draggable draggableId={String(this.props.id)} index={this.props.idx}>
@@ -103,6 +104,7 @@ class ListCard extends Component  {
                     <div ref={provided.innerRef} {...provided.droppableProps}>
 
                         <div className="tasks-cards"  >
+                            
                             {this.props.list.tasks.map((task, idx) => 
                                 <TaskCard 
                                     idx={idx}

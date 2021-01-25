@@ -6,7 +6,7 @@ export function reorderList (droppableIdStart,
                     droppableIndexEnd, 
                     draggableId,
                     type)  {
-                       
+                        
     return {type: "DRAG_HAPPENED", 
             payload: { droppableIdStart,
                     droppableIdEnd,
@@ -17,6 +17,7 @@ export function reorderList (droppableIdStart,
             }
     }
 
+    
 
 
 

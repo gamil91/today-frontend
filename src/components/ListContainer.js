@@ -46,7 +46,7 @@ class ListContainer extends Component {
         if(!destination) {
             return;
         } 
-
+        // debugger
         this.props.reorderList(
             source.droppableId,
             destination.droppableId,
@@ -54,6 +54,28 @@ class ListContainer extends Component {
             destination.index,
             draggableId,
             type )
+
+        if (source.droppableId !== destination.droppableId) {
+            this.updateDatabase(destination.droppableId, draggableId)}
+        else {
+            this.updateDatabase(destination.droppableId)}
+    }
+
+    updateDatabase = (list_id, moveToNewList="") => {
+        let newTasksOrder = this.props.lists.find(list => list.id === parseInt(list_id)).tasks.map(task => task.id)
+
+        let info
+        if (moveToNewList !== ""){
+            info = {tasks_array: newTasksOrder, list_id: list_id}
+        } else {
+            info = {tasks_array: newTasksOrder}}
+
+
+        let config = {method: "POST", 
+                        headers: {"Content-Type": "application/json"},
+                        body: JSON.stringify(info)}
+        fetch(`http://localhost:3000/updateorder`, config)
+        .then(res => res.json())
     }
 
     render() {
