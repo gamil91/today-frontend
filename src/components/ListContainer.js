@@ -46,7 +46,7 @@ class ListContainer extends Component {
         if(!destination) {
             return;
         } 
-        // debugger
+       
         this.props.reorderList(
             source.droppableId,
             destination.droppableId,
@@ -55,7 +55,10 @@ class ListContainer extends Component {
             draggableId,
             type )
 
-        if (source.droppableId !== destination.droppableId) {
+        if (type === "list"){
+            setTimeout(this.listDatabase, 2000)
+        }
+        else if (source.droppableId !== destination.droppableId) {
             this.updateDatabase(destination.droppableId, draggableId)}
         else {
             this.updateDatabase(destination.droppableId)}
@@ -65,20 +68,31 @@ class ListContainer extends Component {
         let newTasksOrder = this.props.lists.find(list => list.id === parseInt(list_id)).tasks.map(task => task.id)
 
         let info
-        if (moveToNewList !== ""){
-            info = {tasks_array: newTasksOrder, list_id: list_id}
-        } else {
-            info = {tasks_array: newTasksOrder}}
+        moveToNewList !== "" ? 
+        info = {tasks_array: newTasksOrder, list_id: list_id}:
+        info = {tasks_array: newTasksOrder}
 
+        let config = {
+            method: "POST", 
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(info)}
 
-        let config = {method: "POST", 
-                        headers: {"Content-Type": "application/json"},
-                        body: JSON.stringify(info)}
         fetch(`http://localhost:3000/updateorder`, config)
         .then(res => res.json())
     }
 
+    listDatabase = () => {
+        let info = {lists_array: this.props.lists.map(list => list.id)}
+        let config = {
+            method: "POST", 
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(info)}
+        fetch(`http://localhost:3000/updatelistsorder`, config)
+        .then(res => res.json())
+    }
+
     render() {
+        console.log(this.props.lists)
         return (
             <DragDropContext onDragEnd={this.onDragEnd}>
                 

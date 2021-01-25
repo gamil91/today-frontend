@@ -49,7 +49,7 @@ const listsReducer = (state = initialState.lists, action) => {
             const newState = [...state]
 
             if(type === "list"){
-                debugger
+                // debugger
                 const list = newState.splice(parseInt(droppableIndexStart),1)
                 newState.splice(parseInt(droppableIndexEnd), 0, ...list)
                 return newState 
