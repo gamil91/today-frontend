@@ -1,3 +1,26 @@
+
+
+export function reorderList (droppableIdStart, 
+                    droppableIdEnd, 
+                    droppableIndexStart, 
+                    droppableIndexEnd, 
+                    draggableId,
+                    type)  {
+                        
+    return {type: "DRAG_HAPPENED", 
+            payload: { droppableIdStart,
+                    droppableIdEnd,
+                    droppableIndexStart,
+                    droppableIndexEnd,
+                    draggableId,
+                    type}
+            }
+    }
+
+    
+
+
+
 export function addList(list){
     return (dispatch) => {
 
@@ -47,7 +70,9 @@ export function deleteList(id){
     return (dispatch) => {
         let config = {
             method: "DELETE",
-            headers: {"Content-Type": "application/json"}}
+            headers: {"Content-Type": "application/json",
+            'Authorization' : `Bearer ${localStorage.getItem('jwt')}`}
+        }
         fetch(`http://localhost:3000/lists/${id}`, config)
         .then(res => res.json())
         .then(data => dispatch(deleteListInState(data)))

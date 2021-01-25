@@ -16,6 +16,8 @@ import BlogForm from './BlogForm'
 import BlogContainer from './BlogContainer'
 import NewUserModal from './NewUserModal'
 
+
+
 class Home extends Component {
 
     componentDidMount(){
@@ -162,12 +164,12 @@ class Home extends Component {
                 return( 
                     <>
                     <TopNav handleHomeRender={this.handleHomeRender}/>
-                    <div className="banner-area">
+                    {/* <div className="banner-area">
                         <h2 id="logo-font">Today.</h2>
                         <h3 id="advice-font">{this.state.advice}</h3>
-                    </div>
+                    </div> */}
 
-                    <div className="content-area">
+                    <div className="todo-content-area">
 			            <div className="todo-list-wrapper">
                         <h1>To-do Lists</h1>
 

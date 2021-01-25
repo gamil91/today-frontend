@@ -10,7 +10,10 @@ export function addTask(data) {
 
         fetch(`http://localhost:3000/tasks`, config)
         .then(res => res.json())
-        .then(data => dispatch(addTaskToState(data)))
+        .then(data => {
+            
+            dispatch(addTaskToState(data))
+        })
     }
 }
 
