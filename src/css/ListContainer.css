@@ -20,7 +20,7 @@
     border: solid;
     border-color:rgb(78, 111, 112);
     margin-bottom: 10px;
-    border-radius: 20px;
+    border-radius: 10px;
     margin: 5px;
 }
 
@@ -49,6 +49,8 @@
 
 #task-card {
     margin-bottom: 10px;
+    margin-right: 10px;
+    margin-left: 10px;
     border:solid;
     border-color: rgb(193, 220, 221);
     border-radius: 5px;
