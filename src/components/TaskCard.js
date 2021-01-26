@@ -69,7 +69,7 @@ class TaskCard extends Component  {
                         
                             {this.state.finished ? 
                             <div >
-                                <input onChange={this.handleChange} className="todo-item-checkbox" type="checkbox"></input>{" "}{" "}
+                                <input onChange={this.handleChange} checked={this.state.finished} className="todo-item-checkbox" type="checkbox"></input>{" "}{" "}
                                 <span id="finished-task">{this.props.task.name}</span>
                             </div> : 
                             <div >

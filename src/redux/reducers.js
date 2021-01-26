@@ -98,7 +98,7 @@ const blogsReducer = (state = initialState.allBlogs, action) => {
         case "LOG_OUT":
             return []
         case "SET_BLOGS":
-            return action.payload
+            return action.payload.reverse()
         case "ADD_BLOG":
             return [action.payload, ...state]
         case "UPDATE_BLOG":

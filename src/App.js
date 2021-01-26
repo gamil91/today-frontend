@@ -16,30 +16,26 @@ import NotFound from './components/NotFound'
 class App extends Component {
 
 
-
- 
-
   handleRender = (routerProps) => {
     switch (routerProps.location.pathname) {
       case "/login" :
-        return <body><Form screen="Log in"/></body>
+        return <div className="body"><Form screen="Log in"/></div>
       case "/signup" :
-        return <body><Form screen="Sign up"/></body>
+        return <div className="body"><Form screen="Sign up"/></div>
       case "/home" :
-        return <Home />
+        return <div className="App"><Home /></div>
       default:
         break
     }
   }
-  
- 
+
 
   render(){
     // debugger
    
     return (
-      <div className="App">
-      
+      <div >
+       
         <div id="container">
           <Switch className="App">
 
@@ -74,5 +70,5 @@ class App extends Component {
     );
   }
 }
-// export default withRouter(connect(state => ({user:state.user}))(App));
+
 export default withRouter(App);

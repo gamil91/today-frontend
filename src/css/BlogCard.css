@@ -12,6 +12,13 @@
     
 }
 
+#search-bar {
+    margin-inline: auto;
+    display:block;
+}
+
+
+
 .form-control {
     font-size: 2rem;
     color: black;
@@ -62,5 +69,9 @@ ul.comments-li li {
     max-width: 100%; 
     display:block;
     margin:auto;
+}
+
+.blockquote-footer {
+    cursor:pointer;
 }
 
