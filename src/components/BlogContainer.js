@@ -16,12 +16,15 @@ class BlogContainer extends Component {
        
         return (
         <div id="blog-container">
-            <Form inline id="search-bar" >
+
+           {blogs.length === 0 ? null :  
+           <Form inline id="search-bar" >
                 <FormControl type="text" 
                             placeholder="Search" 
                             // className="mr-sm-2" 
                             onChange={(e) => {this.setState({search: e.target.value})}} />
-            </Form>
+            </Form>}
+
             {blogs.filter(blog => {
                 if (this.state.search === ""){
                     return blog

@@ -25,6 +25,7 @@ class App extends Component {
   }
 
   handleClose = () => {
+    // console.log("this hit")
     this.setState({openPlayer: false})
   }
 
@@ -43,7 +44,7 @@ class App extends Component {
 
 
   render(){
-    // debugger
+    // console.log(this.state.openPlayer)
    
     return (
       <div >
@@ -79,7 +80,7 @@ class App extends Component {
         
 
         </div>
-        {this.state.openPlayer ? 
+        {this.state.openPlayer === true ? 
           <SoundCloud handleClose={this.handleClose}/>
         : null}
       </div>

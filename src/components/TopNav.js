@@ -5,7 +5,6 @@ import { logoutUser } from '../redux/actions/userActions'
 import { withRouter } from 'react-router-dom'
 // import '../css/TopNav.css'
 
-import SoundCloud from './SoundCloud'
 
 class TopNav extends Component {
 

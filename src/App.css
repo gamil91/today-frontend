@@ -130,12 +130,31 @@ nav {
 
 .todo-content-area {
 	padding-top: 50px;
-  width: 100%;
-  position: relative;
-  top: 80px;
-  background: #ebebeb;
-  background: #e4d39c;
-	min-height: 102.5%;
+	width: 100%;
+	position: relative;
+	top: 80px;
+	background: #ebebeb;
+	background-image: url(https://images.pexels.com/photos/97050/pexels-photo-97050.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
+	background-repeat: no-repeat;
+	-webkit-background-size: cover;
+	background-size: cover;
+	background-position: center center;
+	min-height: 92.2%;
+}
+
+
+.checkin-content-area {
+	padding-top: 50px;
+	width: 100%;
+	position: relative;
+	top: 80px;
+	background: #ebebeb;
+	background-image: url(https://images.pexels.com/photos/733857/pexels-photo-733857.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
+	background-repeat: no-repeat;
+	-webkit-background-size: cover;
+	background-size: cover;
+	background-position: center center;
+	min-height: 92.2%;
 }
 
 .content-area {
@@ -144,7 +163,12 @@ nav {
 	position: relative;
 	top: 460px;
 	background: #ebebeb;
-	background: #e4d39c;
+	/* background-image: url(https://images.pexels.com/photos/1101122/pexels-photo-1101122.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940); */
+	
+	background-repeat: no-repeat;
+	-webkit-background-size: cover;
+	background-size: cover;
+	background-position: center center;
   	min-height: 90%;
 }
 .content-area h2 {
@@ -160,25 +184,14 @@ nav {
 	line-height: 30px;
 }
 
-/* #footer {
-	height: 80px;
-	background: #262626;
-	width: 100%;
-	z-index:10;
-	position: fixed;
-	top: 80px;
-	color: #ffffff; 
-	margin: 0;
-	
-} */
 
 #footer {
 	position: fixed;
 	width: 450px;
 	height: 300px;
-	bottom: 40px;
-	right: 40px;
-	background: #000;
+	top: 130px;
+	left: 60px;
+	background: transparent;
 	
 }
 
@@ -201,4 +214,6 @@ nav {
 	padding-top: 8px;
 	cursor:move;
 }
+
+
 

@@ -23,9 +23,9 @@ import SoundCloud from './SoundCloud'
 class Home extends Component {
 
     componentDidMount(){
-        this.props.fetchLikedBlogs()
-        this.props.fetchUser()
-        this.props.fetchBlogs()
+        // this.props.fetchLikedBlogs()
+        // this.props.fetchUser()
+        // this.props.fetchBlogs()
         // this.fetchAdvice()
         if (localStorage.getItem('screen')){
             this.setState({screen: localStorage.getItem('screen')})
@@ -103,10 +103,8 @@ class Home extends Component {
             case "Settings":
                 return (
                 <>
-                {/* <div id="footer">
-                <SoundCloud />
-                </div> */}
-                    <TopNav handleHomeRender={this.handleHomeRender}/>
+                
+                    <TopNav handleHomeRender={this.handleHomeRender} handlePlayer={this.props.handlePlayer}/>
                     <div className="banner-area">
                         <h2 id="logo-font">Today.</h2>
                         <h3 id="advice-font">{this.state.advice}</h3>
@@ -117,20 +115,14 @@ class Home extends Component {
                         <Form screen="Update your account" /> 
                         </div>
                     </div>
-                    <div id="footer">
-        <SoundCloud />
-      </div>
+                   
                 </>)
 
             case "Check in":
                 return (
                 <>
-                {/* <div id="footer">
-                <SoundCloud />
-                </div> */}
-                    <TopNav handleHomeRender={this.handleHomeRender}/>
-                   
-                    <div className="todo-content-area">
+                    <TopNav handleHomeRender={this.handleHomeRender} handlePlayer={this.props.handlePlayer}/>
+                    <div className="checkin-content-area">
 			            <div className="todo-list-wrapper">
                         <BlogForm 
                             clearBlog={this.clearBlog}
@@ -143,10 +135,7 @@ class Home extends Component {
             case "All Blogs":
                 return (
                     <>
-                    {/* <div id="footer">
-                <SoundCloud />
-                </div> */}
-                    <TopNav handleHomeRender={this.handleHomeRender}/>
+                    <TopNav handleHomeRender={this.handleHomeRender} handlePlayer={this.props.handlePlayer}/>
                     <div className="banner-area">
                         <h2 id="logo-font">Today.</h2>
                         <h3 id="advice-font">{this.state.advice}</h3>
@@ -168,19 +157,13 @@ class Home extends Component {
                             likedBlogs={this.props.likedBlogs} 
                             handleHomeRender={this.handleHomeRender}/>}
                     </div>
-                    <div id="footer">
-                    <SoundCloud />
-                        </div>
-      </div>
+                    </div>
                     </>)
 
             case "Liked Blogs":
                 return (
                     <>
-                    {/* <div id="footer">
-                <SoundCloud />
-                </div> */}
-                    <TopNav handleHomeRender={this.handleHomeRender}/>
+                    <TopNav handleHomeRender={this.handleHomeRender} handlePlayer={this.props.handlePlayer}/>
                     <div className="banner-area">
                         <h2 id="logo-font">Today.</h2>
                         <h3 id="advice-font">{this.state.advice}</h3>
@@ -199,18 +182,13 @@ class Home extends Component {
                         handleHomeRender={this.handleHomeRender}/>
                         </div>
                     </div>
-                    <div id="footer">
-        <SoundCloud />
-      </div>
+                   
                     </>)
 
             case "To-do":
                 return( 
                     <>
-                    {/* <div id="footer">
-                <SoundCloud />
-                </div> */}
-                    <TopNav handleHomeRender={this.handleHomeRender}/>
+                    <TopNav handleHomeRender={this.handleHomeRender} handlePlayer={this.props.handlePlayer}/>
 
                     <div className="todo-content-area">
 			            <div className="todo-list-wrapper">
@@ -225,9 +203,6 @@ class Home extends Component {
             default :
                 return (
                 <>
-                {/* <div id="footer">
-                <SoundCloud />
-                </div> */}
                     <TopNav handleHomeRender={this.handleHomeRender} handlePlayer={this.props.handlePlayer}/>
                     <div className="banner-area">
                         <h2 id="logo-font">Today.</h2>
@@ -273,8 +248,7 @@ const mapStateToProps = state => {
         likedBlogs: state.likedBlogs,
         newUser: state.newUser
        
-    }
-    
+    } 
 }
 
 export default connect(mapStateToProps, {fetchUser, fetchBlogs, fetchLikedBlogs, oldUser})(Home);
