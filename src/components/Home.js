@@ -15,6 +15,8 @@ import Form from './UserForm'
 import BlogForm from './BlogForm'
 import BlogContainer from './BlogContainer'
 import NewUserModal from './NewUserModal'
+import SoundCloud from './SoundCloud'
+
 
 
 
@@ -101,6 +103,9 @@ class Home extends Component {
             case "Settings":
                 return (
                 <>
+                {/* <div id="footer">
+                <SoundCloud />
+                </div> */}
                     <TopNav handleHomeRender={this.handleHomeRender}/>
                     <div className="banner-area">
                         <h2 id="logo-font">Today.</h2>
@@ -112,11 +117,17 @@ class Home extends Component {
                         <Form screen="Update your account" /> 
                         </div>
                     </div>
+                    <div id="footer">
+        <SoundCloud />
+      </div>
                 </>)
 
             case "Check in":
                 return (
                 <>
+                {/* <div id="footer">
+                <SoundCloud />
+                </div> */}
                     <TopNav handleHomeRender={this.handleHomeRender}/>
                    
                     <div className="todo-content-area">
@@ -132,6 +143,9 @@ class Home extends Component {
             case "All Blogs":
                 return (
                     <>
+                    {/* <div id="footer">
+                <SoundCloud />
+                </div> */}
                     <TopNav handleHomeRender={this.handleHomeRender}/>
                     <div className="banner-area">
                         <h2 id="logo-font">Today.</h2>
@@ -153,13 +167,19 @@ class Home extends Component {
                             blogs={this.filterPublicBlogs()} 
                             likedBlogs={this.props.likedBlogs} 
                             handleHomeRender={this.handleHomeRender}/>}
-                        </div>
                     </div>
+                    <div id="footer">
+                    <SoundCloud />
+                        </div>
+      </div>
                     </>)
 
             case "Liked Blogs":
                 return (
                     <>
+                    {/* <div id="footer">
+                <SoundCloud />
+                </div> */}
                     <TopNav handleHomeRender={this.handleHomeRender}/>
                     <div className="banner-area">
                         <h2 id="logo-font">Today.</h2>
@@ -179,11 +199,17 @@ class Home extends Component {
                         handleHomeRender={this.handleHomeRender}/>
                         </div>
                     </div>
+                    <div id="footer">
+        <SoundCloud />
+      </div>
                     </>)
 
             case "To-do":
                 return( 
                     <>
+                    {/* <div id="footer">
+                <SoundCloud />
+                </div> */}
                     <TopNav handleHomeRender={this.handleHomeRender}/>
 
                     <div className="todo-content-area">
@@ -199,7 +225,10 @@ class Home extends Component {
             default :
                 return (
                 <>
-                    <TopNav handleHomeRender={this.handleHomeRender}/>
+                {/* <div id="footer">
+                <SoundCloud />
+                </div> */}
+                    <TopNav handleHomeRender={this.handleHomeRender} handlePlayer={this.props.handlePlayer}/>
                     <div className="banner-area">
                         <h2 id="logo-font">Today.</h2>
                         <h3 id="advice-font">{this.state.advice}</h3>
@@ -230,6 +259,7 @@ class Home extends Component {
                         closeModal={this.closeModal}
                         openModal={this.state.openNewUserModal}
                     /> : null }
+                    
                 </>)
         }
     }

@@ -90,7 +90,7 @@ class ListContainer extends Component {
     }
 
     render() {
-        console.log(this.props.lists)
+        // console.log(this.props.lists)
         return (
             <DragDropContext onDragEnd={this.onDragEnd}>
                 

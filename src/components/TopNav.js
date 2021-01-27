@@ -5,6 +5,8 @@ import { logoutUser } from '../redux/actions/userActions'
 import { withRouter } from 'react-router-dom'
 // import '../css/TopNav.css'
 
+import SoundCloud from './SoundCloud'
+
 class TopNav extends Component {
 
   handleLogout = () => {
@@ -22,6 +24,7 @@ class TopNav extends Component {
         <header>
     <div className="wrapper"> 
       
+    
         <Navbar>
           <Nav >
             <Nav.Link onClick={this.handleClick}>Home</Nav.Link>
@@ -34,10 +37,12 @@ class TopNav extends Component {
             {/* <Nav.Link onClick={this.handleClick} >Blogs</Nav.Link>
             <Nav.Link onClick={this.handleClick} >Liked Blogs</Nav.Link> */}
             <Nav.Link onClick={this.handleClick}>To-do</Nav.Link>
+            <Nav.Link onClick={this.props.handlePlayer}>Tunes</Nav.Link>
             <Nav.Link onClick={this.handleClick}>Settings</Nav.Link>
             <Nav.Link onClick={this.handleLogout}>Log Out</Nav.Link>
           </Nav>
         </Navbar>
+
     </div>
     </header>
     );}

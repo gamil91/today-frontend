@@ -101,7 +101,7 @@ nav {
 	font-family: poppins;
 	letter-spacing: 4px;
 	font-size: 20px;
-	margin: 0 40px ;
+	margin: 0 30px ;
   	color: #fff;
   
 }
@@ -159,3 +159,46 @@ nav {
 	font-family: poppins;
 	line-height: 30px;
 }
+
+/* #footer {
+	height: 80px;
+	background: #262626;
+	width: 100%;
+	z-index:10;
+	position: fixed;
+	top: 80px;
+	color: #ffffff; 
+	margin: 0;
+	
+} */
+
+#footer {
+	position: fixed;
+	width: 450px;
+	height: 300px;
+	bottom: 40px;
+	right: 40px;
+	background: #000;
+	
+}
+
+#footer .move-player,
+#footer .exit-player {
+	position: absolute;
+	right: 0px;
+	top: -30px;
+	width: 32px;
+	height: 32px;
+	background: #000;
+	color: #fff;
+	opacity: 1;
+	padding: 3px;
+	cursor: pointer;
+}
+
+#footer .move-player {
+	right: 32px;
+	padding-top: 8px;
+	cursor:move;
+}
+

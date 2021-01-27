@@ -5,7 +5,17 @@ const initialState = {
     allBlogs: [],
     likedBlogs: [],
     newUser: false,
-    lists: []
+    lists: [],
+    player: false
+}
+
+const playReducer = (state = initialState.player, action) => {
+    switch(action.type){
+        case "SET_PLAYER":
+            return action.payload
+        default:
+            return state
+    }
 }
 
 
@@ -137,7 +147,8 @@ export default combineReducers({
     likedBlogs: likesReducer,
     allBlogs: blogsReducer,
     newUser: newUserReducer,
-    lists: listsReducer
+    lists: listsReducer, 
+    player: playReducer
 })
 
 
