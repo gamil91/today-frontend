@@ -5,7 +5,17 @@ const initialState = {
     allBlogs: [],
     likedBlogs: [],
     newUser: false,
-    lists: []
+    lists: [],
+    player: false
+}
+
+const playReducer = (state = initialState.player, action) => {
+    switch(action.type){
+        case "SET_PLAYER":
+            return action.payload
+        default:
+            return state
+    }
 }
 
 
@@ -98,7 +108,7 @@ const blogsReducer = (state = initialState.allBlogs, action) => {
         case "LOG_OUT":
             return []
         case "SET_BLOGS":
-            return action.payload
+            return action.payload.reverse()
         case "ADD_BLOG":
             return [action.payload, ...state]
         case "UPDATE_BLOG":
@@ -137,7 +147,8 @@ export default combineReducers({
     likedBlogs: likesReducer,
     allBlogs: blogsReducer,
     newUser: newUserReducer,
-    lists: listsReducer
+    lists: listsReducer, 
+    player: playReducer
 })
 
 

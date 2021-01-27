@@ -41,7 +41,7 @@ class BlogCard extends Component {
                             {content}
                             </p>
 
-                            <footer className="blockquote-footer">
+                            <footer className="blockquote-footer" onClick={() => user.name === this.props.user.name ? this.props.handleHomeRender("") : this.props.handleOtherUserRender(user_id, user.name) }>
                                 {`${user.name} ${created_at}`}<br/>
                                 {this.props.user.id === user_id && this.props.blog.private === true ?  "(private blog, only viewable by you)" : null}
                             </footer>

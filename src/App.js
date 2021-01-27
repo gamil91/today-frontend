@@ -9,37 +9,45 @@ import Home from './components/Home';
 import Form from './components/UserForm'
 
 import NotFound from './components/NotFound'
+import SoundCloud from './components/SoundCloud';
 
 
 
 
 class App extends Component {
 
+  state = { openPlayer: false}
 
+  handlePlayer = () => {
+    this.setState(prevState => {
+      return {openPlayer: !prevState.openPlayer}
+    })
+  }
 
- 
+  handleClose = () => {
+    this.setState({openPlayer: false})
+  }
 
   handleRender = (routerProps) => {
     switch (routerProps.location.pathname) {
       case "/login" :
-        return <body><Form screen="Log in"/></body>
+        return <div className="body"><Form screen="Log in"/></div>
       case "/signup" :
-        return <body><Form screen="Sign up"/></body>
+        return <div className="body"><Form screen="Sign up"/></div>
       case "/home" :
-        return <Home />
+        return <div className="App"><Home handlePlayer={this.handlePlayer}/></div>
       default:
         break
     }
   }
-  
- 
+
 
   render(){
     // debugger
    
     return (
-      <div className="App">
-      
+      <div >
+       
         <div id="container">
           <Switch className="App">
 
@@ -68,11 +76,15 @@ class App extends Component {
             
 
           </Switch>
+        
+
         </div>
-      
+        {this.state.openPlayer ? 
+          <SoundCloud handleClose={this.handleClose}/>
+        : null}
       </div>
     );
   }
 }
-// export default withRouter(connect(state => ({user:state.user}))(App));
+
 export default withRouter(App);

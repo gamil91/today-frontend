@@ -15,6 +15,8 @@ import Form from './UserForm'
 import BlogForm from './BlogForm'
 import BlogContainer from './BlogContainer'
 import NewUserModal from './NewUserModal'
+import SoundCloud from './SoundCloud'
+
 
 
 
@@ -25,15 +27,20 @@ class Home extends Component {
         this.props.fetchUser()
         this.props.fetchBlogs()
         // this.fetchAdvice()
+        if (localStorage.getItem('screen')){
+            this.setState({screen: localStorage.getItem('screen')})
+        }
     }
 
     state = {
-        blogID: "",
         screen: "",
+        blogID: "",
         modalNewUser: false,
         openNewUserModal: false,
         opened: false, 
-        advice: ""
+        advice: "",
+        otherUserId: "",
+        otherUserName: ""
     }
 
     fetchAdvice = () => {
@@ -50,7 +57,16 @@ class Home extends Component {
     }
 
     handleHomeRender = (name, blogID="") => {
-        blogID === "" ? this.setState({screen: name}) : this.setState({screen: name, blogID})
+        blogID === "" ? this.setState({screen: name, otherUserId: ""}, () => {
+            localStorage.setItem('screen', name)
+        }) : 
+        this.setState({screen: name, blogID, otherUserId: ""}, () => {
+            localStorage.setItem('screen', name)
+        })
+    }
+
+    handleOtherUserRender = (id, name) => {
+        this.setState({otherUserId:id, otherUserName: name})
     }
 
     clearBlog = () => {
@@ -59,8 +75,7 @@ class Home extends Component {
 
     openModal = () => {this.setState({ openNewUserModal: true, modalNewUser: true, opened: true})}
     closeModal = () =>{
-        this.setState({ openNewUserModal: false, screen: "Check in" })
-        this.props.oldUser()};
+        this.setState({ openNewUserModal: false, screen: "Check in" }, () => this.props.oldUser())};
 
     handleOpenModal = () => {if (this.state.opened === false){ this.openModal() }}
 
@@ -76,6 +91,9 @@ class Home extends Component {
         let likedIds = this.props.likedBlogs.map(b => b.id)
         return this.props.allBlogs.filter(b => likedIds.includes(b.id))}
 
+    filterOtherUserBlogs = () => {
+        return this.props.allBlogs.filter(b => b.user_id === this.state.otherUserId).filter(b => b.private === false)}
+
     
     render() {
         // debugger
@@ -85,6 +103,9 @@ class Home extends Component {
             case "Settings":
                 return (
                 <>
+                {/* <div id="footer">
+                <SoundCloud />
+                </div> */}
                     <TopNav handleHomeRender={this.handleHomeRender}/>
                     <div className="banner-area">
                         <h2 id="logo-font">Today.</h2>
@@ -96,19 +117,21 @@ class Home extends Component {
                         <Form screen="Update your account" /> 
                         </div>
                     </div>
+                    <div id="footer">
+        <SoundCloud />
+      </div>
                 </>)
 
             case "Check in":
                 return (
                 <>
+                {/* <div id="footer">
+                <SoundCloud />
+                </div> */}
                     <TopNav handleHomeRender={this.handleHomeRender}/>
-                    <div className="banner-area">
-                        <h2 id="logo-font">Today.</h2>
-                        <h3 id="advice-font">{this.state.advice}</h3>
-                    </div>
                    
-                    <div className="content-area">
-			            <div className="wrapper">
+                    <div className="todo-content-area">
+			            <div className="todo-list-wrapper">
                         <BlogForm 
                             clearBlog={this.clearBlog}
                             blogID={!!this.state.blogID ? this.state.blogID : null} 
@@ -117,9 +140,12 @@ class Home extends Component {
                     </div>
                 </>)
 
-            case "Blogs":
+            case "All Blogs":
                 return (
                     <>
+                    {/* <div id="footer">
+                <SoundCloud />
+                </div> */}
                     <TopNav handleHomeRender={this.handleHomeRender}/>
                     <div className="banner-area">
                         <h2 id="logo-font">Today.</h2>
@@ -128,18 +154,32 @@ class Home extends Component {
                    
                     <div className="content-area">
 			            <div className="wrapper">
-                        <h1>All Blogs</h1>
-                        <BlogContainer 
-                        blogs={this.filterPublicBlogs()} 
-                        likedBlogs={this.props.likedBlogs} 
-                        handleHomeRender={this.handleHomeRender}/>
-                        </div>
+                        {this.state.otherUserId ? <h1>{this.state.otherUserName}'s Blogs</h1> : <h1>All Blogs</h1>}
+                        {this.state.otherUserId ? 
+                            <BlogContainer 
+                            handleOtherUserRender={this.handleOtherUserRender}
+                            blogs={this.filterOtherUserBlogs()} 
+                            likedBlogs={this.props.likedBlogs} 
+                            handleHomeRender={this.handleHomeRender}/>
+                        :
+                            <BlogContainer 
+                            handleOtherUserRender={this.handleOtherUserRender}
+                            blogs={this.filterPublicBlogs()} 
+                            likedBlogs={this.props.likedBlogs} 
+                            handleHomeRender={this.handleHomeRender}/>}
                     </div>
+                    <div id="footer">
+                    <SoundCloud />
+                        </div>
+      </div>
                     </>)
 
             case "Liked Blogs":
                 return (
                     <>
+                    {/* <div id="footer">
+                <SoundCloud />
+                </div> */}
                     <TopNav handleHomeRender={this.handleHomeRender}/>
                     <div className="banner-area">
                         <h2 id="logo-font">Today.</h2>
@@ -153,21 +193,24 @@ class Home extends Component {
                         {this.filterLikedBlogs().length === 0 ? <h3>Nothing to see here, go ahead and <FontAwesomeIcon icon={faThumbsUp} size="1x"/> some blogs!</h3> : null}
                             
                         <BlogContainer 
+                        handleOtherUserRender={this.handleOtherUserRender}
                         blogs={this.filterLikedBlogs()} 
                         likedBlogs={this.props.likedBlogs} 
                         handleHomeRender={this.handleHomeRender}/>
                         </div>
                     </div>
+                    <div id="footer">
+        <SoundCloud />
+      </div>
                     </>)
 
             case "To-do":
                 return( 
                     <>
+                    {/* <div id="footer">
+                <SoundCloud />
+                </div> */}
                     <TopNav handleHomeRender={this.handleHomeRender}/>
-                    {/* <div className="banner-area">
-                        <h2 id="logo-font">Today.</h2>
-                        <h3 id="advice-font">{this.state.advice}</h3>
-                    </div> */}
 
                     <div className="todo-content-area">
 			            <div className="todo-list-wrapper">
@@ -182,7 +225,10 @@ class Home extends Component {
             default :
                 return (
                 <>
-                    <TopNav handleHomeRender={this.handleHomeRender}/>
+                {/* <div id="footer">
+                <SoundCloud />
+                </div> */}
+                    <TopNav handleHomeRender={this.handleHomeRender} handlePlayer={this.props.handlePlayer}/>
                     <div className="banner-area">
                         <h2 id="logo-font">Today.</h2>
                         <h3 id="advice-font">{this.state.advice}</h3>
@@ -198,7 +244,6 @@ class Home extends Component {
                     <div> 
                         <h3>Looks like you don't have any check-ins yet, click {" "}
                             <Button variant="secondary" onClick={() => this.handleHomeRender("Check in")}> Here </Button> to get started</h3>
-                        {/* <Button variant="secondary" onClick={() => this.handleHomeRender("Check in")}> Here </Button> <br/> */}
                     </div> 
                     : null}
                     
@@ -214,6 +259,7 @@ class Home extends Component {
                         closeModal={this.closeModal}
                         openModal={this.state.openNewUserModal}
                     /> : null }
+                    
                 </>)
         }
     }

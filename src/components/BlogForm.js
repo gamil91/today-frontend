@@ -34,14 +34,14 @@ class BlogForm extends Component {
 
     componentDidMount(){
         if (this.props.blogID){
-            this.props.clearBlog()
-           let blog = this.props.blogs.find(b => b.id === this.props.blogID)
+            let blog = this.props.blogs.find(b => b.id === this.props.blogID)
             this.setState({
                 title: blog.title, 
                 content: blog.content, 
                 id:this.props.blogID, 
                 private:blog.private, 
                 image:blog.image})
+                this.props.clearBlog()
             
         }
     }
