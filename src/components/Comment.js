@@ -6,8 +6,8 @@ const Comment = ({ comment, userComment, editComment, deleteComment }) => {
     return (
         <div>
             <strong>{comment.comment} - {comment.name}</strong> {" "}{" "}{" "}
-            {userComment  ? <u onClick={() => editComment(comment)}>edit</u> : null}{" "}
-            {userComment ? <u onClick={() => deleteComment(comment.id)}>delete</u> : null}
+            {userComment  ? <u style={{cursor: "pointer"}} onClick={() => editComment(comment)}>edit</u> : null}{" "}
+            {userComment ? <u style={{cursor: "pointer"}} onClick={() => deleteComment(comment.id)}>delete</u> : null}
             
         </div>
     );

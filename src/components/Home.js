@@ -15,7 +15,6 @@ import Form from './UserForm'
 import BlogForm from './BlogForm'
 import BlogContainer from './BlogContainer'
 import NewUserModal from './NewUserModal'
-import SoundCloud from './SoundCloud'
 
 
 
@@ -23,9 +22,9 @@ import SoundCloud from './SoundCloud'
 class Home extends Component {
 
     componentDidMount(){
-        // this.props.fetchLikedBlogs()
-        // this.props.fetchUser()
-        // this.props.fetchBlogs()
+        this.props.fetchLikedBlogs()
+        this.props.fetchUser()
+        this.props.fetchBlogs()
         // this.fetchAdvice()
         if (localStorage.getItem('screen')){
             this.setState({screen: localStorage.getItem('screen')})

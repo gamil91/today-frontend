@@ -55,7 +55,7 @@ input[type="file"] {
   width : 250px;
   margin-block-end: 1em;
   float: left;
-  margin-inline-start: 40px;
+  margin-inline: auto;
 }
 
 .pic-preview img {
@@ -162,7 +162,8 @@ nav {
 	width: 100%;
 	position: relative;
 	top: 460px;
-	background: #ebebeb;
+	background: #b2beb5;
+	/* background: #fbffc1; */
 	/* background-image: url(https://images.pexels.com/photos/1101122/pexels-photo-1101122.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940); */
 	
 	background-repeat: no-repeat;
@@ -171,6 +172,7 @@ nav {
 	background-position: center center;
   	min-height: 90%;
 }
+
 .content-area h2 {
 	font-family: poppins;
 	letter-spacing: 4px;

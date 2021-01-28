@@ -52,15 +52,15 @@ class BlogCard extends Component {
 
                         {this.props.liked ? 
                         <i ><FontAwesomeIcon icon={faThumbsUp} size="2x" className="like-icon" onClick={handleUnLike}/></i>:
-                        <i><FontAwesomeIcon icon={faThumbsUp} size="2x" className="icon" onClick={handleLike}/></i>}&nbsp;&nbsp;
+                        <i><FontAwesomeIcon icon={faThumbsUp} size="2x" className="icon to-like-icon" onClick={handleLike}/></i>}&nbsp;&nbsp;
 
 
                         {this.props.user.id === user_id ?  
-                        <i><FontAwesomeIcon icon={faPencilAlt} size="2x" className="icon" onClick={() => this.props.handleHomeRender("Check in", id)}/></i>: null}&nbsp;&nbsp;
+                        <i><FontAwesomeIcon icon={faPencilAlt} size="2x" className="icon to-edit-icon" onClick={() => this.props.handleHomeRender("Check in", id)}/></i>: null}&nbsp;&nbsp;
 
 
                         {this.props.user.id === user_id ?  
-                        <i><FontAwesomeIcon icon={faTrashAlt} size="2x" className="icon" onClick={()=> this.props.deleteBlog(id)}/></i>: null} &nbsp;&nbsp;
+                        <i><FontAwesomeIcon icon={faTrashAlt} size="2x" className="icon to-delete-icon" onClick={()=> this.props.deleteBlog(id)}/></i>: null} &nbsp;&nbsp;
                     </Card.Body>  
                     
                     <CommentForm blog_id={id} comments={comments}/>
