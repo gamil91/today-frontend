@@ -51,12 +51,12 @@ class CommentForm extends Component {
                     <Form.Control className="comment-field" name="comment" as="textarea" rows={3} onChange={this.handleChange} 
                         value={this.state.comment}/>
                     </Form.Group>
-                    <Button type="submit" variant="primary">Comment</Button>
+                    <Button id="comment-btn" type="submit" >Comment</Button>
                 </Form> : 
                     <div id="add-a-comment" onClick={() => this.setState({showCommentForm: true})}> 
                 <i ><FontAwesomeIcon icon={faPlus} size="1x" className="add-comment-icon" /></i>{" "}Add a comment</div>}
                 <br/>
-
+                <br/>
             </div>
         );
     }

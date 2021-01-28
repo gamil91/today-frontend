@@ -27,14 +27,12 @@
     font-family: 'Comfortaa', cursive;
     padding-bottom: 10px;
     background: #a7a07d2f;
-    /* background: rgb(248 249 250 / 0.2); */
     padding-top: 40px;
     border-radius: 40px;
   }
 
   .form-group p {
       font-size: 30px;
-      font-family: 'Architects Daughter', cursive;
   }
 
 .login_screen {
@@ -52,6 +50,8 @@
     text-align: center;
     
   }
+
+ 
 
   .login_screen input {
 	width: 100%;
@@ -96,13 +96,8 @@
 
 }
 
-#exampleForm\.ControlTextarea1 {
-    border-radius: 15px;
-    width: 900px;
-    margin-inline: auto;
-}
 
-input.form-control{
+.blogform-title, .blogform-content{
     border-radius: 15px;
     margin-inline: auto;
     width: 900px;

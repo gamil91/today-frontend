@@ -7,11 +7,23 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faThumbsUp, faTrashAlt, faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 
 import CommentForm from './CommentForm'
-
+import DeleteModal from './DeleteModal'
 
 class BlogCard extends Component {
 
+    state = {
+        blog_id: this.props.blog.id,
+        modalDelete: false,
+        openDeleteModal: false
+    }
+
+    handleDelete = () => {
+        this.closeModal()
+        this.props.deleteBlog(this.state.blog_id)
+    }
     
+    openModal = () => {this.setState({ openDeleteModal: true, modalDelete: true})}
+    closeModal = () => this.setState({ openDeleteModal: false });
 
     render() {
         const { title, content, user, created_at, user_likes, id, user_id, comments, image} = this.props.blog
@@ -60,11 +72,17 @@ class BlogCard extends Component {
 
 
                         {this.props.user.id === user_id ?  
-                        <i><FontAwesomeIcon icon={faTrashAlt} size="2x" className="icon to-delete-icon" onClick={()=> this.props.deleteBlog(id)}/></i>: null} &nbsp;&nbsp;
+                        <i><FontAwesomeIcon icon={faTrashAlt} size="2x" className="icon to-delete-icon" onClick={this.openModal}/></i>: null} &nbsp;&nbsp;
                     </Card.Body>  
                     
                     <CommentForm blog_id={id} comments={comments}/>
                 </Card>
+                { this.state.modalDelete ?
+            <DeleteModal
+                deleteBlog={true}
+                closeModal={this.closeModal}
+                openModal={this.state.openDeleteModal}
+                handleDelete={this.handleDelete}/> : null }
             </div>
         );
     }

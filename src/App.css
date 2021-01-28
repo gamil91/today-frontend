@@ -21,7 +21,7 @@
 #advice-font{
 	font-family: 'Special Elite', cursive;
 	font-size: 40px;
-	color: white;
+	color: rgb(0, 0, 0);
 }
 
 html{
@@ -128,13 +128,11 @@ nav {
 	color: rgb(8, 8, 8);
 }
 
-.todo-content-area {
+.todo-content-area, .checkin-content-area, .home-content-area{
 	padding-top: 50px;
 	width: 100%;
 	position: relative;
 	top: 80px;
-	background: #ebebeb;
-	background-image: url(https://images.pexels.com/photos/97050/pexels-photo-97050.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
 	background-repeat: no-repeat;
 	-webkit-background-size: cover;
 	background-size: cover;
@@ -142,19 +140,18 @@ nav {
 	min-height: 92.2%;
 }
 
+.todo-content-area {
+	background-image: url(https://images.pexels.com/photos/97050/pexels-photo-97050.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
+}
+
 
 .checkin-content-area {
-	padding-top: 50px;
-	width: 100%;
-	position: relative;
-	top: 80px;
-	background: #ebebeb;
 	background-image: url(https://images.pexels.com/photos/733857/pexels-photo-733857.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
-	background-repeat: no-repeat;
-	-webkit-background-size: cover;
-	background-size: cover;
-	background-position: center center;
-	min-height: 92.2%;
+}
+
+.home-content-area {
+	background-image: url(https://images.pexels.com/photos/606542/pexels-photo-606542.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
+	background-attachment: fixed;
 }
 
 .content-area {
@@ -162,10 +159,7 @@ nav {
 	width: 100%;
 	position: relative;
 	top: 460px;
-	background: #b2beb5;
-	/* background: #fbffc1; */
-	/* background-image: url(https://images.pexels.com/photos/1101122/pexels-photo-1101122.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940); */
-	
+	background: #ffccb9;
 	background-repeat: no-repeat;
 	-webkit-background-size: cover;
 	background-size: cover;
@@ -191,8 +185,8 @@ nav {
 	position: fixed;
 	width: 450px;
 	height: 300px;
-	top: 130px;
-	left: 60px;
+	bottom: 60px;
+	right: 60px;
 	background: transparent;
 	
 }

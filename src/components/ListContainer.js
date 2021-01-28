@@ -94,7 +94,7 @@ class ListContainer extends Component {
         return (
             <DragDropContext onDragEnd={this.onDragEnd}>
                 
-                    <Button variant="secondary" onClick={this.handleClick}> Create a new List</Button>
+                    <Button variant="secondary"  onClick={this.handleClick}> Create List</Button>
                     <br/><br/>
 
                     {this.state.openForm ? 

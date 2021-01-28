@@ -26,8 +26,8 @@ class TopNav extends Component {
     
         <Navbar>
           <Nav >
-            <Nav.Link onClick={this.handleClick}>Home</Nav.Link>
             <Nav.Link onClick={this.handleClick}>Check in</Nav.Link>
+            <Nav.Link onClick={this.handleClick}>Home</Nav.Link>
             <NavDropdown title="Blogs" id="basic-nav-dropdown">
             <NavDropdown.Item onClick={this.handleClick} >All Blogs</NavDropdown.Item>
             <NavDropdown.Item onClick={this.handleClick}>Liked Blogs</NavDropdown.Item>

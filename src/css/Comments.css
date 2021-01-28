@@ -22,14 +22,24 @@
 #add-a-comment {
     display:inline-block;
     font-size:20px;
-    font: black;
     background-color: rgba(0, 128, 128, 0.548);
     padding: 8px;
-    padding-bottom: 8px;
     cursor: pointer;
-    border-radius: 15px;
+    border-radius: 10px;
 }
 
 #add-a-comment:hover {
+    background-color: rgba(45, 90, 90, 0.548);
+}
+
+#comment-btn {
+    background-color: #84b8b9;
+    color: #212529;
+    border: none;
+    font-size:20px;
+    border-radius: 10px;
+}
+
+#comment-btn:hover {
     background-color: rgba(45, 90, 90, 0.548);
 }

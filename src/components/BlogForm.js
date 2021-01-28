@@ -174,19 +174,19 @@ class BlogForm extends Component {
         return (
             <div >
                 <div className="blog-form">
-                    <h1>Slow down & Reflect...</h1>
+                    <h1>Slow Down & Reflect...</h1>
                     <br/>
 
                     <Form onSubmit={this.handleSubmit}>
                         <Form.Group >
                             <p>How are you?</p>
-                            <Form.Control type="text" placeholder="Excited" name="title" value={this.state.title} onChange={this.handleChange}/>
+                            <Form.Control className="blogform-title" type="text" placeholder="Excited" name="title" value={this.state.title} onChange={this.handleChange}/>
                         </Form.Group>
             
 
                         <Form.Group controlId="exampleForm.ControlTextarea1">
                             <p>Write about it</p>
-                            <Form.Control size="lg" as="textarea" rows={5}  name="content" value={this.state.content} onChange={this.handleChange}/>
+                            <Form.Control className="blogform-content" size="lg" as="textarea" rows={5}  name="content" value={this.state.content} onChange={this.handleChange}/>
                         </Form.Group>
 
                         
@@ -212,7 +212,7 @@ class BlogForm extends Component {
                     
                     
                         <div style={buttonDiv}>
-                            <Button variant="primary" type="submit">
+                            <Button id="comment-btn" type="submit">
                                 Submit
                             </Button>
                         </div>

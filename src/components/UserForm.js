@@ -116,8 +116,8 @@ class UserForm extends Component {
 
     handleDelete = () => {
         this.closeModal()
-        this.deleteUser(this.props.user.id)
         this.setState({name: "", password: "", password_confirmation: ""})
+        this.deleteUser(this.props.user.id)
     }
 
     openModal = () => {this.setState({ openDeleteModal: true, modalDelete: true})}
@@ -131,7 +131,7 @@ class UserForm extends Component {
 
         
             <div className="login_screen">
-                {this.props.screen === "Update your account" ? null : <p id="logo-font">Today.</p>}
+                <p id="logo-font">Today.</p>
                 <h2> {this.props.screen}</h2>
                 <br/>
                 <Form onSubmit={(e) => this.handleOnSubmit(e)} >

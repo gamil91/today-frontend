@@ -95,25 +95,18 @@ class Home extends Component {
 
     
     render() {
-        // debugger
-        // console.log(this.props)
-        // console.log(this.state)
         switch(this.state.screen) {
             case "Settings":
                 return (
                 <>
                 
-                    <TopNav handleHomeRender={this.handleHomeRender} handlePlayer={this.props.handlePlayer}/>
-                    <div className="banner-area">
-                        <h2 id="logo-font">Today.</h2>
-                        <h3 id="advice-font">{this.state.advice}</h3>
+                <TopNav handleHomeRender={this.handleHomeRender} handlePlayer={this.props.handlePlayer}/>
+                
+                <div className="home-content-area">
+                    <div className="wrapper">
+                    <Form screen="Update your account" /> 
                     </div>
-                   
-                    <div className="content-area">
-			            <div className="wrapper">
-                        <Form screen="Update your account" /> 
-                        </div>
-                    </div>
+                </div>
                    
                 </>)
 
@@ -135,13 +128,10 @@ class Home extends Component {
                 return (
                     <>
                     <TopNav handleHomeRender={this.handleHomeRender} handlePlayer={this.props.handlePlayer}/>
-                    <div className="banner-area">
-                        <h2 id="logo-font">Today.</h2>
-                        <h3 id="advice-font">{this.state.advice}</h3>
-                    </div>
                    
-                    <div className="content-area">
+                    <div className="home-content-area">
 			            <div className="wrapper">
+                        <h2 id="logo-font">Today.</h2>
                         {this.state.otherUserId ? <h1>{this.state.otherUserName}'s Blogs</h1> : <h1>All Blogs</h1>}
                         {this.state.otherUserId ? 
                             <BlogContainer 
@@ -163,13 +153,10 @@ class Home extends Component {
                 return (
                     <>
                     <TopNav handleHomeRender={this.handleHomeRender} handlePlayer={this.props.handlePlayer}/>
-                    <div className="banner-area">
-                        <h2 id="logo-font">Today.</h2>
-                        <h3 id="advice-font">{this.state.advice}</h3>
-                    </div>
                    
-                    <div className="content-area">
+                    <div className="home-content-area">
 			            <div className="wrapper">
+                        <h2 id="logo-font">Today.</h2>
                         <h1>Liked Blogs</h1>
 
                         {this.filterLikedBlogs().length === 0 ? <h3>Nothing to see here, go ahead and <FontAwesomeIcon icon={faThumbsUp} size="1x"/> some blogs!</h3> : null}
@@ -191,6 +178,7 @@ class Home extends Component {
 
                     <div className="todo-content-area">
 			            <div className="todo-list-wrapper">
+                        <h2 id="logo-font">Today.</h2>
                         <h1>To-do Lists</h1>
 
                         <ListContainer/>
@@ -203,16 +191,13 @@ class Home extends Component {
                 return (
                 <>
                     <TopNav handleHomeRender={this.handleHomeRender} handlePlayer={this.props.handlePlayer}/>
-                    <div className="banner-area">
-                        <h2 id="logo-font">Today.</h2>
-                        <h3 id="advice-font">{this.state.advice}</h3>
-                    </div>
-                    
+                  
                     {this.props.newUser ? this.handleOpenModal() : null}
-                    <div className="content-area">
+                    <div className="home-content-area">
 			            <div className="wrapper">
-
-                        <h1>Hello, {this.props.user.name}!</h1>
+                        <h2 id="logo-font">Today.</h2>
+                        <h1 >Hello, {this.props.user.name}!{" "} {this.state.advice}</h1>
+                        {/* <h1></h1> */}
                        
                     {this.filterUserBlogs().length === 0 ?
                     <div> 
