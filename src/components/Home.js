@@ -27,7 +27,7 @@ class Home extends Component {
         this.props.fetchUser()
         this.props.fetchBlogs()
         this.props.fetchLists()
-        // this.fetchAdvice()
+        this.fetchAdvice()
         if (localStorage.getItem('screen')){
             this.setState({screen: localStorage.getItem('screen')})
         }

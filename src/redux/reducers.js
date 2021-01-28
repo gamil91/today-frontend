@@ -34,7 +34,7 @@ const userReducer = (state = initialState.user, action) => {
 const listsReducer = (state = initialState.lists, action) => {
     switch (action.type){
         case "SET_LIST":
-            debugger
+            // debugger
             return action.payload
         case "ADD_LIST":
             return [...state, action.payload]
@@ -109,6 +109,7 @@ const blogsReducer = (state = initialState.allBlogs, action) => {
         case "LOG_OUT":
             return []
         case "SET_BLOGS":
+            // debugger
             return action.payload.reverse()
         case "ADD_BLOG":
             return [action.payload, ...state]

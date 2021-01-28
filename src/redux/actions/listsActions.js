@@ -94,7 +94,7 @@ export function fetchLists () {
         fetch(`http://localhost:3000/getlists`, config)
         .then(res => res.json())
         .then(data => {
-            debugger
+            // debugger
             dispatch(setLists(data))
         })
     }

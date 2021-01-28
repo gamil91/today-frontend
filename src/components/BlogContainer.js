@@ -28,7 +28,7 @@ class BlogContainer extends Component {
             {blogs.filter(blog => {
                 if (this.state.search === ""){
                     return blog
-                } else if (blog.title.toLowerCase().startsWith(this.state.search.toLowerCase())){
+                } else if (blog.title.toLowerCase().includes(this.state.search.toLowerCase())){
                     return blog
                 } else if (blog.content.toLowerCase().includes(this.state.search.toLowerCase())){
                     return blog
