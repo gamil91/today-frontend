@@ -14,9 +14,9 @@ const NewUserCarousel = ({ close, user }) => {
     return (
         
         <div className="font-carousel">
-            {/* <Carousel activeIndex={index} onSelect={handleSelect} interval={null}> */}
-            <Carousel activeIndex={index} onSelect={handleSelect} >
-                <Carousel.Item>
+            <Carousel activeIndex={index} onSelect={handleSelect} interval={3000}>
+            {/* <Carousel activeIndex={index} onSelect={handleSelect} > */}
+                <Carousel.Item >
                 <div className="pic-Div-Carousel"><img
                     className="d-block "
                     src="https://images.pexels.com/photos/3826667/pexels-photo-3826667.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
@@ -47,9 +47,9 @@ const NewUserCarousel = ({ close, user }) => {
                     alt="Like, Comment"
                     /></div>
 
-                    <Carousel.Caption>
+                    <Carousel.Caption id="caption">
                     <h2 id="caption">View, Like, & Comment on check-ins</h2>
-                    <Button variant="secondary" onClick={close}> Get started Today! </Button>
+                    <Button variant="light" onClick={close}> Get started Today! </Button>
                     </Carousel.Caption>
                 </Carousel.Item>
             </Carousel>

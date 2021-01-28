@@ -179,7 +179,7 @@ class BlogForm extends Component {
 
                     <Form onSubmit={this.handleSubmit}>
                         <Form.Group >
-                            <p>How are you?</p>
+                            <p>How are you feeling?</p>
                             <Form.Control className="blogform-title" type="text" placeholder="Excited" name="title" value={this.state.title} onChange={this.handleChange}/>
                         </Form.Group>
             
@@ -191,7 +191,7 @@ class BlogForm extends Component {
 
                         
                         
-                        <p>Image Upload</p>
+                        <p id="image-upload-text">Image Upload</p>
                             <label className="custom-file-upload">
                             <input type="file" name="image" onChange={this.onChange} />
                             <i><FontAwesomeIcon icon={faCloudUploadAlt}/></i> Attach
@@ -205,7 +205,7 @@ class BlogForm extends Component {
                         </div>
 
                         <div key={`inline-${"checkbox"}`} className="mb-3">
-                        <Form.Check custom label="Private" type={"checkbox"} id={`inline-${"checkbox"}-1`}
+                        <Form.Check custom label="Private" className="private-text" type={"checkbox"} id={`inline-${"checkbox"}-1`}
                             checked={this.state.private}
                             onChange={() => {this.setState(prevState => {return{private: !prevState.private}})}}/>
                         </div>

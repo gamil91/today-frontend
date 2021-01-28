@@ -33,8 +33,9 @@ const userReducer = (state = initialState.user, action) => {
  
 const listsReducer = (state = initialState.lists, action) => {
     switch (action.type){
-        case "SET_USER":
-            return action.payload.lists
+        case "SET_LIST":
+            debugger
+            return action.payload
         case "ADD_LIST":
             return [...state, action.payload]
         case "UPDATE_LIST":

@@ -59,7 +59,7 @@ export function updateList(data){
     }
 }
 
-function updateListInState(data){
+export function updateListInState(data){
     return {type:"UPDATE_LIST", payload: data}
 }
 
@@ -81,4 +81,25 @@ export function deleteList(id){
 
 function deleteListInState(data){
     return {type:"DELETE_LIST", payload: data}
+}
+
+export function fetchLists () {
+    return (dispatch) => {
+        let config = {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                'Authorization' : `Bearer ${localStorage.getItem('jwt')}`}
+        }
+        fetch(`http://localhost:3000/getlists`, config)
+        .then(res => res.json())
+        .then(data => {
+            debugger
+            dispatch(setLists(data))
+        })
+    }
+}
+
+function setLists(data) {
+    return {type:"SET_LIST", payload: data}
 }

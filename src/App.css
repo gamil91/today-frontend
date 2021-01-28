@@ -211,5 +211,18 @@ nav {
 	cursor:move;
 }
 
+#image-upload-text {
+	font-size: 30px;
+}
+
+.private-text{
+	font-size: 20px;
+}
+
+#comment-bubble {
+	padding: 5px;
+    margin: 5px;
+}
+
 
 

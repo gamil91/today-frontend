@@ -116,8 +116,10 @@ class UserForm extends Component {
 
     handleDelete = () => {
         this.closeModal()
-        this.setState({name: "", password: "", password_confirmation: ""})
-        this.deleteUser(this.props.user.id)
+        this.setState({name: "", password: "", password_confirmation: ""}, () => {
+            this.deleteUser(this.props.user.id)
+        })
+        
     }
 
     openModal = () => {this.setState({ openDeleteModal: true, modalDelete: true})}

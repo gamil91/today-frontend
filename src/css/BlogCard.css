@@ -96,5 +96,6 @@ ul.comments-li li {
     cursor:pointer;
 }
 
-
-
+.content {
+    padding: 10px;
+}

@@ -48,7 +48,7 @@ class BlogCard extends Component {
                     <Card.Body>
                     {image ? <div className="pic-Div"><img src={image} alt="" /></div> : null}
                         
-                        <blockquote className="blockquote mb-0">
+                        <blockquote className="content blockquote mb-0">
                             <p>
                             {content}
                             </p>

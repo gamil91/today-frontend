@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 //actions
 import { fetchUser, oldUser } from '../redux/actions/userActions'
 import { fetchBlogs, fetchLikedBlogs } from '../redux/actions/blogsActions'
+import { fetchLists } from '../redux/actions/listsActions'
 //css
 import { Button } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -25,6 +26,7 @@ class Home extends Component {
         this.props.fetchLikedBlogs()
         this.props.fetchUser()
         this.props.fetchBlogs()
+        this.props.fetchLists()
         // this.fetchAdvice()
         if (localStorage.getItem('screen')){
             this.setState({screen: localStorage.getItem('screen')})
@@ -235,4 +237,4 @@ const mapStateToProps = state => {
     } 
 }
 
-export default connect(mapStateToProps, {fetchUser, fetchBlogs, fetchLikedBlogs, oldUser})(Home);
+export default connect(mapStateToProps, {fetchUser, fetchBlogs, fetchLikedBlogs, oldUser, fetchLists})(Home);
