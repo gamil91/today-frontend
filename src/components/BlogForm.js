@@ -174,24 +174,24 @@ class BlogForm extends Component {
         return (
             <div >
                 <div className="blog-form">
-                    <h1>Slow down & Reflect...</h1>
+                    <h1>Slow Down & Reflect...</h1>
                     <br/>
 
                     <Form onSubmit={this.handleSubmit}>
                         <Form.Group >
-                            <p>How are you?</p>
-                            <Form.Control type="text" placeholder="Excited" name="title" value={this.state.title} onChange={this.handleChange}/>
+                            <p>How are you feeling?</p>
+                            <Form.Control className="blogform-title" type="text" placeholder="Excited" name="title" value={this.state.title} onChange={this.handleChange}/>
                         </Form.Group>
             
 
                         <Form.Group controlId="exampleForm.ControlTextarea1">
                             <p>Write about it</p>
-                            <Form.Control size="lg" as="textarea" rows={5}  name="content" value={this.state.content} onChange={this.handleChange}/>
+                            <Form.Control className="blogform-content" size="lg" as="textarea" rows={5}  name="content" value={this.state.content} onChange={this.handleChange}/>
                         </Form.Group>
 
                         
                         
-                        <p>Image Upload</p>
+                        <p id="image-upload-text">Image Upload</p>
                             <label className="custom-file-upload">
                             <input type="file" name="image" onChange={this.onChange} />
                             <i><FontAwesomeIcon icon={faCloudUploadAlt}/></i> Attach
@@ -205,14 +205,14 @@ class BlogForm extends Component {
                         </div>
 
                         <div key={`inline-${"checkbox"}`} className="mb-3">
-                        <Form.Check custom label="Private" type={"checkbox"} id={`inline-${"checkbox"}-1`}
+                        <Form.Check custom label="Private" className="private-text" type={"checkbox"} id={`inline-${"checkbox"}-1`}
                             checked={this.state.private}
                             onChange={() => {this.setState(prevState => {return{private: !prevState.private}})}}/>
                         </div>
                     
                     
                         <div style={buttonDiv}>
-                            <Button variant="primary" type="submit">
+                            <Button id="comment-btn" type="submit">
                                 Submit
                             </Button>
                         </div>

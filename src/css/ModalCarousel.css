@@ -26,3 +26,9 @@
 .font-carousel {
     font-family: emoji;
 }
+
+#caption {
+    background-color: rgb(163 172 185 / 0.8);
+    border-radius: 15px;
+    color: rgb(61, 4, 4);
+} 

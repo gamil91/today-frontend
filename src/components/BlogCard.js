@@ -7,11 +7,23 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faThumbsUp, faTrashAlt, faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 
 import CommentForm from './CommentForm'
-
+import DeleteModal from './DeleteModal'
 
 class BlogCard extends Component {
 
+    state = {
+        blog_id: this.props.blog.id,
+        modalDelete: false,
+        openDeleteModal: false
+    }
+
+    handleDelete = () => {
+        this.closeModal()
+        this.props.deleteBlog(this.state.blog_id)
+    }
     
+    openModal = () => {this.setState({ openDeleteModal: true, modalDelete: true})}
+    closeModal = () => this.setState({ openDeleteModal: false });
 
     render() {
         const { title, content, user, created_at, user_likes, id, user_id, comments, image} = this.props.blog
@@ -36,8 +48,8 @@ class BlogCard extends Component {
                     <Card.Body>
                     {image ? <div className="pic-Div"><img src={image} alt="" /></div> : null}
                         
-                        <blockquote className="blockquote mb-0">
-                            <p>
+                        <blockquote className="content blockquote mb-0">
+                            <p style={{padding: '10px'}}>
                             {content}
                             </p>
 
@@ -52,19 +64,25 @@ class BlogCard extends Component {
 
                         {this.props.liked ? 
                         <i ><FontAwesomeIcon icon={faThumbsUp} size="2x" className="like-icon" onClick={handleUnLike}/></i>:
-                        <i><FontAwesomeIcon icon={faThumbsUp} size="2x" className="icon" onClick={handleLike}/></i>}&nbsp;&nbsp;
+                        <i><FontAwesomeIcon icon={faThumbsUp} size="2x" className="icon to-like-icon" onClick={handleLike}/></i>}&nbsp;&nbsp;
 
 
                         {this.props.user.id === user_id ?  
-                        <i><FontAwesomeIcon icon={faPencilAlt} size="2x" className="icon" onClick={() => this.props.handleHomeRender("Check in", id)}/></i>: null}&nbsp;&nbsp;
+                        <i><FontAwesomeIcon icon={faPencilAlt} size="2x" className="icon to-edit-icon" onClick={() => this.props.handleHomeRender("Check in", id)}/></i>: null}&nbsp;&nbsp;
 
 
                         {this.props.user.id === user_id ?  
-                        <i><FontAwesomeIcon icon={faTrashAlt} size="2x" className="icon" onClick={()=> this.props.deleteBlog(id)}/></i>: null} &nbsp;&nbsp;
+                        <i><FontAwesomeIcon icon={faTrashAlt} size="2x" className="icon to-delete-icon" onClick={this.openModal}/></i>: null} &nbsp;&nbsp;
                     </Card.Body>  
                     
                     <CommentForm blog_id={id} comments={comments}/>
                 </Card>
+                { this.state.modalDelete ?
+            <DeleteModal
+                deleteBlog={true}
+                closeModal={this.closeModal}
+                openModal={this.state.openDeleteModal}
+                handleDelete={this.handleDelete}/> : null }
             </div>
         );
     }

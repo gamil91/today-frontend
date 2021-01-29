@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 //actions
 import { fetchUser, oldUser } from '../redux/actions/userActions'
 import { fetchBlogs, fetchLikedBlogs } from '../redux/actions/blogsActions'
+import { fetchLists } from '../redux/actions/listsActions'
 //css
 import { Button } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -15,7 +16,6 @@ import Form from './UserForm'
 import BlogForm from './BlogForm'
 import BlogContainer from './BlogContainer'
 import NewUserModal from './NewUserModal'
-import SoundCloud from './SoundCloud'
 
 
 
@@ -26,7 +26,8 @@ class Home extends Component {
         this.props.fetchLikedBlogs()
         this.props.fetchUser()
         this.props.fetchBlogs()
-        // this.fetchAdvice()
+        this.props.fetchLists()
+        this.fetchAdvice()
         if (localStorage.getItem('screen')){
             this.setState({screen: localStorage.getItem('screen')})
         }
@@ -96,41 +97,26 @@ class Home extends Component {
 
     
     render() {
-        // debugger
-        // console.log(this.props)
-        // console.log(this.state)
         switch(this.state.screen) {
             case "Settings":
                 return (
                 <>
-                {/* <div id="footer">
-                <SoundCloud />
-                </div> */}
-                    <TopNav handleHomeRender={this.handleHomeRender}/>
-                    <div className="banner-area">
-                        <h2 id="logo-font">Today.</h2>
-                        <h3 id="advice-font">{this.state.advice}</h3>
+                
+                <TopNav handleHomeRender={this.handleHomeRender} handlePlayer={this.props.handlePlayer}/>
+                
+                <div className="home-content-area">
+                    <div className="wrapper">
+                    <Form screen="Update your account" /> 
                     </div>
+                </div>
                    
-                    <div className="content-area">
-			            <div className="wrapper">
-                        <Form screen="Update your account" /> 
-                        </div>
-                    </div>
-                    <div id="footer">
-        <SoundCloud />
-      </div>
                 </>)
 
             case "Check in":
                 return (
                 <>
-                {/* <div id="footer">
-                <SoundCloud />
-                </div> */}
-                    <TopNav handleHomeRender={this.handleHomeRender}/>
-                   
-                    <div className="todo-content-area">
+                    <TopNav handleHomeRender={this.handleHomeRender} handlePlayer={this.props.handlePlayer}/>
+                    <div className="checkin-content-area">
 			            <div className="todo-list-wrapper">
                         <BlogForm 
                             clearBlog={this.clearBlog}
@@ -143,17 +129,11 @@ class Home extends Component {
             case "All Blogs":
                 return (
                     <>
-                    {/* <div id="footer">
-                <SoundCloud />
-                </div> */}
-                    <TopNav handleHomeRender={this.handleHomeRender}/>
-                    <div className="banner-area">
-                        <h2 id="logo-font">Today.</h2>
-                        <h3 id="advice-font">{this.state.advice}</h3>
-                    </div>
+                    <TopNav handleHomeRender={this.handleHomeRender} handlePlayer={this.props.handlePlayer}/>
                    
-                    <div className="content-area">
+                    <div className="home-content-area">
 			            <div className="wrapper">
+                        <h2 id="logo-font">Today.</h2>
                         {this.state.otherUserId ? <h1>{this.state.otherUserName}'s Blogs</h1> : <h1>All Blogs</h1>}
                         {this.state.otherUserId ? 
                             <BlogContainer 
@@ -168,26 +148,17 @@ class Home extends Component {
                             likedBlogs={this.props.likedBlogs} 
                             handleHomeRender={this.handleHomeRender}/>}
                     </div>
-                    <div id="footer">
-                    <SoundCloud />
-                        </div>
-      </div>
+                    </div>
                     </>)
 
             case "Liked Blogs":
                 return (
                     <>
-                    {/* <div id="footer">
-                <SoundCloud />
-                </div> */}
-                    <TopNav handleHomeRender={this.handleHomeRender}/>
-                    <div className="banner-area">
-                        <h2 id="logo-font">Today.</h2>
-                        <h3 id="advice-font">{this.state.advice}</h3>
-                    </div>
+                    <TopNav handleHomeRender={this.handleHomeRender} handlePlayer={this.props.handlePlayer}/>
                    
-                    <div className="content-area">
+                    <div className="home-content-area">
 			            <div className="wrapper">
+                        <h2 id="logo-font">Today.</h2>
                         <h1>Liked Blogs</h1>
 
                         {this.filterLikedBlogs().length === 0 ? <h3>Nothing to see here, go ahead and <FontAwesomeIcon icon={faThumbsUp} size="1x"/> some blogs!</h3> : null}
@@ -199,21 +170,17 @@ class Home extends Component {
                         handleHomeRender={this.handleHomeRender}/>
                         </div>
                     </div>
-                    <div id="footer">
-        <SoundCloud />
-      </div>
+                   
                     </>)
 
             case "To-do":
                 return( 
                     <>
-                    {/* <div id="footer">
-                <SoundCloud />
-                </div> */}
-                    <TopNav handleHomeRender={this.handleHomeRender}/>
+                    <TopNav handleHomeRender={this.handleHomeRender} handlePlayer={this.props.handlePlayer}/>
 
                     <div className="todo-content-area">
 			            <div className="todo-list-wrapper">
+                        <h2 id="logo-font">Today.</h2>
                         <h1>To-do Lists</h1>
 
                         <ListContainer/>
@@ -225,20 +192,14 @@ class Home extends Component {
             default :
                 return (
                 <>
-                {/* <div id="footer">
-                <SoundCloud />
-                </div> */}
                     <TopNav handleHomeRender={this.handleHomeRender} handlePlayer={this.props.handlePlayer}/>
-                    <div className="banner-area">
-                        <h2 id="logo-font">Today.</h2>
-                        <h3 id="advice-font">{this.state.advice}</h3>
-                    </div>
-                    
+                  
                     {this.props.newUser ? this.handleOpenModal() : null}
-                    <div className="content-area">
+                    <div className="home-content-area">
 			            <div className="wrapper">
-
-                        <h1>Hello, {this.props.user.name}!</h1>
+                        <h2 id="logo-font">Today.</h2>
+                        <h1 >Hello, {this.props.user.name}!{" "} {this.state.advice}</h1>
+                        {/* <h1></h1> */}
                        
                     {this.filterUserBlogs().length === 0 ?
                     <div> 
@@ -273,8 +234,7 @@ const mapStateToProps = state => {
         likedBlogs: state.likedBlogs,
         newUser: state.newUser
        
-    }
-    
+    } 
 }
 
-export default connect(mapStateToProps, {fetchUser, fetchBlogs, fetchLikedBlogs, oldUser})(Home);
+export default connect(mapStateToProps, {fetchUser, fetchBlogs, fetchLikedBlogs, oldUser, fetchLists})(Home);

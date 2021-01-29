@@ -33,9 +33,14 @@ class ListContainer extends Component {
     handleSubmit = (e) => {
         e.preventDefault()
         !!this.state.id ? this.props.updateList(this.state) : this.props.addList(this.state.title)
+        
         this.setState({openForm: false, title: "", id: ""})
     }
     
+
+
+
+
     handleUpdate = (list) => {
         this.setState({openForm: true, title: list.title, id: list.id})
     }
@@ -89,18 +94,22 @@ class ListContainer extends Component {
         .then(res => res.json())
     }
 
+
+    
+
     render() {
-        // console.log(this.props.lists)
+        console.log(this.props.lists)
+        // debugger
         return (
             <DragDropContext onDragEnd={this.onDragEnd}>
                 
-                    <Button variant="secondary" onClick={this.handleClick}> Create a new List</Button>
+                    <Button variant="secondary"  onClick={this.handleClick}> Create List</Button>
                     <br/><br/>
 
                     {this.state.openForm ? 
                     <Form id="list-form" onSubmit={this.handleSubmit}>
                         <Form.Group >
-                            <Form.Control type="text" placeholder="Get done today" name="title" value={this.state.title} onChange={this.handleChange}/>
+                            <Form.Control type="text" placeholder="Get em done!" name="title" value={this.state.title} onChange={this.handleChange}/>
                         </Form.Group>
                     </Form> : null}
 

@@ -16,16 +16,19 @@ class BlogContainer extends Component {
        
         return (
         <div id="blog-container">
-            <Form inline id="search-bar" >
+
+           {blogs.length === 0 ? null :  
+           <Form inline id="search-bar" >
                 <FormControl type="text" 
                             placeholder="Search" 
                             // className="mr-sm-2" 
                             onChange={(e) => {this.setState({search: e.target.value})}} />
-            </Form>
+            </Form>}
+
             {blogs.filter(blog => {
                 if (this.state.search === ""){
                     return blog
-                } else if (blog.title.toLowerCase().startsWith(this.state.search.toLowerCase())){
+                } else if (blog.title.toLowerCase().includes(this.state.search.toLowerCase())){
                     return blog
                 } else if (blog.content.toLowerCase().includes(this.state.search.toLowerCase())){
                     return blog

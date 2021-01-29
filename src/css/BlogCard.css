@@ -25,9 +25,14 @@
 }
 
 .card {
+    border:solid;
+    border-color: rgb(230, 227, 227);
     text-align: center;
     display:flex;
     justify-content:center;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 15px;
+    padding-bottom: 5px;
 }
 
 .like-icon {
@@ -35,9 +40,25 @@
     cursor:pointer;
 }
 
+
+
 .icon{
     cursor: pointer;
 }
+
+.to-like-icon:hover {
+    color:rgb(53, 81, 175);
+}
+
+.to-delete-icon:hover {
+    color: red;
+}
+
+.to-edit-icon:hover {
+    color: rgb(255, 187, 0);
+}
+
+
 
 
 ul.comments-li {
@@ -75,3 +96,6 @@ ul.comments-li li {
     cursor:pointer;
 }
 
+.content {
+    padding: 10px;
+}
