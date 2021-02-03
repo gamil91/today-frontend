@@ -2,13 +2,11 @@ import '../App.css';
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom'
 import { Form, Button } from 'react-bootstrap'
-
 import { connect } from 'react-redux';
 import { setUser } from '../redux/actions/userActions'
 import { updateBlogState, addBlogState } from '../redux/actions/blogsActions'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCloudUploadAlt } from "@fortawesome/free-solid-svg-icons";
-
 
 
 const styles = {
@@ -45,7 +43,6 @@ class BlogForm extends Component {
             
         }
     }
-
 
     onChange = (e) => {
         e.persist()
@@ -122,7 +119,6 @@ class BlogForm extends Component {
             this.props.handleHomeRender("")})
     }
 
-    
 
     addBlogWithImage = () => {
         const form = new FormData()
@@ -169,8 +165,7 @@ class BlogForm extends Component {
    }  
 
     render() {
-        // debugger
-        // console.log(this.state)
+     
         return (
             <div >
                 <div className="blog-form">

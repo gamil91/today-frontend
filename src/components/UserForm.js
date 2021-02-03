@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import { withRouter, Link } from 'react-router-dom'
+//redux actions
 import { connect } from 'react-redux';
-
+import { updateUser, logoutUser, setUser, newUser } from '../redux/actions/userActions'
+//css
 import { Form, Button } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faEnvelopeOpenText, faUnlockAlt, faLock } from "@fortawesome/free-solid-svg-icons";
 import '../css/UserForm.css'
-
+//components
 import DeleteModal from './DeleteModal'
-import { updateUser, logoutUser, setUser, newUser } from '../redux/actions/userActions'
 
 
 class UserForm extends Component {
@@ -30,7 +31,6 @@ class UserForm extends Component {
     }
 
     handleOnSubmit = (e) => {
-    //   debugger
         e.preventDefault()
         
         switch(true){
@@ -128,10 +128,8 @@ class UserForm extends Component {
 
     
     render() {
-        // debugger
         return (
 
-        
             <div className="login_screen">
                 <p id="logo-font">Today.</p>
                 <h2> {this.props.screen}</h2>
@@ -194,9 +192,6 @@ class UserForm extends Component {
                 handleDelete={this.handleDelete}/> : null }
 
         </div>
-            
-        
-        
 
         );
     }

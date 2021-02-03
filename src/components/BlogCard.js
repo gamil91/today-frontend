@@ -27,9 +27,7 @@ class BlogCard extends Component {
 
     render() {
         const { title, content, user, created_at, user_likes, id, user_id, comments, image} = this.props.blog
-        // debugger
-    
-
+   
         const handleLike = () => {
             this.props.likeBlog(id)}
 
@@ -75,7 +73,7 @@ class BlogCard extends Component {
                         <i><FontAwesomeIcon icon={faTrashAlt} size="2x" className="icon to-delete-icon" onClick={this.openModal}/></i>: null} &nbsp;&nbsp;
                     </Card.Body>  
                     
-                    <CommentForm blog_id={id} comments={comments}/>
+                    <CommentForm blog_id={id} comments={comments} handleOtherUserRender={this.props.handleOtherUserRender} handleHomeRender={this.props.handleHomeRender}/>
                 </Card>
                 { this.state.modalDelete ?
             <DeleteModal
@@ -95,4 +93,4 @@ const mapStateToProps = state => {
     }
 }
 export default connect(mapStateToProps, {deleteBlog, likeBlog, unlikeBlog})(BlogCard);
-// export default connect(state =>({user: state.user}), {deleteBlog, likeBlog, unlikeBlog})(BlogCard);
+

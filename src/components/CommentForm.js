@@ -16,7 +16,6 @@ class CommentForm extends Component {
         blog_id: this.props.blog_id,
         showCommentForm: false,
     }
-    
 
     handleChange = (e) => {
         this.setState({comment: e.target.value})
@@ -45,7 +44,13 @@ class CommentForm extends Component {
         
         return (
             <div>
-                {!!this.props.comments.length ? <CommentContainer deleteComment={this.props.deleteComment} editComment={this.editComment} comments={this.props.comments}/> : null}
+                {!!this.props.comments.length ? 
+                    <CommentContainer 
+                        handleHomeRender={this.props.handleHomeRender}
+                        handleOtherUserRender={this.props.handleOtherUserRender}
+                        deleteComment={this.props.deleteComment} 
+                        editComment={this.editComment} 
+                        comments={this.props.comments}/> : null}
                 {this.state.showCommentForm ? <Form onSubmit={this.handleSubmit}>
                     <Form.Group controlId="comment-form">
                     <Form.Control className="comment-field" name="comment" as="textarea" rows={3} onChange={this.handleChange} 

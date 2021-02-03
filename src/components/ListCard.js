@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
-
+import { Droppable, Draggable  } from "react-beautiful-dnd"
+//css
 import { Card, Dropdown, Form } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashAlt, faPencilAlt} from "@fortawesome/free-solid-svg-icons";
-
+//actions
 import { connect } from 'react-redux';
 import { addTask, updateTask, deleteTask } from '../redux/actions/tasksActions'
-
+//components
 import TaskCard from './TaskCard'
 import DeleteModal from './DeleteModal'
-
-import { Droppable, Draggable  } from "react-beautiful-dnd"
 
 class ListCard extends Component  {
     // debugger
@@ -49,7 +48,6 @@ class ListCard extends Component  {
     handleDeleteTask = (id) => {
         this.props.deleteTask(id)
     }
-
 
 
     render (){ 
