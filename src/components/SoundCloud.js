@@ -1,16 +1,8 @@
-// import React, { useState, useEffect, createRef } from 'react'
-// import React, { createRef } from 'react'
-// import Script from 'react-load-script'
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimes,faArrowsAlt } from "@fortawesome/free-solid-svg-icons";
 import Draggable from 'react-draggable'
 
-
-
 const SoundCloud = ({handleClose}) => {
-
-
 
 
     return (

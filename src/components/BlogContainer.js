@@ -5,7 +5,6 @@ import BlogCard from './BlogCard'
 import { Form, FormControl } from 'react-bootstrap'
 
 
-
 class BlogContainer extends Component {
     
     state = {search: ""}
@@ -21,7 +20,6 @@ class BlogContainer extends Component {
            <Form inline id="search-bar" >
                 <FormControl type="text" 
                             placeholder="Search" 
-                            // className="mr-sm-2" 
                             onChange={(e) => {this.setState({search: e.target.value})}} />
             </Form>}
 
@@ -32,7 +30,7 @@ class BlogContainer extends Component {
                     return blog
                 } else if (blog.content.toLowerCase().includes(this.state.search.toLowerCase())){
                     return blog
-                } else { return}
+                } 
             }).map(blog => 
                 <BlogCard 
                     handleOtherUserRender={this.props.handleOtherUserRender}

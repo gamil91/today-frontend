@@ -18,8 +18,6 @@ import BlogContainer from './BlogContainer'
 import NewUserModal from './NewUserModal'
 
 
-
-
 class Home extends Component {
 
     componentDidMount(){
@@ -180,7 +178,6 @@ class Home extends Component {
 
                     <div className="todo-content-area">
 			            <div className="todo-list-wrapper">
-                        <h2 id="logo-font">Today.</h2>
                         <h1>To-do Lists</h1>
 
                         <ListContainer/>

@@ -10,12 +10,11 @@ const NewUserCarousel = ({ close, user }) => {
     const handleSelect = (selectedIndex, e) => {
       setIndex(selectedIndex);
     };
-// debugger
+
     return (
         
         <div className="font-carousel">
             <Carousel activeIndex={index} onSelect={handleSelect} interval={3000}>
-            {/* <Carousel activeIndex={index} onSelect={handleSelect} > */}
                 <Carousel.Item >
                 <div className="pic-Div-Carousel"><img
                     className="d-block "

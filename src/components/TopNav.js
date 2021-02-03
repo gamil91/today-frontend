@@ -3,8 +3,6 @@ import { Navbar, Nav, NavDropdown } from 'react-bootstrap'
 import { connect } from 'react-redux';
 import { logoutUser } from '../redux/actions/userActions'
 import { withRouter } from 'react-router-dom'
-// import '../css/TopNav.css'
-
 
 class TopNav extends Component {
 
@@ -14,7 +12,6 @@ class TopNav extends Component {
   }
 
   handleClick = (e) => {
-    // debugger
     this.props.handleHomeRender(e.target.textContent)
   }
 
@@ -33,8 +30,6 @@ class TopNav extends Component {
             <NavDropdown.Item onClick={this.handleClick}>Liked Blogs</NavDropdown.Item>
             </NavDropdown>
 
-            {/* <Nav.Link onClick={this.handleClick} >Blogs</Nav.Link>
-            <Nav.Link onClick={this.handleClick} >Liked Blogs</Nav.Link> */}
             <Nav.Link onClick={this.handleClick}>To-do</Nav.Link>
             <Nav.Link onClick={this.props.handlePlayer}>Tunes</Nav.Link>
             <Nav.Link onClick={this.handleClick}>Settings</Nav.Link>

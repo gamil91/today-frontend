@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
-
+import { DragDropContext, Droppable} from "react-beautiful-dnd"
+//css
 import { Button, Form } from 'react-bootstrap'
 import '../css/ListContainer.css'
-
+//redux
 import { connect } from 'react-redux';
 import { addList, deleteList, updateList, reorderList } from '../redux/actions/listsActions'
-
+//components
 import ListCard from './ListCard'
-
-import { DragDropContext, Droppable} from "react-beautiful-dnd"
 
 
 class ListContainer extends Component {
@@ -95,11 +94,8 @@ class ListContainer extends Component {
     }
 
 
-    
-
     render() {
-        console.log(this.props.lists)
-        // debugger
+        
         return (
             <DragDropContext onDragEnd={this.onDragEnd}>
                 
