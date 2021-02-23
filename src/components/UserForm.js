@@ -55,6 +55,7 @@ class UserForm extends Component {
                 break
             case (this.props.screen === "Sign up"):
                 this.createUser(this.state)
+                this.setState({email: "", password: "", name: "", password_confirmation: ""})
                 break
             default:
                 break
