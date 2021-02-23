@@ -7,8 +7,11 @@ const DeleteModal = ({openModal, closeModal, handleDelete, listDelete, deleteBlo
         <>
         <Modal show={openModal} onHide={closeModal} backdrop="static">
             <Modal.Header closeButton>
-                <Modal.Title>Delete Account</Modal.Title>
+                {!!listDelete ? <Modal.Title>Delete List</Modal.Title> : 
+                deleteBlog ? <Modal.Title>Delete Blog</Modal.Title> : 
+                <Modal.Title>Delete Account</Modal.Title>}
             </Modal.Header>
+            
             {!!listDelete ? 
             <Modal.Body>Deleting your list along with your tasks? <br/>I hope you finished them!</Modal.Body> : 
             deleteBlog ? <Modal.Body>Are you sure you want to delete this blog?</Modal.Body> :
