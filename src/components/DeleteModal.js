@@ -1,5 +1,5 @@
 import Modal from 'react-bootstrap/Modal'
-import Button from 'react-bootstrap/button'
+import Button from 'react-bootstrap/Button'
 
 const DeleteModal = ({openModal, closeModal, handleDelete, listDelete, deleteBlog}) => {
     
