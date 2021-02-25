@@ -11,7 +11,7 @@ export function updateBlogState(data){
 
 export function deleteBlog(id){
     return (dispatch) => {
-        fetch(`http://localhost:3000/blogs/${id}`, {
+        fetch(`https://today-api.herokuapp.com/blogs/${id}`, {
         method:  "DELETE",
         headers: {"Content-Type": "application/json"}})
         .then(res => res.json())
@@ -29,7 +29,7 @@ export function likeBlog(blog_id){
                 'Authorization' : `Bearer ${localStorage.getItem('jwt')}`},
             body: JSON.stringify({blog_id})
           }       
-        fetch(`http://localhost:3000/likes`, config)
+        fetch(`https://today-api.herokuapp.com/likes`, config)
         .then(res => res.json())
         .then(data =>dispatch(addLike(data))) 
     }
@@ -42,7 +42,7 @@ function addLike(data){
 export function unlikeBlog(id){
     // debugger
     return (dispatch) => {
-        fetch(`http://localhost:3000/likes/${id}`, {
+        fetch(`https://today-api.herokuapp.com/likes/${id}`, {
         method:  "DELETE",
         headers: {"Content-Type": "application/json"}})
         .then(res => res.json())
@@ -56,7 +56,7 @@ function removeLike(data){
 
 export function fetchBlogs(){
     return (dispatch) => {
-        fetch(`http://localhost:3000/blogs`)
+        fetch(`https://today-api.herokuapp.com/blogs`)
         .then(res => res.json())
         .then(data => {
             // debugger
@@ -70,7 +70,7 @@ function setBlogs(data){
 
 export function fetchLikedBlogs(){
     return (dispatch) => {
-        fetch('http://localhost:3000/getlikedblogs', {
+        fetch('https://today-api.herokuapp.com/getlikedblogs', {
             method: 'GET',
             headers: {
                 "Content-Type" : "application/json",

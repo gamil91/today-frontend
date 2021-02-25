@@ -20,7 +20,7 @@ export function updateUser(user){
             body: JSON.stringify(info)
           }
 
-        fetch(`http://localhost:3000/users/${user.id}`, config)
+        fetch(`https://today-api.herokuapp.com/users/${user.id}`, config)
         .then(res => res.json())
         .then((data) => {
             alert("Profile Succesfully Updated!")
@@ -31,7 +31,7 @@ export function updateUser(user){
 
 export function fetchUser(){
     return (dispatch) => {
-        fetch('http://localhost:3000/getuser', {
+        fetch('https://today-api.herokuapp.com/getuser', {
             method: 'GET',
             headers: {
                 "Content-Type" : "application/json",
@@ -49,7 +49,7 @@ export function setUser(user){
 
 export function deleteUser(id){
     return (dispatch) => {
-        fetch(`http://localhost:3000/users/${id}`, {
+        fetch(`https://today-api.herokuapp.com/users/${id}`, {
         method:  "DELETE",
         headers: {"Content-Type": "application/json"}})
         .then(() => dispatch(logoutUser()))

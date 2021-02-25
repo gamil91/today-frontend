@@ -16,7 +16,7 @@ export function addComment(data){
         body: JSON.stringify(info)
       }
 
-      fetch(`http://localhost:3000/comments`, config)
+      fetch(`https://today-api.herokuapp.com/comments`, config)
         .then(res => res.json())
         .then(data => {
             dispatch(addCommentToState(data))
@@ -44,7 +44,7 @@ export function updateComment(data){
            body: JSON.stringify(info)
          }
    
-         fetch(`http://localhost:3000/comments/${data.comment_id}`, config)
+         fetch(`https://today-api.herokuapp.com/comments/${data.comment_id}`, config)
            .then(res => res.json())
            .then(data => {
                dispatch(updateCommentInState(data))
@@ -59,7 +59,7 @@ function updateCommentInState(data){
 export function deleteComment(id){
    
     return (dispatch) => {
-        fetch(`http://localhost:3000/comments/${id}`, {
+        fetch(`https://today-api.herokuapp.com/comments/${id}`, {
         method:  "DELETE",
         headers: {"Content-Type": "application/json"}})
         .then(res => res.json())

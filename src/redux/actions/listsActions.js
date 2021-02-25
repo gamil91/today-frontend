@@ -32,7 +32,7 @@ export function addList(list){
                 'Authorization' : `Bearer ${localStorage.getItem('jwt')}`},
             body: JSON.stringify(info)
         }
-        fetch(`http://localhost:3000/lists`, config)
+        fetch(`https://today-api.herokuapp.com/lists`, config)
         .then(res => res.json())
         .then(data => dispatch(addListToState(data)))
     }
@@ -52,7 +52,7 @@ export function updateList(data){
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(info)}
         
-        fetch(`http://localhost:3000/lists/${data.id}`, config)
+        fetch(`https://today-api.herokuapp.com/lists/${data.id}`, config)
         .then(res => res.json())
         .then(data => dispatch(updateListInState(data)))
 
@@ -73,7 +73,7 @@ export function deleteList(id){
             headers: {"Content-Type": "application/json",
             'Authorization' : `Bearer ${localStorage.getItem('jwt')}`}
         }
-        fetch(`http://localhost:3000/lists/${id}`, config)
+        fetch(`https://today-api.herokuapp.com/lists/${id}`, config)
         .then(res => res.json())
         .then(data => dispatch(deleteListInState(data)))
     }
@@ -91,7 +91,7 @@ export function fetchLists () {
                 "Content-Type": "application/json",
                 'Authorization' : `Bearer ${localStorage.getItem('jwt')}`}
         }
-        fetch(`http://localhost:3000/getlists`, config)
+        fetch(`https://today-api.herokuapp.com/getlists`, config)
         .then(res => res.json())
         .then(data => {
             // debugger

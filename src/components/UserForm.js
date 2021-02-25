@@ -66,7 +66,7 @@ class UserForm extends Component {
         let info = {
         email: user.email, 
         password: user.password}
-        this.handleAuth(info, "POST", "http://localhost:3000/login")
+        this.handleAuth(info, "POST", "https://today-api.herokuapp.com/login")
     }
 
     createUser = (user) => {
@@ -74,7 +74,7 @@ class UserForm extends Component {
         name: user.name, 
         email: user.email, 
         password: user.password}
-        this.handleAuth(info, "POST", "http://localhost:3000/users")
+        this.handleAuth(info, "POST", "https://today-api.herokuapp.com/users")
     }
 
     handleAuth = (info, method, url) => {
@@ -104,7 +104,7 @@ class UserForm extends Component {
     }
 
     deleteUser = (id) =>{
-        fetch(`http://localhost:3000/users/${id}`, {
+        fetch(`https://today-api.herokuapp.com/${id}`, {
             method:  "DELETE",
             headers: {"Content-Type": "application/json"}})
             .then(() => {
