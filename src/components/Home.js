@@ -43,7 +43,7 @@ class Home extends Component {
     }
 
     fetchAdvice = () => {
-        fetch('http://localhost:3000/getadvice', 
+        fetch('https://today-api.herokuapp.com/getadvice', 
             {
             headers : { 
               'Content-Type': 'application/json',

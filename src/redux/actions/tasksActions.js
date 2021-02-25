@@ -8,7 +8,7 @@ export function addTask(data) {
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(info)}
 
-        fetch(`http://localhost:3000/tasks`, config)
+        fetch(`https://today-api.herokuapp.com/tasks`, config)
         .then(res => res.json())
         .then(data => {
             
@@ -30,7 +30,7 @@ export function updateTask(data){
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(info)}
 
-        fetch(`http://localhost:3000/tasks/${data.taskId}`, config)
+        fetch(`https://today-api.herokuapp.com/tasks/${data.taskId}`, config)
         .then(res => res.json())
         .then(data => dispatch(updateTaskInState(data)))
     }
@@ -48,7 +48,7 @@ export function deleteTask(id){
             method: "DELETE",
             headers: {"Content-Type": "application/json"}}
 
-        fetch(`http://localhost:3000/tasks/${id}`, config)
+        fetch(`https://today-api.herokuapp.com/tasks/${id}`, config)
         .then(res => res.json())
         .then(data => {dispatch(deleteTaskInState(data))})
     }
