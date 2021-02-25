@@ -13,8 +13,9 @@ import reportWebVitals from './reportWebVitals';
 
 
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ 
-const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)))
+// const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ 
+// const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)))
+const store = createStore(rootReducer, applyMiddleware(thunk))
 
 ReactDOM.render(
   <BrowserRouter>

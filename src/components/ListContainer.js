@@ -78,7 +78,7 @@ class ListContainer extends Component {
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(info)}
 
-        fetch(`http://localhost:3000/updateorder`, config)
+        fetch(`https://today-api.herokuapp.com/updateorder`, config)
         .then(res => res.json())
     }
 
@@ -89,7 +89,7 @@ class ListContainer extends Component {
             method: "POST", 
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(info)}
-        fetch(`http://localhost:3000/updatelistsorder`, config)
+        fetch(`https://today-api.herokuapp.com/updatelistsorder`, config)
         .then(res => res.json())
     }
 

@@ -93,7 +93,7 @@ class BlogForm extends Component {
             body: JSON.stringify(info)
             }
 
-        fetch(`http://localhost:3000/blogs/${id}`, config)
+        fetch(`https://today-api.herokuapp.com/blogs/${id}`, config)
         .then(res => res.json())
         .then(data => {
             alert("Blog Succesfully Updated!")
@@ -110,7 +110,7 @@ class BlogForm extends Component {
         formData.append('content', this.state.content)
         formData.append('private', this.state.private)
         
-        fetch(`http://localhost:3000/blogs/${id}`, {
+        fetch(`https://today-api.herokuapp.com/blogs/${id}`, {
             method: "PATCH",
             body: formData })
         .then(res => res.json())
@@ -128,7 +128,7 @@ class BlogForm extends Component {
         form.append('private', this.state.private)
         form.append('token', localStorage.getItem('jwt'))
     
-        fetch(`http://localhost:3000/blogs`, {
+        fetch(`https://today-api.herokuapp.com/blogs`, {
             method: "POST",
             body: form })
         .then(res => res.json())
@@ -150,7 +150,7 @@ class BlogForm extends Component {
             body: JSON.stringify(info)
             }
 
-        fetch("http://localhost:3000/blogs", config)
+        fetch("https://today-api.herokuapp.com/blogs", config)
         .then(res => res.json())
         .then(data => {
         // debugger
