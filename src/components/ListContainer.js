@@ -17,7 +17,6 @@ class ListContainer extends Component {
         this.listRef = React.createRef()
     }
     
-
     state = {
         openForm: false,
         title: "",
@@ -27,8 +26,9 @@ class ListContainer extends Component {
     handleClick = () => {
         this.setState(prevState => {
             return ({openForm: !prevState.openForm})
+        }, ()=> {
+            this.listRef.current.focus();
         })
-        this.listRef.current.focus();
     }
 
     handleChange = (e) => {

@@ -38,6 +38,7 @@
     justify-content: flex-end;
     padding-top: 2px;
     padding-right: 10px;
+    height: 20px;;
 }
 
 #list-title{
@@ -47,7 +48,9 @@
 
 .task-form {
     border: none;
-    font-size: 20px
+    font-size: 20px;
+    padding-top: 0px;
+    padding-bottom: 0px;
 }
 
 .tasks-cards {
@@ -93,6 +96,9 @@
     
 }
 
+.dropdown-toggle.btn.btn-primary:focus {
+    box-shadow: none;
+  }
 
 input.todo-item-checkbox{
     width: 20px;
