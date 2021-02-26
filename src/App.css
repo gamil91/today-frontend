@@ -6,10 +6,15 @@
   align-items: center; 
   width: 100%;
   height: 100%; 
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
+  /* width: fluid;
+  height: fluid;  */
+  /* background-repeat: no-repeat;
+  background-size: 100% 100%; */
   height:100vh;
   font-family: 'Comfortaa', cursive;
+  background-position: center center;
+  background-size: cover;
+  background-attachment: fixed;
   
 } 
 
@@ -110,7 +115,7 @@ nav {
   color: rgb(192, 27, 27);
 }
 
-.banner-area {
+/* .banner-area {
 	width: 100%;
 	height: 430px;
 	position: fixed;
@@ -126,7 +131,7 @@ nav {
 	font-size: 70px;
 	font-family: poppins;
 	color: rgb(8, 8, 8);
-}
+} */
 
 .todo-content-area, .checkin-content-area, .home-content-area{
 	padding-top: 50px;
@@ -142,6 +147,7 @@ nav {
 
 .todo-content-area {
 	background-image: url(https://images.pexels.com/photos/97050/pexels-photo-97050.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
+	background-attachment: fixed;
 }
 
 

@@ -1,3 +1,10 @@
+#create-list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   
+}
+
 #list-form {
     margin-inline: auto;
     width: 50%;
@@ -22,8 +29,8 @@
     margin-bottom: 10px;
     border-radius: 10px;
     margin: 5px;
+    
 }
-
 
 
 #list-icons{
@@ -35,6 +42,7 @@
 
 #list-title{
     font-size: 30px;
+    margin-bottom: 6px; 
 }
 
 .task-form {
@@ -56,7 +64,8 @@
     border-radius: 5px;
     font-family: Comfortaa;
     font-size: 22px;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
+    height: auto;
 }
 
 
@@ -72,14 +81,18 @@
     padding-right: 10px;
     padding-bottom: 0px;
     margin-bottom: 0;
-    
+    height: 20px;
 }
+
+
 
 .dropdown-toggle.btn.btn-primary {
     color: #1d2124;
     background-color: #ffffff;
     border: none;
+    
 }
+
 
 input.todo-item-checkbox{
     width: 20px;

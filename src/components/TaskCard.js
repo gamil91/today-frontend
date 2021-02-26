@@ -45,7 +45,8 @@ class TaskCard extends Component  {
                     {...provided.draggableProps} 
                     {...provided.dragHandleProps}>
 
-                    <div  style={{ width: '22.5rem' }}>
+                    {/* <div  style={{ width: '18rem' }}> */}
+                    <div >
                             <div id="task-icons">
                             <Dropdown id="task-dropdown">
                                 <Dropdown.Toggle/>

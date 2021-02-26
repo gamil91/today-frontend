@@ -31,9 +31,18 @@
     border-radius: 40px;
   }
 
-  .form-group p {
-      font-size: 30px;
-  }
+  /* .form-group p {
+      font-size: 18px;
+  } */
+
+  /* .form-group {
+      margin-bottom: 0;
+      height: 30px;
+  } */
+
+  /* .form-group input {
+    height: 24px;
+  } */
 
 .login_screen {
     position: absolute;
