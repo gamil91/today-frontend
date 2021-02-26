@@ -22,27 +22,17 @@
 
 .blog-form {
     margin-inline: auto;
-    width: 70rem;
-    min-height: 500px;
+    max-width: 50rem;
     font-family: 'Comfortaa', cursive;
     padding-bottom: 10px;
+    padding-left: 7px;
+    padding-right: 7px;
     background: #a7a07d2f;
     padding-top: 40px;
     border-radius: 40px;
   }
 
-  /* .form-group p {
-      font-size: 18px;
-  } */
 
-  /* .form-group {
-      margin-bottom: 0;
-      height: 30px;
-  } */
-
-  /* .form-group input {
-    height: 24px;
-  } */
 
 .login_screen {
     position: absolute;
@@ -109,12 +99,24 @@
 .blogform-title, .blogform-content{
     border-radius: 15px;
     margin-inline: auto;
-    width: 900px;
+    /* width: 900px; */
+    
 }
 
 div.file-preview {
-    margin-left: 500px;
+    margin: auto;
+    min-height: 35px;
 }
+
+#image-attach-div {
+    display: flex;
+    justify-content: center;
+    height: 45px;
+}
+
+
+
+
 
 
 

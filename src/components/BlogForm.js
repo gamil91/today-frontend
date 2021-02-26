@@ -9,15 +9,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCloudUploadAlt } from "@fortawesome/free-solid-svg-icons";
 
 
-const styles = {
-    fontFamily: 'sans-serif',
-    textAlign: 'center',
-    display:'flex' 
-  };
-
 
 const buttonDiv = {
-    margin:'auto',
     paddingBottom: '10px'
 }
 
@@ -184,27 +177,27 @@ class BlogForm extends Component {
                             <Form.Control className="blogform-content" size="lg" as="textarea" rows={5}  name="content" value={this.state.content} onChange={this.handleChange}/>
                         </Form.Group>
 
-                        
-                        
-                        <p id="image-upload-text">Image Upload</p>
-                            <label className="custom-file-upload">
-                            <input type="file" name="image" onChange={this.onChange} />
-                            <i><FontAwesomeIcon icon={faCloudUploadAlt}/></i> Attach
-                            </label>
-                            
-                        <div style={styles}>
-                            {!!this.state.image.name ? 
-                            <div className="file-preview" onClick={this.removeFile}>{this.state.image.name}</div> : null}
-                            { this.state.image === "" ? 
-                            null : <div className="pic-preview" onClick={this.removeFile}><img src={this.state.image} alt=""/> </div> }
-                        </div>
-
                         <div key={`inline-${"checkbox"}`} className="mb-3">
                         <Form.Check custom label="Private" className="private-text" type={"checkbox"} id={`inline-${"checkbox"}-1`}
                             checked={this.state.private}
                             onChange={() => {this.setState(prevState => {return{private: !prevState.private}})}}/>
                         </div>
-                    
+
+                         <div id="image-attach-div">
+                                <label className="custom-file-upload">
+                                <input type="file" name="image" onChange={this.onChange} />
+                                <i><FontAwesomeIcon icon={faCloudUploadAlt}/></i> Attach
+                                </label>
+                            <p id="image-upload-text">Image Upload</p>
+                        </div>
+                            
+                        
+                            {!!this.state.image.name ? 
+                            <div className="file-preview" onClick={this.removeFile}>{this.state.image.name}</div> : null}
+                            { this.state.image === "" ? 
+                            null : <div className="pic-preview" onClick={this.removeFile}><img src={this.state.image} alt=""/> </div> }
+                        
+
                     
                         <div style={buttonDiv}>
                             <Button id="comment-btn" type="submit">

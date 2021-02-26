@@ -50,16 +50,19 @@ input[type="file"] {
 
 .custom-file-upload {
   text-align: center;
+  color:white;
   border: 1px solid #ccc;
   display: inline-block;
-  padding: 6px 12px;
+  padding: 6px 6px;
+  padding-bottom: 2px;
   cursor: pointer;
+  background-color: hsla(184, 17%, 39%, 0.5);
 }
 
 .pic-preview {
-  width : 250px;
+  max-width : 250px;
   margin-block-end: 1em;
-  float: left;
+  /* float: left; */
   margin-inline: auto;
 }
 
@@ -218,7 +221,8 @@ nav {
 }
 
 #image-upload-text {
-	font-size: 30px;
+	font-size: 25px;
+	margin-left: 20px;
 }
 
 .private-text{
