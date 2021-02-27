@@ -61,7 +61,7 @@ class ListCard extends Component  {
                 {...provided.dragHandleProps}
                 ref={provided.innerRef} >
 
-                <Card id="list-card" style={{ width: '25rem' }}>
+                <Card id="list-card" style={{ width: '18rem' }}>
 
                     <div id="list-icons">
                         <Dropdown >

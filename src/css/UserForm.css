@@ -22,31 +22,34 @@
 
 .blog-form {
     margin-inline: auto;
-    width: 70rem;
-    min-height: 500px;
+    max-width: 50rem;
     font-family: 'Comfortaa', cursive;
     padding-bottom: 10px;
+    padding-left: 7px;
+    padding-right: 7px;
     background: #a7a07d2f;
     padding-top: 40px;
     border-radius: 40px;
   }
 
-  .form-group p {
-      font-size: 30px;
-  }
+
 
 .login_screen {
     position: absolute;
 	top: 45%;
 	left: 50%;
     transform: translate(-50%, -50%);
-	padding: 80px 40px;
+	padding: 10px 80px;
+    /* padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 40px;
+    padding-right: 40px; */
 	background: rgba(0, 0, 0, 0.5);
     min-width: 30%;
-    min-height: 500px;
+    /* min-height: 500px; */
     border-radius: 20px;
     color: #fff; 
-    padding-bottom: 20px;
+    /* padding-bottom: 20px; */
     text-align: center;
     
   }
@@ -55,25 +58,30 @@
 
   .login_screen input {
 	width: 100%;
-    margin-bottom: 25px;
+    margin-bottom: 10px;
     
 }
 
 
 .login_screen h2 {
 	margin: 0;
-	padding: 0 0 30px;
+	/* padding: 0 0 30px; */
 	color: #fff;
 	text-align: center;
 	text-transform: uppercase;
+    font-size: 20px;
 }
 
 .login_screen p {
-    font-size: 25px;
+    font-size: 15px;
 	margin: 0;
 	padding: 0;
 	font-weight: bold;
 	color: #fff;
+}
+
+.login_screen h5 {
+    font-size: 15px;
 }
 
 .login_screen input[type=email], .login_screen input[type=password], .login_screen input[type=name] {
@@ -83,7 +91,7 @@
 	outline: none;
 	height: 50px;
 	color: #fff;
-	font-size: 20px;
+	font-size: 15px;
 }
 
 
@@ -100,12 +108,23 @@
 .blogform-title, .blogform-content{
     border-radius: 15px;
     margin-inline: auto;
-    width: 900px;
+    /* width: 900px; */
+    
 }
 
 div.file-preview {
-    margin-left: 500px;
+    margin: auto;
+    min-height: 35px;
 }
 
+#image-attach-div {
+    display: flex;
+    justify-content: center;
+    height: 45px;
+}
 
-
+#user-form-buttons {
+    display: flex;
+    justify-content: space-between;
+    height: 45px;
+}

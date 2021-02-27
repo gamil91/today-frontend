@@ -12,7 +12,11 @@ import ListCard from './ListCard'
 
 class ListContainer extends Component {
 
-
+    constructor(props){
+        super(props)
+        this.listRef = React.createRef()
+    }
+    
     state = {
         openForm: false,
         title: "",
@@ -22,6 +26,8 @@ class ListContainer extends Component {
     handleClick = () => {
         this.setState(prevState => {
             return ({openForm: !prevState.openForm})
+        }, ()=> {
+            this.listRef.current.focus();
         })
     }
 
@@ -37,12 +43,11 @@ class ListContainer extends Component {
     }
     
 
-
-
-
     handleUpdate = (list) => {
         this.setState({openForm: true, title: list.title, id: list.id})
     }
+
+    
 
     onDragEnd = (result) => {
         const { destination, source, draggableId, type } = result
@@ -98,17 +103,18 @@ class ListContainer extends Component {
         
         return (
             <DragDropContext onDragEnd={this.onDragEnd}>
-                
-                    <Button variant="secondary"  onClick={this.handleClick}> Create List</Button>
+                    <div id="create-list">
+                    {this.state.openForm ? null : <Button variant="secondary"  onClick={this.handleClick}> Create List</Button> }
                     <br/><br/>
 
                     {this.state.openForm ? 
                     <Form id="list-form" onSubmit={this.handleSubmit}>
                         <Form.Group >
-                            <Form.Control type="text" placeholder="Get em done!" name="title" value={this.state.title} onChange={this.handleChange}/>
+                            <Form.Control ref={this.listRef} type="text" placeholder="Get em done!" name="title" value={this.state.title} onChange={this.handleChange}/>
                         </Form.Group>
                     </Form> : null}
-
+                      
+                    </div>
                     <Droppable droppableId="all-lists" direction="horizontal" type="list">  
                         {(provided => 
                         <div className="lists" {...provided.droppableProps} ref={provided.innerRef}>

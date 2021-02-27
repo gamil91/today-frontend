@@ -6,16 +6,21 @@
   align-items: center; 
   width: 100%;
   height: 100%; 
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
+  /* width: fluid;
+  height: fluid;  */
+  /* background-repeat: no-repeat;
+  background-size: 100% 100%; */
   height:100vh;
   font-family: 'Comfortaa', cursive;
+  background-position: center center;
+  background-size: cover;
+  background-attachment: fixed;
   
 } 
 
 #logo-font{
 	font-family: 'Special Elite', cursive;
-	font-size: 70px;
+	font-size: 50px;
 }
 
 #advice-font{
@@ -45,16 +50,18 @@ input[type="file"] {
 
 .custom-file-upload {
   text-align: center;
+  color:white;
   border: 1px solid #ccc;
   display: inline-block;
-  padding: 6px 12px;
+  padding: 6px 6px;
+  padding-bottom: 2px;
   cursor: pointer;
+  background-color: hsla(184, 17%, 39%, 0.5);
 }
 
 .pic-preview {
-  width : 250px;
+  max-width : 250px;
   margin-block-end: 1em;
-  float: left;
   margin-inline: auto;
 }
 
@@ -72,9 +79,16 @@ input[type="file"] {
 }
 
 .wrapper {
+	/* width: 1170px; */
+	margin: 0 auto;
+}
+
+.top-nav-wrapper {
 	width: 1170px;
 	margin: 0 auto;
 }
+
+
 
 .todo-list-wrapper {
 	width: 88%;
@@ -110,23 +124,12 @@ nav {
   color: rgb(192, 27, 27);
 }
 
-.banner-area {
-	width: 100%;
-	height: 430px;
-	position: fixed;
-	top: 80px;
-	background-image: url(https://images.pexels.com/photos/606542/pexels-photo-606542.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
-	-webkit-background-size: cover;
-	background-size: cover;
-	background-position: center center;
-}
-
-.banner-area h2 {
-	padding-top: 8%;
-	font-size: 70px;
-	font-family: poppins;
-	color: rgb(8, 8, 8);
-}
+/* #greeting {
+	display:flex;
+	justify-content: center;
+	padding-left: 10px;
+	padding-right: 10px;
+} */
 
 .todo-content-area, .checkin-content-area, .home-content-area{
 	padding-top: 50px;
@@ -138,10 +141,12 @@ nav {
 	background-size: cover;
 	background-position: center center;
 	min-height: 92.2%;
+	/* min-height: 130%; */
 }
 
 .todo-content-area {
 	background-image: url(https://images.pexels.com/photos/97050/pexels-photo-97050.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
+	background-attachment: fixed;
 }
 
 
@@ -154,7 +159,7 @@ nav {
 	background-attachment: fixed;
 }
 
-.content-area {
+/* .content-area {
   	padding-top: 50px;
 	width: 100%;
 	position: relative;
@@ -165,7 +170,7 @@ nav {
 	background-size: cover;
 	background-position: center center;
   	min-height: 90%;
-}
+} */
 
 .content-area h2 {
 	font-family: poppins;
@@ -212,7 +217,8 @@ nav {
 }
 
 #image-upload-text {
-	font-size: 30px;
+	font-size: 25px;
+	margin-left: 20px;
 }
 
 .private-text{

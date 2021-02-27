@@ -1,3 +1,10 @@
+#create-list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   
+}
+
 #list-form {
     margin-inline: auto;
     width: 50%;
@@ -7,8 +14,7 @@
     margin-inline: auto;
     display:flex;
     flex-wrap: wrap;
-    /* justify-content: space-between; */
-    /* align-content: space-around; */
+    justify-content: left;
 }
 
 #card-body-title {
@@ -22,8 +28,8 @@
     margin-bottom: 10px;
     border-radius: 10px;
     margin: 5px;
+    
 }
-
 
 
 #list-icons{
@@ -31,15 +37,19 @@
     justify-content: flex-end;
     padding-top: 2px;
     padding-right: 10px;
+    height: 20px;;
 }
 
 #list-title{
     font-size: 30px;
+    margin-bottom: 6px; 
 }
 
 .task-form {
     border: none;
-    font-size: 20px
+    font-size: 20px;
+    padding-top: 0px;
+    padding-bottom: 0px;
 }
 
 .tasks-cards {
@@ -56,7 +66,8 @@
     border-radius: 5px;
     font-family: Comfortaa;
     font-size: 22px;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
+    height: auto;
 }
 
 
@@ -72,14 +83,21 @@
     padding-right: 10px;
     padding-bottom: 0px;
     margin-bottom: 0;
-    
+    height: 20px;
 }
+
+
 
 .dropdown-toggle.btn.btn-primary {
     color: #1d2124;
     background-color: #ffffff;
     border: none;
+    
 }
+
+.dropdown-toggle.btn.btn-primary:focus {
+    box-shadow: none;
+  }
 
 input.todo-item-checkbox{
     width: 20px;

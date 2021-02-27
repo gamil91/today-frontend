@@ -18,7 +18,7 @@ class TopNav extends Component {
   render(){
       return (
         <header>
-    <div className="wrapper"> 
+    <div className="top-nav-wrapper"> 
       
     
         <Navbar>

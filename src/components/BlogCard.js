@@ -47,7 +47,7 @@ class BlogCard extends Component {
                     {image ? <div className="pic-Div"><img src={image} alt="" /></div> : null}
                         
                         <blockquote className="content blockquote mb-0">
-                            <p style={{padding: '10px'}}>
+                            <p style={{padding: '10px'}} id="caption-test">
                             {content}
                             </p>
 
