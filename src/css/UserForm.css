@@ -36,17 +36,17 @@
 
 .login_screen {
     position: absolute;
-	top: 50%;
+	top: 45%;
 	left: 50%;
     transform: translate(-50%, -50%);
-	/* padding: 80px 40px; */
-    padding-top: 20px;
+	padding: 10px 80px;
+    /* padding-top: 20px;
     padding-bottom: 20px;
     padding-left: 40px;
-    padding-right: 40px;
+    padding-right: 40px; */
 	background: rgba(0, 0, 0, 0.5);
     min-width: 30%;
-    min-height: 500px;
+    /* min-height: 500px; */
     border-radius: 20px;
     color: #fff; 
     /* padding-bottom: 20px; */
@@ -69,14 +69,19 @@
 	color: #fff;
 	text-align: center;
 	text-transform: uppercase;
+    font-size: 20px;
 }
 
 .login_screen p {
-    font-size: 20px;
+    font-size: 15px;
 	margin: 0;
 	padding: 0;
 	font-weight: bold;
 	color: #fff;
+}
+
+.login_screen h5 {
+    font-size: 15px;
 }
 
 .login_screen input[type=email], .login_screen input[type=password], .login_screen input[type=name] {
@@ -118,9 +123,8 @@ div.file-preview {
     height: 45px;
 }
 
-
-
-
-
-
-
+#user-form-buttons {
+    display: flex;
+    justify-content: space-between;
+    height: 45px;
+}

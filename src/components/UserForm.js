@@ -173,6 +173,7 @@ class UserForm extends Component {
                     <Button variant="outline-light" type="submit">
                         Submit
                     </Button>
+
                 </Form>
 
                 <br/>
@@ -183,9 +184,8 @@ class UserForm extends Component {
                 <h5>Don't have an account? <Link to="/signup" >Sign up!</Link></h5> : null }
 
                 {this.props.screen === "Update your account" ?
-                <Button variant="outline-danger" type="submit" onClick={this.handleOnSubmit}>Delete my account</Button> : null}
+                <Button variant="outline-danger" type="submit" onClick={this.handleOnSubmit}>Delete account</Button> : null}
             
-        
             { this.state.modalDelete ?
             <DeleteModal
                 closeModal={this.closeModal}

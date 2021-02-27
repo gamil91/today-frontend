@@ -83,6 +83,11 @@ input[type="file"] {
 	margin: 0 auto;
 }
 
+.top-nav-wrapper {
+	width: 1170px;
+	margin: 0 auto;
+}
+
 
 
 .todo-list-wrapper {
@@ -119,9 +124,12 @@ nav {
   color: rgb(192, 27, 27);
 }
 
-#greeting {
-	padding: 0px 10px;
-}
+/* #greeting {
+	display:flex;
+	justify-content: center;
+	padding-left: 10px;
+	padding-right: 10px;
+} */
 
 .todo-content-area, .checkin-content-area, .home-content-area{
 	padding-top: 50px;
@@ -133,6 +141,7 @@ nav {
 	background-size: cover;
 	background-position: center center;
 	min-height: 92.2%;
+	/* min-height: 130%; */
 }
 
 .todo-content-area {
