@@ -62,7 +62,6 @@ input[type="file"] {
 .pic-preview {
   max-width : 250px;
   margin-block-end: 1em;
-  /* float: left; */
   margin-inline: auto;
 }
 
@@ -80,9 +79,11 @@ input[type="file"] {
 }
 
 .wrapper {
-	width: 1170px;
+	/* width: 1170px; */
 	margin: 0 auto;
 }
+
+
 
 .todo-list-wrapper {
 	width: 88%;
@@ -118,23 +119,9 @@ nav {
   color: rgb(192, 27, 27);
 }
 
-/* .banner-area {
-	width: 100%;
-	height: 430px;
-	position: fixed;
-	top: 80px;
-	background-image: url(https://images.pexels.com/photos/606542/pexels-photo-606542.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
-	-webkit-background-size: cover;
-	background-size: cover;
-	background-position: center center;
+#greeting {
+	padding: 0px 10px;
 }
-
-.banner-area h2 {
-	padding-top: 8%;
-	font-size: 70px;
-	font-family: poppins;
-	color: rgb(8, 8, 8);
-} */
 
 .todo-content-area, .checkin-content-area, .home-content-area{
 	padding-top: 50px;
@@ -163,7 +150,7 @@ nav {
 	background-attachment: fixed;
 }
 
-.content-area {
+/* .content-area {
   	padding-top: 50px;
 	width: 100%;
 	position: relative;
@@ -174,7 +161,7 @@ nav {
 	background-size: cover;
 	background-position: center center;
   	min-height: 90%;
-}
+} */
 
 .content-area h2 {
 	font-family: poppins;

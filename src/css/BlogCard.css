@@ -15,8 +15,13 @@
 #search-bar {
     margin-inline: auto;
     display:block;
+    max-width: 70%
 }
 
+/* #caption-test {
+    padding: 10px; 
+    min-height: 290px;
+} */
 
 
 .form-control {

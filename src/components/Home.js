@@ -195,8 +195,8 @@ class Home extends Component {
                     <div className="home-content-area">
 			            <div className="wrapper">
                         <h2 id="logo-font">Today.</h2>
-                        <h1 >Hello, {this.props.user.name}!{" "} {this.state.advice}</h1>
-                        {/* <h1></h1> */}
+                        <div id="greeting"><h1>Hello, {this.props.user.name}!{" "} {this.state.advice}</h1></div>
+                    
                        
                     {this.filterUserBlogs().length === 0 ?
                     <div> 
