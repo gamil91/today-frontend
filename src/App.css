@@ -91,6 +91,10 @@ input[type="file"] {
 	align-items: center;
 }
 
+body {
+	background: #262626;
+}
+
 
 
 .todo-list-wrapper {
@@ -261,7 +265,7 @@ nav {
 	}
 
 
-@media only screen and (max-width: 688px) {
+/* @media only screen and (max-width: 688px) {
 	.bars-icon {
 		background-color: #262626;
 		display: none;
@@ -272,24 +276,46 @@ nav {
 		margin: 0px;
 	}
 
-
 	nav {
 		float: left;
 		line-height: 60px;
 	}
 
 	.navbar-light .navbar-nav .nav-link {
-		text-decoration: none;
-		font-family: poppins;
-		letter-spacing: 0px;
 		font-size: 15px;
-		margin-left: 0px;
-		margin-right: 0px;
 		color: #fff;
-	
+		padding-right: 5px;
+		padding-left: 5px;
+	}
+} */
+
+
+
+}
+
+@media only screen and (max-width: 667px) { 
+	.navbar-light .navbar-nav .nav-link {
+		display: none;
+		font-size: 13.5px;
+		padding-right: 3px;
+		padding-left: 3px;
+	} 
+
+	.top-nav-wrapper {
+		justify-content: flex-start;
+	}
+	.bars-icon {
+		color: white;
+		display: block;
+		padding-right: 75px;
+		cursor: pointer;
 	}
 }
 
+a {
+	color: #fff;
+}
 
-
+a:hover {
+	color: #fff;
 }
