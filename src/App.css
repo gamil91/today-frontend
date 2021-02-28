@@ -230,5 +230,39 @@ nav {
     margin: 5px;
 }
 
+.bars-icon {
+	color: white;
+	display: none;
+	
+}
 
 
+
+@media only screen and (max-width: 600px) {
+	.bars-icon {
+		background-color: #262626;
+		display: none;
+	  }
+
+	a.nav-link {
+		float: left;
+		margin: 0px;
+	}
+
+
+	nav {
+		float: left;
+		line-height: 60px;
+	}
+
+	.navbar-light .navbar-nav .nav-link {
+		text-decoration: none;
+		font-family: poppins;
+		letter-spacing: 0px;
+		font-size: 17px;
+		margin-left: 0px;
+		margin-right: 0px;
+		color: #fff;
+	
+	}
+}
