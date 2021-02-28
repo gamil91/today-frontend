@@ -107,3 +107,19 @@ ul.comments-li li {
 .content {
     padding: 10px;
 }
+
+
+
+  @media only screen and (max-width: 667px) { 
+	
+	.pic-Div {
+        width : 250px;
+        margin: auto;
+      }
+
+      #pic-and-content {
+          display: grid;
+          grid-auto-rows: auto;
+          justify-content: center;
+      }
+}
