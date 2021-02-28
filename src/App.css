@@ -84,8 +84,11 @@ input[type="file"] {
 }
 
 .top-nav-wrapper {
-	width: 1170px;
+	/* width: 1170px; */
 	margin: 0 auto;
+	display: grid;
+	justify-content: center;
+	align-items: center;
 }
 
 
@@ -94,10 +97,11 @@ input[type="file"] {
 	width: 88%;
 	/* width: 1195px; */
 	margin: 0 auto;
+	
 }
 
 header {
-	height: 80px;
+	/* height: 80px; */
 	background: #262626;
 	width: 100%;
 	z-index:10;
@@ -106,16 +110,20 @@ header {
 
 
 nav {
-	float: right;
+	/* float: right; */
 	line-height: 60px;
+	/* margin: auto; */
+
 }
 
 .navbar-light .navbar-nav .nav-link {
+
+	/* display: flex; */
 	text-decoration: none;
 	font-family: poppins;
 	letter-spacing: 4px;
 	font-size: 20px;
-	margin: 0 30px ;
+	margin: 0 10px ;
   	color: #fff;
   
 }
@@ -123,6 +131,10 @@ nav {
 .navbar-light .navbar-nav .nav-link:hover {
   color: rgb(192, 27, 27);
 }
+
+
+
+
 
 /* #greeting {
 	display:flex;
@@ -236,9 +248,20 @@ nav {
 	
 }
 
+@media only screen and (max-width: 950px) { 
+	.navbar-light .navbar-nav .nav-link {
+		text-decoration: none;
+		font-family: poppins;
+		letter-spacing: 0px;
+		font-size: 20px;
+		margin-left: 0px;
+		margin-right: 0px;
+		color: #fff;
+	
+	}
 
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 688px) {
 	.bars-icon {
 		background-color: #262626;
 		display: none;
@@ -259,10 +282,14 @@ nav {
 		text-decoration: none;
 		font-family: poppins;
 		letter-spacing: 0px;
-		font-size: 17px;
+		font-size: 15px;
 		margin-left: 0px;
 		margin-right: 0px;
 		color: #fff;
 	
 	}
+}
+
+
+
 }
