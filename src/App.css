@@ -140,12 +140,7 @@ nav {
 
 
 
-/* #greeting {
-	display:flex;
-	justify-content: center;
-	padding-left: 10px;
-	padding-right: 10px;
-} */
+
 
 .todo-content-area, .checkin-content-area, .home-content-area{
 	padding-top: 50px;
@@ -283,12 +278,19 @@ nav {
 		padding-right: 75px;
 		cursor: pointer;
 	}
+
+	 h1 {
+	font-size: 1.5rem;
+	padding-right: 10px;
+	padding-left: 10px;
+	}
+
+	a {
+		color: #fff;
+	}
+	
+	a:hover {
+		color: #fff;
+	}
 }
 
-a {
-	color: #fff;
-}
-
-a:hover {
-	color: #fff;
-}
