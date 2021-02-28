@@ -44,18 +44,22 @@ class BlogCard extends Component {
 
                     <Card.Header as="h5"><strong>{title}</strong></Card.Header>
                     <Card.Body>
+                    <div id="pic-and-content">
                     {image ? <div className="pic-Div"><img src={image} alt="" /></div> : null}
                         
                         <blockquote className="content blockquote mb-0">
                             <p style={{padding: '10px'}} id="caption-test">
                             {content}
                             </p>
+                            
 
                             <footer className="blockquote-footer" onClick={() => user.name === this.props.user.name ? this.props.handleHomeRender("") : this.props.handleOtherUserRender(user_id, user.name) }>
                                 {`${user.name} ${created_at}`}<br/>
                                 {this.props.user.id === user_id && this.props.blog.private === true ?  "(private blog, only viewable by you)" : null}
                             </footer>
                         </blockquote>   
+                    </div>
+
                         <br/>
                             <h5>{user_likes.length} {user_likes.length === 1? "like" : "likes"}</h5>
                         <br/>
