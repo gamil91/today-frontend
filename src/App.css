@@ -6,10 +6,6 @@
   align-items: center; 
   width: 100%;
   height: 100%; 
-  /* width: fluid;
-  height: fluid;  */
-  /* background-repeat: no-repeat;
-  background-size: 100% 100%; */
   height:100vh;
   font-family: 'Comfortaa', cursive;
   background-position: center center;
@@ -69,8 +65,6 @@ input[type="file"] {
    max-width: 100%; 
 }
 
-
-
 /* nav and header css */
 
 * {
@@ -79,12 +73,10 @@ input[type="file"] {
 }
 
 .wrapper {
-	/* width: 1170px; */
 	margin: 0 auto;
 }
 
 .top-nav-wrapper {
-	/* width: 1170px; */
 	margin: 0 auto;
 	display: grid;
 	justify-content: center;
@@ -99,13 +91,11 @@ body {
 
 .todo-list-wrapper {
 	width: 88%;
-	/* width: 1195px; */
 	margin: 0 auto;
 	
 }
 
 header {
-	/* height: 80px; */
 	background: #262626;
 	width: 100%;
 	z-index:10;
@@ -114,10 +104,7 @@ header {
 
 
 nav {
-	/* float: right; */
 	line-height: 60px;
-	/* margin: auto; */
-
 }
 
 .navbar-light .navbar-nav .nav-link {
@@ -137,11 +124,6 @@ nav {
 }
 
 
-
-
-
-
-
 .todo-content-area, .checkin-content-area, .home-content-area{
 	padding-top: 50px;
 	width: 100%;
@@ -152,7 +134,7 @@ nav {
 	background-size: cover;
 	background-position: center center;
 	min-height: 92.2%;
-	/* min-height: 130%; */
+	
 }
 
 .todo-content-area {
@@ -170,18 +152,6 @@ nav {
 	background-attachment: fixed;
 }
 
-/* .content-area {
-  	padding-top: 50px;
-	width: 100%;
-	position: relative;
-	top: 460px;
-	background: #ffccb9;
-	background-repeat: no-repeat;
-	-webkit-background-size: cover;
-	background-size: cover;
-	background-position: center center;
-  	min-height: 90%;
-} */
 
 .content-area h2 {
 	font-family: poppins;
@@ -258,10 +228,10 @@ nav {
 		color: #fff;
 	
 	}
-
 }
 
 @media only screen and (max-width: 667px) { 
+	
 	.navbar-light .navbar-nav .nav-link {
 		display: none;
 		font-size: 13.5px;
@@ -272,11 +242,11 @@ nav {
 	.top-nav-wrapper {
 		justify-content: flex-start;
 	}
+
 	.bars-icon {
 		color: white;
 		display: block;
 		padding-right: 75px;
-		cursor: pointer;
 	}
 
 	 h1 {
@@ -292,5 +262,6 @@ nav {
 	a:hover {
 		color: #fff;
 	}
+		
 }
 

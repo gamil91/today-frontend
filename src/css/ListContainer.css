@@ -31,7 +31,6 @@
     
 }
 
-
 #list-icons{
     display: flex;
     justify-content: flex-end;
@@ -85,8 +84,6 @@
     margin-bottom: 0;
     height: 20px;
 }
-
-
 
 .dropdown-toggle.btn.btn-primary {
     color: #1d2124;
