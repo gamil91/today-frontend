@@ -1,5 +1,3 @@
-
-
 #blog-container {
     justify-content: center;
 }
@@ -13,15 +11,10 @@
 }
 
 #search-bar {
-    margin-inline: auto;
+    margin: auto;
     display:block;
     max-width: 70%
 }
-
-/* #caption-test {
-    padding: 10px; 
-    min-height: 290px;
-} */
 
 
 .form-control {
@@ -108,18 +101,16 @@ ul.comments-li li {
     padding: 10px;
 }
 
+@media only screen and (max-width: 667px) { 
 
+.pic-Div {
+    width : 250px;
+    margin: auto;
+    }
 
-  @media only screen and (max-width: 667px) { 
-	
-	.pic-Div {
-        width : 250px;
-        margin: auto;
-      }
-
-      #pic-and-content {
-          display: grid;
-          grid-auto-rows: auto;
-          justify-content: center;
-      }
+    #pic-and-content {
+        display: grid;
+        grid-auto-rows: auto;
+        justify-content: center;
+    }
 }
