@@ -37,7 +37,7 @@ class UserForm extends Component {
             case (this.props.screen === "Log in"):
                 this.loginUser(this.state)
                 break
-            case (e.target.textContent === "Delete my account"):
+            case (e.target.textContent === "Delete account"):
                 this.openModal(this.props.user.id)
                 break
             case (this.props.screen === "Update your account" && 
