@@ -111,5 +111,11 @@ https://github.com/gamil91/today-backend
 - npm i @fortawesome/react-fontawesome
 - npm start
 
+### Video Demo
 
+https://www.loom.com/share/6388589da57b45b2ada143489c40fc9b?sharedAppSource=personal_library
+
+### Site
+
+https://today-fe.herokuapp.com/login
 
