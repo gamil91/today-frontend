@@ -2,7 +2,7 @@
 
 ## Background
 
-The idea sparked from how I got through an intense coding bootcamp. It was mentally and emotionally challenging for 17 weeks. I often found myself writing to destress and then writing a list of steps to follow to organize my brain. I built an app that combines the tools that have been useful to me throughout the program. This is an app that lets a user post check-ins/blogs and lets a user create multiple lists. 
+The idea sparked from how I got through an intense coding bootcamp. It was mentally and emotionally challenging for 17 weeks. I often found myself writing to destress and then writing a list of steps to follow to organize my brain. I built an app that combines the tools that have been useful to me throughout the program. This is an app that lets a user post check-ins/blogs and lets a user create multiple lists. (Plus a bonus lofi playlist you could listen to :)
 
 I named my app "Today", because it was a matter of getting things done, TODAY.
 
